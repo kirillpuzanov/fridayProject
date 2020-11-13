@@ -7,5 +7,7 @@ export const Registration: React.FC = () => {
         Registration
         <input />
         <button> test </button>
+        test
+        test
     </section>
 }
