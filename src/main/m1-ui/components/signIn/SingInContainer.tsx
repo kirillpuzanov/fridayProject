@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import st from './SingInContainer.module.css';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
 import {MyInputTest} from '../../common/myComponent/myInput/MyInputTest';
+import {SingInTC} from '../../../m2-bll/signIn-reducer';
 
 type FormikErrorType = {
     email?: string
@@ -41,7 +42,7 @@ export const SignInContainer: React.FC<any> = () => {
 
         onSubmit: values => {
             alert(JSON.stringify(values));
-            // dispatch(loginTC(values));
+             dispatch(SingInTC(values));
         },
     });
 

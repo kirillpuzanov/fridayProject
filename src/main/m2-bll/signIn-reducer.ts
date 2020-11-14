@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsTypes} from './store';
-import {authAPI} from '../m3-dal/api';
+import {authAPI, LoginParamsType} from '../m3-dal/api';
 
 
 const initialState = {
@@ -21,12 +21,19 @@ const signInActions = {
 }
 
 //thunk's
-// export const SingInTC = (test1:any):ThunkType => (dispatch) => {
-//     dispatch(setAppStatusAC('loading'))
-//
-//     dispatch(signInActions.setIsLoggedInAC(test1))
-// } TODO I need API
+export const SingInTC = (data:LoginParamsType):ThunkType => async (dispatch) => {
+    // dispatch(setAppStatusAC('loading'))
+    try {
+        const response = await authAPI.login(data)
+        if (!response.data.error){
+            dispatch(signInActions.setIsLoggedInAC(true))
+        }
+    }
+    catch (e){
+        const error = e.response ? e.response.data.error :(e.message +',more details on the console');
 
+    }
+}
 
 
 
