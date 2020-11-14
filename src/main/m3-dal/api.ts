@@ -1,18 +1,11 @@
 import axios from 'axios';
 
 
-const instance = axios.create({
-        baseURL: 'https://'
+export const instance = axios.create({
+    //локально:
+        baseURL: 'http://localhost:7542/2.0/',
+    // gh-pages:
+        // baseURL: 'https://neko-back.herokuapp.com/2.0/'
+    withCredentials: true,
 })
 
-export const profileAPI = {
-    getProfili(){
-        return instance.get<any>(`myURL`)
-
-    },
-}
-
-export const authAPI = {
-
-
-}
