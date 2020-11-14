@@ -53,36 +53,30 @@ export const SignInContainer: React.FC<any> = () => {
     const hasPasswordFieldError = !!formik.errors.password;
 
     return <div className={st.wrapper}>
-        <div>Login form</div>
+        <div className={st.title}>LOGIN FORM</div>
 
         <form onSubmit={formik.handleSubmit}>
-            <div>
-                <MyInputTest type='email' onChange={formik.handleChange} value={formik.values.email}
-                             placeholder={'email'}
-                             name={'email'}
-                             error={hasEmailFieldError}
-                />
-                {formik.errors.email ? <div className={st.has_error}>{formik.errors.email}</div> : null}
-            </div>
-            <div>
-                <MyInputTest type='password' onChange={formik.handleChange} value={formik.values.password}
-                             placeholder={'password'}
-                             error={hasPasswordFieldError} name={'password'}
-                />
 
-                {formik.errors.password ? <div className={st.has_error}>{formik.errors.password}</div> : null}
-            </div>
+            <MyInputTest type='email' onChange={formik.handleChange} value={formik.values.email}
+                         placeholder={'email'}
+                         name={'email'}
+                         error={hasEmailFieldError}
+            /> {formik.errors.email ? <div className={st.has_error}>{formik.errors.email}</div> : null}
+
+
+            <MyInputTest type='password' onChange={formik.handleChange} value={formik.values.password}
+                         placeholder={'password'}
+                         error={hasPasswordFieldError} name={'password'}
+            />{formik.errors.password ? <div className={st.has_error}>{formik.errors.password}</div> : null}
+
             <div className={st.click}>
                 <div>
                     <input type='checkbox' {...formik.getFieldProps('rememberMe')}/>RememberMe
                 </div>
 
-                <div>
-                    <MyBtn onClick={() => {
-                        console.log('hey');
-                    }} name={'Login'} error={hasEmailFieldError || hasPasswordFieldError} type={'submit'}
-                           disabled={hasEmailFieldError || hasPasswordFieldError}/>
-                </div>
+
+                <MyBtn name={'Login'} error={hasEmailFieldError || hasPasswordFieldError} type={'submit'}
+                       disabled={hasEmailFieldError || hasPasswordFieldError}/>
 
             </div>
 

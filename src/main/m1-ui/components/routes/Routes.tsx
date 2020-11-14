@@ -7,6 +7,7 @@ import {PNF} from '../notFound/PNF';
 import {RecoveryPassword} from '../recoveryPassword/RecoveryPassword';
 import {SetNewPassword} from '../setNewPassword/SetNewPassword';
 import {TestComponent} from '../TestComponent/MyComponent';
+import {SignInContainer} from '../signIn/SingInContainer.';
 
 export const SIGN_IN_PATH = '/signIn';
 export const REGISTRATION_PATH = '/registration';
@@ -20,7 +21,8 @@ export const TEST_COMPONENT_PATH = '/test-component';
 export const Routes: React.FC = () => {
 
     return <>
-            <Route path={SIGN_IN_PATH} component={SignIn}/>
+            {/*SignIn*/}
+            <Route path={SIGN_IN_PATH} component={SignInContainer}/>
             <Route path={REGISTRATION_PATH} component={Registration}/>
             <Route path={PROFILE_PATH} component={Profile}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
