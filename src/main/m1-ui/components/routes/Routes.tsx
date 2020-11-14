@@ -7,7 +7,7 @@ import {PNF} from '../notFound/PNF';
 import {RecoveryPassword} from '../recoveryPassword/RecoveryPassword';
 import {SetNewPassword} from '../setNewPassword/SetNewPassword';
 import {TestComponent} from '../TestComponent/MyComponent';
-import {SignInContainer} from '../signIn/SingInContainer.';
+import {SignInContainer} from '../signIn/SingInContainer';
 
 export const SIGN_IN_PATH = '/signIn';
 export const REGISTRATION_PATH = '/registration';

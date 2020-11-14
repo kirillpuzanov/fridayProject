@@ -46,7 +46,7 @@ export const SignInContainer: React.FC<any> = () => {
     });
 
     if (isLoggedIn) {
-        return <Redirect to={'/registration'}/>;
+        return <Redirect to={'/profile'}/>;
     }
 
     const hasEmailFieldError = !!formik.errors.email;
