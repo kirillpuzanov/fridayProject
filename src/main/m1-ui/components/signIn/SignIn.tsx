@@ -1,18 +1,28 @@
 import React from 'react';
 
-
-export const SignIn: React.FC = () => {
-
-    return <>
-        <span>Hello my dear friend</span>
-        <input type="text" placeholder={'Enter your name'}/>
-        <input type="text" placeholder={'Enter your email'}/>
-        <button>SignIn</button>
-        <div>SignIn</div>
-        <span>Hello my dear friend</span>
-        <input type="text" placeholder={'Enter your name'}/>
-        <input type="text" placeholder={'Enter your email'}/>
-        <button>SignIn</button>
-        <div>SignIn</div>
-    </>
+type PropsType = {
+    title: string
+    placeholderLogin: string
+    placeholderPassword: string
 }
+
+
+export const SignIn: React.FC<any> = (props) => {
+
+
+    return <form onSubmit={props.onSubmit}>;
+    <div >
+        {props.title}
+        <input type='email' value={props.value} name={props.name} onChange={props.onChange} />
+        <input type="text" placeholder={props.placeholderPassword}/>
+        <div>
+            <span>RemebmerMe</span>
+        </div>
+        <div>Forget password?</div>
+        <div>
+            <button type='submit'>SingIn</button>
+        </div>
+
+    </div>
+    </form>
+};
