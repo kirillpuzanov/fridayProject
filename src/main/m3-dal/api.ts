@@ -27,7 +27,7 @@ export type LoginParamsType = {
     rememberMe: boolean
 
 }
-export type ResponseType = {
+export type ResponseType<D = {}> = {
     _id:string
     email:string
     name:string
@@ -39,5 +39,5 @@ export type ResponseType = {
     verified:boolean
     rememberMe:boolean
     error:string
-
+    data: D
 }

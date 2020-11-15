@@ -10,6 +10,7 @@ export const RecoveryPassword: React.FC = () => {
 
             <span>Enter your mail for </span>
             <span>Enter your mail for </span>
+            BLA BLA
             <input/>
         </div>
     </section>
