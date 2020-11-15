@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-
 export const instance = axios.create({
-        baseURL: 'http://localhost:7542/2.0/',
+    //локально:
+    baseURL: 'http://localhost:7542/2.0/',
+    // gh-pages:
+    // baseURL: 'https://neko-back.herokuapp.com/2.0/'
     withCredentials: true,
 })
 
@@ -13,13 +15,10 @@ export const profileAPI = {
     },
 }
 
- export const authAPI = {
+export const authAPI = {
     login(data:LoginParamsType){
         return instance.post<ResponseType>('auth/login',data)}
-
-
 }
-
 
 export type LoginParamsType = {
     email: string
@@ -27,7 +26,7 @@ export type LoginParamsType = {
     rememberMe: boolean
 
 }
-export type ResponseType<D = {}> = {
+export type ResponseType = {
     _id:string
     email:string
     name:string
@@ -39,5 +38,5 @@ export type ResponseType<D = {}> = {
     verified:boolean
     rememberMe:boolean
     error:string
-    data: D
+
 }
