@@ -4,8 +4,7 @@ import {authAPI, LoginParamsType} from '../m3-dal/api';
 
 const initialState = {
     isAuth: false,
-    // errorP: {e:false}
-    errorP: false
+
 };
 export const signInReducer = (state: initialStateType = initialState, action: SignInActionsType): initialStateType => {
     switch (action.type) {
@@ -16,8 +15,7 @@ export const signInReducer = (state: initialStateType = initialState, action: Si
             return {
                 ...state,
                 isAuth: action.isAuth,
-                // errorP: {e:action.errorP}
-                errorP: action.errorP
+
             };
 
 
@@ -28,7 +26,7 @@ export const signInReducer = (state: initialStateType = initialState, action: Si
 //actions
 const signInActions = {
 
-    setIsAuthAC: (isAuth: boolean, errorP: boolean) => ({type: 'singIn/SET-IS-AUTH', isAuth, errorP} as const),
+    setIsAuthAC: (isAuth: boolean) => ({type: 'singIn/SET-IS-AUTH', isAuth} as const),
 };
 
 //thunk's
@@ -37,12 +35,12 @@ export const SingInTC = (data: LoginParamsType): ThunkType => async (dispatch) =
 
     try {
         const response = await authAPI.login(data);
-        dispatch(signInActions.setIsAuthAC(true, false));
+        dispatch(signInActions.setIsAuthAC(true));
 
     } catch (e) {
 
         const error = e.response ? e.response.data.error : (e.message + ',more details on the console');
-        dispatch(signInActions.setIsAuthAC(false, true));
+        dispatch(signInActions.setIsAuthAC(false));
         console.log(error);
         return error;
 

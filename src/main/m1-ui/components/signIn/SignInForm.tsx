@@ -2,6 +2,9 @@ import React from 'react';
 import st from './SingInForm.module.css';
 import {MyInputTest} from '../../common/myComponent/myInput/MyInputTest';
 import {MyBtnTest} from '../../common/myComponent/myBtnTest/MyBtnTest';
+import {NavLink} from 'react-router-dom';
+import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../routes/Routes';
+import style from '../header/Header.module.css';
 
 type PropsType = {
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
@@ -14,6 +17,7 @@ type PropsType = {
     formikPassError: string | undefined
     onClick: () => void
     formikConfirmError: string | undefined
+
 }
 
 
@@ -43,18 +47,28 @@ export const SignInForm: React.FC<PropsType> = (props) => {
             <div>
                 <input type='checkbox' onChange={props.onChange}/>RememberMe
             </div>
-            {!disableErrorField ?<MyBtnTest name='Login'
-                                           type="submit"
-                                           onClick={props.onClick}
-                                           disabled={disableErrorField}
-                                           error={disableErrorField}
-            /> : null }
+            {!disableErrorField ? <MyBtnTest name='Login'
+                                             type="submit"
+                                             onClick={props.onClick}
+                                             disabled={disableErrorField}
+                                             error={disableErrorField}
+            /> : null}
             {/*<MyBtnTest name='Login'*/}
             {/*           type="submit"*/}
             {/*           onClick={props.onClick}*/}
             {/*           disabled={disableErrorField}*/}
             {/*           error={disableErrorField}*/}
             {/*/>*/}
+        </div>
+        <div className={st.footer}>
+            <nav>
+                SingUp
+                <NavLink to={REGISTRATION_PATH} activeClassName={style.header_nav__link}>SingUp</NavLink>
+            </nav>
+            <nav>
+                Forgot?
+                <NavLink to={RECOVERY_PASSWORD_PATH} activeClassName={style.header_nav__link}>Forgot?</NavLink>
+            </nav>
         </div>
 
 

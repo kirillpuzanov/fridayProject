@@ -8,15 +8,6 @@ import {SingInTC} from '../../../m2-bll/signIn-reducer';
 import {SignInForm} from './SignInForm';
 
 
-type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-    hasError?: boolean
-    confirm?: string
-}
-
-
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector<AppStateType, boolean>(state => state.signIn.isAuth);
@@ -27,8 +18,6 @@ export const SignIn: React.FC<any> = () => {
             password: '',
             rememberMe: false,
             confirm: ''
-
-
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -63,7 +52,6 @@ export const SignIn: React.FC<any> = () => {
     const hasPasswordFieldError = !!formik.errors.password;
 
 
-
     return <div className={st.wrapper}>
         <form onSubmit={formik.handleSubmit}>
             <SignInForm
@@ -81,5 +69,13 @@ export const SignIn: React.FC<any> = () => {
 
             />
         </form>
+
     </div>;
 };
+
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+    confirm?: string
+}
