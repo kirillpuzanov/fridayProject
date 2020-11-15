@@ -1,7 +1,7 @@
 import React from 'react';
 import st from './SingInForm.module.css';
 import {MyInputTest} from '../../common/myComponent/myInput/MyInputTest';
-import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
+import {MyBtnTest} from '../../common/myComponent/myBtnTest/MyBtnTest';
 
 type PropsType = {
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
@@ -12,20 +12,14 @@ type PropsType = {
     passValue: string
     hasPasswordFieldError: boolean
     formikPassError: string | undefined
-    checked: boolean
     onClick: () => void
-
     formikConfirmError: string | undefined
 }
 
 
-
-
 export const SignInForm: React.FC<PropsType> = (props) => {
-    const disableErrorField= props.hasPasswordFieldError || props.hasEmailFieldError
-
+    const disableErrorField = props.hasPasswordFieldError || props.hasEmailFieldError;
     return <div>
-
         <div className={st.title}>{props.title}</div>
         <MyInputTest type='email'
                      onChange={props.onChange}
@@ -33,35 +27,36 @@ export const SignInForm: React.FC<PropsType> = (props) => {
                      placeholder={'email'}
                      name={'email'}
                      error={props.hasEmailFieldError}
-
         /> {props.formikEmailError ?
         <div className={st.has_error}>{props.formikEmailError}</div> : null}
-        {
-            props.formikConfirmError ? <div className={st.has_error}>{props.formikConfirmError}</div> : null
-        }
+        {props.formikConfirmError ? <div className={st.has_error}>{props.formikConfirmError}</div> : null}
         <MyInputTest type='password'
                      onChange={props.onChange}
                      value={props.passValue}
                      placeholder={'password'}
                      error={props.hasPasswordFieldError} name={'password'}
-
         />
         {props.formikPassError ?
             <div className={st.has_error}>{props.formikPassError}</div> : null}
 
         <div className={st.click}>
             <div>
-                <input type='checkbox' checked={props.checked} onChange={props.onChange}/>RememberMe
+                <input type='checkbox' onChange={props.onChange}/>RememberMe
             </div>
-
-            <MyBtn name={'Login'}
-                   type="submit"
-                   onClick={props.onClick}
-                   disabled={disableErrorField}
-                   error={disableErrorField}
-            />
-
-
+            {!disableErrorField ?<MyBtnTest name='Login'
+                                           type="submit"
+                                           onClick={props.onClick}
+                                           disabled={disableErrorField}
+                                           error={disableErrorField}
+            /> : null }
+            {/*<MyBtnTest name='Login'*/}
+            {/*           type="submit"*/}
+            {/*           onClick={props.onClick}*/}
+            {/*           disabled={disableErrorField}*/}
+            {/*           error={disableErrorField}*/}
+            {/*/>*/}
         </div>
+
+
     </div>;
 };
