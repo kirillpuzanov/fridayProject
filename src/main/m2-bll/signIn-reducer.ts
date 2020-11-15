@@ -37,17 +37,15 @@ export const SingInTC = (data: LoginParamsType): ThunkType => async (dispatch) =
 
     try {
         const response = await authAPI.login(data);
-        debugger
-            dispatch(signInActions.setIsAuthAC(true, false));
+        dispatch(signInActions.setIsAuthAC(true, false));
 
     } catch (e) {
 
-        debugger
-
         const error = e.response ? e.response.data.error : (e.message + ',more details on the console');
-        console.log(error + 'hey');
         dispatch(signInActions.setIsAuthAC(false, true));
-return error;
+        console.log(error);
+        return error;
+
 
     }
 };

@@ -8,6 +8,9 @@ export const instance = axios.create({
     withCredentials: true,
 })
 
+
+
+
 export const profileAPI = {
     getProfili(){
         return instance.get<any>(`myURL`)
@@ -38,5 +41,6 @@ export type ResponseType = {
     verified:boolean
     rememberMe:boolean
     error:string
+    token:string
 
 }
