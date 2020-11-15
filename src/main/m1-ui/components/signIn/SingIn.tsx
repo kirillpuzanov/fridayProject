@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
 import {useFormik} from 'formik';
@@ -11,17 +11,22 @@ type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+    hasError?:boolean
+    confirm?: string
 }
 
 
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector<AppStateType, boolean>(state => state.signIn.isLoggedIn);
+    const isAuth = useSelector<AppStateType, boolean>(state => state.signIn.isAuth);
+    const hasError = useSelector<AppStateType, boolean>(state => state.signIn.errorP)
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            hasError:hasError ,
+            confirm: ''
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -34,19 +39,33 @@ export const SignIn: React.FC<any> = () => {
                 errors.password = 'Required';
             } else if (values.password.length < 7) {
                 errors.password = 'Must be more than 7 characters';
+            } if (values.hasError){
+                errors.confirm = 'Incorrect email or password'
             }
+
             return errors;
         },
-        onSubmit: values => {
-            alert('Login operation is successful ');
-            dispatch(SingInTC(values));
+        onSubmit: async (values) => {
+            const onSub= await  dispatch(SingInTC(values));
+            console.log(onSub+'jedm');
+
+
+
         },
     });
-    if (isLoggedIn) {
+    // useEffect(()=>{
+    //     hasError && formik.setErrors({confirm : 'Incorrect email or password'})
+    // },[hasError])
+
+
+    if (isAuth) {
+
         return <Redirect to={'/profile'}/>;
     }
     const hasEmailFieldError = !!formik.errors.email;
     const hasPasswordFieldError = !!formik.errors.password;
+    const PasswordEmailConfirmed = formik.errors.confirm
+
 
     return <div className={st.wrapper}>
         <form onSubmit={formik.handleSubmit}>
@@ -61,6 +80,7 @@ export const SignIn: React.FC<any> = () => {
                 hasEmailFieldError={hasEmailFieldError}
                 hasPasswordFieldError={hasPasswordFieldError}
                 checked={formik.values.rememberMe}
+                PasswordEmailConfirmed={PasswordEmailConfirmed}
             />
         </form>
     </div>;

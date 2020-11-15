@@ -14,8 +14,8 @@ type PropsType = {
     formikPassError: string | undefined
     checked: boolean
     onClick: () => void
+    PasswordEmailConfirmed: string | undefined
 }
-
 
 export const SignInForm: React.FC<PropsType> = (props) => {
     return <div>
@@ -31,9 +31,12 @@ export const SignInForm: React.FC<PropsType> = (props) => {
                      onChange={props.onChange}
                      value={props.passValue}
                      placeholder={'password'}
-                     error={props.hasPasswordFieldError} name={'password'}/>{props.formikPassError ?
+                     error={props.hasPasswordFieldError} name={'password'}/>
+                     {props.formikPassError ?
         <div className={st.has_error}>{props.formikPassError}</div> : null}
-
+        {
+           props.PasswordEmailConfirmed ? <div className={st.has_error}>{props.PasswordEmailConfirmed}</div> : null
+        }
         <div className={st.click}>
             <div>
                 <input type='checkbox' checked={props.checked} onChange={props.onChange}/>RememberMe
