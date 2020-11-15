@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./MyBtn.module.css";
+import styles from "./MyBtnTest.module.css";
 
 export type myBtnType = {
     name: string
@@ -9,7 +9,7 @@ export type myBtnType = {
     onClick?: () => void
 }
 
-export function MyBtn(props: myBtnType) {
+export function MyBtnTest(props: myBtnType) {
 
     return (
         <div>

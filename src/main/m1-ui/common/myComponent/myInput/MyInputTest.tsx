@@ -8,10 +8,11 @@ export type myInputType = {
     error?: boolean
     autoFocus?: boolean
     placeholder?: string
-    onChange: (e: string | React.ChangeEvent<any>) => void
+    onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
     onKeyPress?: () => void
     onBlur?: () => void
     name?: string
+    disable?: boolean
 }
 
 export function MyInputTest(props: myInputType) {
@@ -25,6 +26,7 @@ export function MyInputTest(props: myInputType) {
     return (
         <div>
             <input
+                disabled={props.disable}
                 className={props.error ? `${styles.inputBase} ${styles.red}` : styles.inputBase}
                 onBlur={props.onBlur}
                 type={props.type}
