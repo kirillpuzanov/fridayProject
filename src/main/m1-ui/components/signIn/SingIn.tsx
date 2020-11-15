@@ -65,8 +65,6 @@ export const SignIn: React.FC<any> = () => {
                 passValue={formik.values.password}
                 hasEmailFieldError={hasEmailFieldError}
                 hasPasswordFieldError={hasPasswordFieldError}
-
-
             />
         </form>
 

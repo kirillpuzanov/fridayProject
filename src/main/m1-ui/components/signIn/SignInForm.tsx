@@ -60,15 +60,10 @@ export const SignInForm: React.FC<PropsType> = (props) => {
             {/*           error={disableErrorField}*/}
             {/*/>*/}
         </div>
+
         <div className={st.footer}>
-            <nav>
-                SingUp
-                <NavLink to={REGISTRATION_PATH} activeClassName={style.header_nav__link}>SingUp</NavLink>
-            </nav>
-            <nav>
-                Forgot?
-                <NavLink to={RECOVERY_PASSWORD_PATH} activeClassName={style.header_nav__link}>Forgot?</NavLink>
-            </nav>
+            <NavLink to={REGISTRATION_PATH} activeClassName={style.header_nav__link}>SingUp</NavLink>
+            <NavLink to={RECOVERY_PASSWORD_PATH} activeClassName={style.header_nav__link}>Forgot?</NavLink>
         </div>
 
 
