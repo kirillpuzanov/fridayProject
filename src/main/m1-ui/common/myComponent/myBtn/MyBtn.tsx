@@ -6,7 +6,7 @@ export type myBtnType = {
     type?: string
     error?: boolean
     disabled?: boolean
-    onClick: () => void
+    onClick?: () => void
 }
 
 export function MyBtn(props: myBtnType) {

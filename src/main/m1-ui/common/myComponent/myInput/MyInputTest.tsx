@@ -1,5 +1,5 @@
-import React, {ChangeEvent, FocusEvent, KeyboardEvent} from 'react';
-import styles from "./MyInput.module.css";
+import React, {KeyboardEvent} from 'react';
+import styles from './MyInputTest.module.css';
 
 
 export type myInputType = {
@@ -8,34 +8,35 @@ export type myInputType = {
     error?: boolean
     autoFocus?: boolean
     placeholder?: string
-    onChange: (value: string) => void
+    onChange: (e: string | React.ChangeEvent<any>) => void
     onKeyPress?: () => void
     onBlur?: () => void
     name?: string
 }
 
-export function MyInput(props: myInputType) {
+export function MyInputTest(props: myInputType) {
 
     const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
         if (props.onKeyPress && e.charCode === 13) {
-            props.onKeyPress()
+            props.onKeyPress();
         }
-    }
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => props.onChange(e.currentTarget.value);
+    };
+
     return (
         <div>
             <input
-                className={props.error ? `${styles.inputBase}${styles.red}` : styles.inputBase}
+                className={props.error ? `${styles.inputBase} ${styles.red}` : styles.inputBase}
                 onBlur={props.onBlur}
                 type={props.type}
                 value={props.value}
-                onChange={handleChange}
+                onChange={props.onChange}
+
                 onKeyPress={onPressEnter}
                 placeholder={props.placeholder}
                 name={props.name}
             />
         </div>
-    )
+    );
 }
 
 
