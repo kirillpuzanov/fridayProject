@@ -8,9 +8,9 @@ export type myInputType = {
     error?: boolean
     autoFocus?: boolean
     placeholder?: string
-    onChange: (e:React.ChangeEvent<HTMLInputElement>) => void
+    onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
     onKeyPress?: () => void
-    onBlur?: () => void
+    onBlur?: (e: React.FocusEvent<any>) => void
     name?: string
 }
 

@@ -3,23 +3,26 @@ import {MyInput} from '../../common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
 import style from './Registration.module.css';
 import {Preloader} from '../../common/Preloader/Preloader';
+import {FormikErrorType} from './RegistrationContainer';
 
 type RegistrationType = {
     email: string
     password: string
     repeatPass: string
     error: string
+    errors: FormikErrorType
     loading: boolean
-    setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void
-    setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void
-    setRepeatPassword: (e: React.ChangeEvent<HTMLInputElement>) => void
     formSubmit: () => void
+    onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Registration: React.FC<RegistrationType> = (props) => {
-    const {email, password, repeatPass, error, loading, setEmail, setPassword, setRepeatPassword, formSubmit} = props;
 
-    if(loading) return <Preloader/>
+    const {email, password, repeatPass, error, errors, loading, onChange, formSubmit} = props;
+    const {email: errorEmail, password: errorPassword, repeatPass: errorRepeatPass} = errors;
+    const disBtn = errorEmail || errorPassword || errorRepeatPass;
+
+    if (loading) return <Preloader/>
 
     return <section>
         <main className={style.reg}>
@@ -27,27 +30,89 @@ export const Registration: React.FC<RegistrationType> = (props) => {
             <form className={style.reg_form}>
                 <div>
                     <span>Enter your email:</span>
-                    <MyInput error={!!error} type='email'
-                             value={email} onChange={setEmail}
-                             placeholder='email...'/>
+                    <MyInput error={!!errorEmail} type='email'
+                             value={email} onChange={onChange}
+                             placeholder='email...' name='email'/>
+                    {errorEmail ?
+                        <div className={style.reg_form__error}>{errorEmail}</div> : null}
                 </div>
                 <div>
                     <span>Enter your password:</span>
-                    <MyInput error={!!error} type='password'
-                             value={password} onChange={setPassword}
-                             placeholder='min 8 symbols..'/>
+                    <MyInput error={!!errorPassword} type='password'
+                             value={password} onChange={onChange}
+                             placeholder='min 8 symbols..' name='password'/>
+                    {errorPassword ?
+                        <div className={style.reg_form__error}>{errors.password}</div> : null}
                 </div>
                 <div>
                     <span>Repeat your password:</span>
-                    <MyInput error={!!error} type='password'
-                             value={repeatPass} onChange={setRepeatPassword}
-                             placeholder='min 8 symbols...'/>
+                    <MyInput error={!!errorRepeatPass} type='password'
+                             value={repeatPass} onChange={onChange}
+                             placeholder='min 8 symbols...' name='repeatPass'/>
+                    {errorRepeatPass ?
+                        <div className={style.reg_form__error}>{errors.repeatPass}</div> : null}
                 </div>
                 {error ? <p className={style.reg_form__error}> {error} </p> : ''}
                 <div>
-                    <MyBtn disabled={loading} name={'Login'} onClick={formSubmit}/>
+                    <MyBtn error={!!disBtn} disabled={!!disBtn} name={'Login'} onClick={formSubmit}/>
                 </div>
             </form>
         </main>
     </section>
 }
+
+
+// type RegistrationType = {
+//     email: string
+//     password: string
+//     repeatPass: string
+//     error: string
+//     errors: FormikErrorType
+//     loading: boolean
+//     formSubmit: () => void
+//     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
+//     // errorEmail: boolean | string | undefined
+//     // errorPassword: boolean | string | undefined
+//     // errorRepeatPass: boolean | string | undefined
+//     // setEmail: (e: React.ChangeEvent<HTMLInputElement>) => void
+//     // setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void
+//     // setRepeatPassword: (e: React.ChangeEvent<HTMLInputElement>) => void
+// }
+
+
+//old method
+// export const Registration: React.FC<RegistrationType> = (props) => {
+//     const {email, password, repeatPass, error,errors, loading,onChange, /*setEmail, setPassword, setRepeatPassword,*/ formSubmit} = props;
+//
+//     if (loading) return <Preloader/>
+//
+//     return <section>
+//         <main className={style.reg}>
+//             <div className={style.reg_title}> Registration form</div>
+//             <form className={style.reg_form}>
+//                 <div>
+//                     <span>Enter your email:</span>
+//                     <MyInput error={!!error} type='email'
+//                              value={email} onChange={onChange}
+//                              placeholder='email...' name='email'/>
+//                 </div>
+//                 <div>
+//                     <span>Enter your password:</span>
+//                     <MyInput error={!!error} type='password'
+//                              value={password} onChange={onChange}
+//                              placeholder='min 8 symbols..' name='password'/>
+//                 </div>
+//                 <div>
+//                     <span>Repeat your password:</span>
+//                     <MyInput error={!!error} type='password'
+//                              value={repeatPass} onChange={onChange}
+//                              placeholder='min 8 symbols...' name='repeatPassword'/>
+//                 </div>
+//                 {error ? <p className={style.reg_form__error}> {error} </p> : ''}
+//                 <div>
+//                     <MyBtn disabled={loading} name={'Login'} onClick={formSubmit}/>
+//                 </div>
+//             </form>
+//         </main>
+//     </section>
+// }
