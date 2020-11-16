@@ -1,27 +1,44 @@
 import {instance} from './api';
 
 
-export const authApi = {
+export const authAPI = {
     register(email: string, password: string) {
         return instance.post<ResponseReg>('auth/register', {email, password})
             .then(res => res.data)
     },
-
+    login(data: LoginParamsType) {
+        return instance.post<ProfileType>('auth/login', data)
+    },
+    getCookie(name: string) {
+        // проверка на наличие в куках браузера, куки с именем token для конкретного домена
+        let matches = document.cookie.match(new RegExp(
+            '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
+        ));
+        return !!matches
+    },
 }
 
-type newUserType = {
-    created: string
+export type LoginParamsType = {
     email: string
-    isAdmin: boolean
-    name: string
-    publicCardPacksCount: number
+    password: string
     rememberMe: boolean
-    updated: string
-    verified: boolean
-    __v: number
-    _id: string
 }
 type ResponseReg = {
-    addedUser: newUserType
+    addedUser: ProfileType
     error: string
+}
+
+export type ProfileType = {
+    _id: string
+    email: string
+    name: string
+    avatar?: string
+    publicCardPacksCount: number
+    created: Date
+    updated: Date
+    isAdmin: boolean
+    verified: boolean
+    rememberMe: boolean
+    error: string
+    token: string
 }

@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsTypes} from './store';
-import {authApi} from '../m3-dal/authAPI';
+import {authAPI} from '../m3-dal/authAPI';
 
 //actions
 export const signInActions = {
@@ -11,7 +11,7 @@ export const signInActions = {
 //thunk's
 export const registerTC = (email: string, password: string): ThunkType => (dispatch) => {
     dispatch(signInActions.setLoading(true))
-    authApi.register(email, password)
+    authAPI.register(email, password)
         .then(response => {
             if (response.addedUser) dispatch(signInActions.setRegisterSuccess())
         })

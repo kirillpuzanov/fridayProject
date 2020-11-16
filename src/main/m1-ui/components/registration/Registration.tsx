@@ -2,7 +2,6 @@ import React from 'react';
 import {MyInput} from '../../common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
 import style from './Registration.module.css';
-import {Preloader} from '../../common/Preloader/Preloader';
 import {FormikErrorType} from './RegistrationContainer';
 
 type RegistrationType = {
@@ -11,18 +10,17 @@ type RegistrationType = {
     repeatPass: string
     error: string
     errors: FormikErrorType
-    loading: boolean
     formSubmit: () => void
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Registration: React.FC<RegistrationType> = (props) => {
 
-    const {email, password, repeatPass, error, errors, loading, onChange, formSubmit} = props;
+    const {email, password, repeatPass, error, errors, onChange, formSubmit} = props;
     const {email: errorEmail, password: errorPassword, repeatPass: errorRepeatPass} = errors;
     const disBtn = errorEmail || errorPassword || errorRepeatPass;
 
-    if (loading) return <Preloader/>
+
 
     return <section>
         <main className={style.reg}>
@@ -54,7 +52,7 @@ export const Registration: React.FC<RegistrationType> = (props) => {
                 </div>
                 {error ? <p className={style.reg_form__error}> {error} </p> : ''}
                 <div>
-                    <MyBtn error={!!disBtn} disabled={!!disBtn} name={'Login'} onClick={formSubmit}/>
+                    <MyBtn error={!!disBtn} disabled={!!disBtn} name={'Register'} onClick={formSubmit}/>
                 </div>
             </form>
         </main>

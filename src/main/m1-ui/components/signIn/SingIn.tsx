@@ -2,16 +2,16 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
 import {useFormik} from 'formik';
-import {Redirect} from 'react-router-dom';
 import st from './SingInForm.module.css';
 import {SingInTC} from '../../../m2-bll/signIn-reducer';
 import {SignInForm} from './SignInForm';
+import {Redirect} from 'react-router-dom';
+import {PROFILE_PATH} from '../routes/Routes';
 
 
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector<AppStateType, boolean>(state => state.signIn.isAuth);
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -44,13 +44,10 @@ export const SignIn: React.FC<any> = () => {
 
         },
     });
-
-    if (isAuth) {
-        return <Redirect to={'/profile'}/>;
-    }
     const hasEmailFieldError = !!formik.errors.email;
     const hasPasswordFieldError = !!formik.errors.password;
 
+    if (isAuth) return <Redirect to={PROFILE_PATH}/>;
 
     return <div className={st.wrapper}>
         <form onSubmit={formik.handleSubmit}>
@@ -65,8 +62,6 @@ export const SignIn: React.FC<any> = () => {
                 passValue={formik.values.password}
                 hasEmailFieldError={hasEmailFieldError}
                 hasPasswordFieldError={hasPasswordFieldError}
-
-
             />
         </form>
 

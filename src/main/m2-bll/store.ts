@@ -3,7 +3,7 @@ import thunk, {ThunkAction} from 'redux-thunk';
 import {signInReducer} from './signIn-reducer';
 import {registrationReducer} from './registration-reducer';
 import {profileReducer} from './profile-reducer';
-import {setNewPasswordReducer} from "./setNewPassword-reducer";
+import {appReducer} from './app-reducer';
 
 
 //actions type
@@ -17,6 +17,7 @@ const reducers = combineReducers({
     signIn: signInReducer,
     registration: registrationReducer,
     profile:profileReducer,
+    app: appReducer,
     //newPassword: setNewPasswordReducer
 });
 

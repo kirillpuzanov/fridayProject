@@ -6,9 +6,11 @@ import {initialStateType, registerTC} from '../../../m2-bll/registration-reducer
 import {Redirect} from 'react-router-dom';
 import {SIGN_IN_PATH} from '../routes/Routes';
 import {useFormik} from 'formik';
+import {AppInitialStateType} from '../../../m2-bll/app-reducer';
+import {Preloader} from '../../common/Preloader/Preloader';
 
 export const RefFormik = () => {
-    const {loading, error, registerSuccess} = useSelector<AppStateType, initialStateType>(state => state.registration)
+    const { error, registerSuccess} = useSelector<AppStateType, initialStateType>(state => state.registration)
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -43,7 +45,6 @@ export const RefFormik = () => {
             repeatPass={formik.values.repeatPass}
             error={error}
             errors={formik.errors}
-            loading={loading}
             onChange={formik.handleChange}
             formSubmit={formik.handleSubmit}
         />
