@@ -62,7 +62,6 @@ a {
     -o-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
    display: inline-block;
-    line-height: 1px;
 }
 
 a:hover {

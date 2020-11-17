@@ -12,7 +12,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             <div><img src={profile.avatar ? profile.avatar : ava_default} alt=""/></div>
             <div>Name : {profile.name}</div>
             <div>Email : {profile.email}</div>
-            <div>IsAdmin : {profile.isAdmin}</div>
             <div>Public Card Packs Count : {profile.publicCardPacksCount}</div>
         </div>
     )

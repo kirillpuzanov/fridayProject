@@ -2,6 +2,7 @@ import {BaseThunkType, InferActionsTypes} from './store';
 import {authAPI, LoginParamsType} from '../m3-dal/authAPI';
 import {profileActions, ProfileActionsType} from './profile-reducer';
 
+
 export const AuthInitialState = {
     isAuth: false,
     loading: false,

@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsTypes} from './store';
 import {authAPI} from '../m3-dal/authAPI';
-import {profileActions, ProfileActionsType} from './profile-reducer';
 import {authActions, authActionsType} from './auth-reducer';
+import {profileActions, ProfileActionsType} from './profile-reducer';
 
 
 const initialState = {
@@ -37,5 +37,7 @@ export const AuthMe = (): ThunkType =>
 
 export type AppInitialStateType = typeof initialState
 type ThunkType = BaseThunkType<AppActionsType>
-export type AppActionsType = InferActionsTypes<typeof appActions> | ProfileActionsType | authActionsType
+export type AppActionsType = InferActionsTypes<typeof appActions>
+    | ProfileActionsType
+    | authActionsType
 

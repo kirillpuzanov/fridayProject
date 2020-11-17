@@ -1,13 +1,13 @@
-import {BaseThunkType, InferActionsTypes} from './store';
 import {ProfileType} from '../m3-dal/authAPI';
+import {InferActionsTypes} from './store';
 
 
 const initialState = {
     profile: {} as ProfileType,
 }
-export const profileReducer = (state: initialStateType = initialState, action: ProfileActionsType):initialStateType => {
+export const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionsType):ProfileInitialStateType => {
     switch (action.type) {
-        case 'profile/SET-PROFILE': return { ...state, profile: {...action.profile}}
+        case '/PROFILE/SET-PROFILE': return { ...state, profile: {...action.profile}}
         default:
             return state
     }
@@ -16,11 +16,9 @@ export const profileReducer = (state: initialStateType = initialState, action: P
 
 //actions
 export const profileActions = {
-    setProfileAC: (profile: ProfileType) => ({type: 'profile/SET-PROFILE', profile} as const),
+  setProfileAC: (profile: ProfileType) => ({type: '/PROFILE/SET-PROFILE', profile} as const),
 }
-//thunks
 
-type initialStateType = typeof initialState
-type ThunkType = BaseThunkType<ProfileActionsType>
+export type ProfileInitialStateType = typeof initialState;
 export type ProfileActionsType = InferActionsTypes<typeof profileActions>
 
