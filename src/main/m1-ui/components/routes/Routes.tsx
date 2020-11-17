@@ -1,11 +1,11 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import {Profile} from '../profile/Profile';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {PNF} from '../notFound/PNF';
 import {RecoveryPassword} from '../recoveryPassword/RecoveryPassword';
 import {SetNewPassword} from '../setNewPassword/SetNewPassword';
-import {RefFormik} from '../registration/RegistrationContainer';
+import {RegistrationContainer} from '../registration/RegistrationContainer';
 import {SignIn} from '../signIn/SingIn';
+import {ProfileContainer} from '../profile/ProfileContainer';
 
 
 export const SIGN_IN_PATH = '/';
@@ -20,11 +20,15 @@ export const TEST_COMPONENT_PATH = '/testComponent';
 export const Routes: React.FC<any> = () => {
 
     return <>
+        <Switch>
             <Route exact path={SIGN_IN_PATH} component={SignIn}/>
-            <Route exact path={REGISTRATION_PATH} component={RefFormik}/>
-            <Route exact path={PROFILE_PATH} component={Profile}/>
-            <Route exact path={PAGE_NOT_FOUND_PATH} component={PNF}/>
-            <Route exact path={RECOVERY_PASSWORD_PATH} component={RecoveryPassword}/>
-            <Route exact path={SET_NEW_PASSWORD_PATH} component={SetNewPassword}/>
+            <Route path={REGISTRATION_PATH} component={RegistrationContainer}/>
+            <Route path={PROFILE_PATH} component={ProfileContainer}/>
+            <Route path={RECOVERY_PASSWORD_PATH} component={RecoveryPassword}/>
+            <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPassword}/>
+            <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
+            <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
+        </Switch>
+
     </>
 }

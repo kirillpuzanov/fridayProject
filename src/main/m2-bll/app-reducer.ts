@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsTypes} from './store';
 import {authAPI} from '../m3-dal/authAPI';
-import {signInActions, SignInActionsType} from './signIn-reducer';
-import {ProfileActionsType} from './profile-reducer';
+import {profileActions, ProfileActionsType} from './profile-reducer';
+import {authActions, authActionsType} from './auth-reducer';
 
 
 const initialState = {
@@ -18,23 +18,24 @@ export const appReducer = (state: AppInitialStateType = initialState, action: Ap
 
 //actions
 export const appActions = {
-    setLoading: (loading: boolean) => ({type: '/APP/SET-LOADING', loading} as const),
-    setInitialized: (isInitializing: boolean) => ({type: '/APP/SET-INITIALIZED', isInitializing} as const),
+    setInitializing: (isInitializing: boolean) => ({type: '/APP/SET-INITIALIZED', isInitializing} as const),
 }
-// ' "типа санка" '
-export const AuthMe = (): ThunkType => (dispatch) => {
-    if (authAPI.getCookie('token')) {
-        dispatch(signInActions.setIsAuthAC(true));
-        dispatch(appActions.setInitialized(true))
-    } else {
-        dispatch(appActions.setInitialized(true))
-        console.log('not authorising, app-reducer/AuthMe' )
+// thunks
+export const AuthMe = (): ThunkType =>
+    async (dispatch) => {
+    try{
+        let response = await authAPI.authMe()
+        dispatch(profileActions.setProfileAC(response))
+        dispatch(authActions.setIsAuthAC(true))
+    } catch (err){
+        // флаг isAuth стается false редирект на логин автом. console.log просто так
+        console.log(err.response.data.error)
     }
+    dispatch(appActions.setInitializing(true))
 }
-
 
 
 export type AppInitialStateType = typeof initialState
 type ThunkType = BaseThunkType<AppActionsType>
-export type AppActionsType = InferActionsTypes<typeof appActions> | SignInActionsType | ProfileActionsType
+export type AppActionsType = InferActionsTypes<typeof appActions> | ProfileActionsType | authActionsType
 

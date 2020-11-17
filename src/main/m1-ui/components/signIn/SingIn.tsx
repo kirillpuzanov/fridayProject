@@ -3,15 +3,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
 import {useFormik} from 'formik';
 import st from './SingInForm.module.css';
-import {SingInTC} from '../../../m2-bll/signIn-reducer';
 import {SignInForm} from './SignInForm';
 import {Redirect} from 'react-router-dom';
 import {PROFILE_PATH} from '../routes/Routes';
+import {SingInTC} from '../../../m2-bll/auth-reducer';
 
 
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
-    const isAuth = useSelector<AppStateType, boolean>(state => state.signIn.isAuth);
+    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
     const formik = useFormik({
         initialValues: {
             email: '',

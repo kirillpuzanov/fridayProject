@@ -2,15 +2,14 @@ import React from 'react';
 import {Registration} from './Registration';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
-import {initialStateType, registerTC} from '../../../m2-bll/registration-reducer';
 import {Redirect} from 'react-router-dom';
-import {SIGN_IN_PATH} from '../routes/Routes';
+import {PROFILE_PATH, SIGN_IN_PATH} from '../routes/Routes';
 import {useFormik} from 'formik';
-import {AppInitialStateType} from '../../../m2-bll/app-reducer';
-import {Preloader} from '../../common/Preloader/Preloader';
+import {AuthInitialStateType, registerTC} from '../../../m2-bll/auth-reducer';
 
-export const RefFormik = () => {
-    const { error, registerSuccess} = useSelector<AppStateType, initialStateType>(state => state.registration)
+export const RegistrationContainer = () => {
+    const { error, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
+    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -38,6 +37,7 @@ export const RefFormik = () => {
     })
 
     if (registerSuccess) return <Redirect to={SIGN_IN_PATH}/>
+    if (isAuth) return <Redirect to={PROFILE_PATH}/>;
     return (
         <Registration
             email={formik.values.email}

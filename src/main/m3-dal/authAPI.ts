@@ -9,13 +9,14 @@ export const authAPI = {
     login(data: LoginParamsType) {
         return instance.post<ProfileType>('auth/login', data)
     },
-    getCookie(name: string) {
-        // проверка на наличие в куках браузера, куки с именем token для конкретного домена
-        let matches = document.cookie.match(new RegExp(
-            '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
-        ));
-        return !!matches
+    authMe() {
+        return instance.post<ProfileType>('auth/me')
+            .then(r => r.data)
     },
+    logout() {
+        return instance.delete<LogoutResType>('auth/me')
+            .then(r => r.data)
+    }
 }
 
 export type LoginParamsType = {
@@ -25,6 +26,10 @@ export type LoginParamsType = {
 }
 type ResponseReg = {
     addedUser: ProfileType
+    error: string
+}
+type LogoutResType = {
+    info: string
     error: string
 }
 

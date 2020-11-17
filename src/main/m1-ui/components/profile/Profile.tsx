@@ -1,14 +1,27 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
-import {AppStateType} from '../../../m2-bll/store';
-import {Redirect} from 'react-router-dom';
-import {SIGN_IN_PATH} from '../routes/Routes';
+import {ProfileType} from '../../../m3-dal/authAPI';
+import style from './Profile.module.css';
+import {ProfileInfo} from './ProfileInfo';
+import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
 
-export const Profile: React.FC = () => {
+type ProfType = {
+    profile: ProfileType
+    onLogOut: ()=> void
+}
 
-    const isAuth = useSelector<AppStateType, boolean>(state => state.signIn.isAuth);
-    if (!isAuth) return <Redirect to={SIGN_IN_PATH}/>
+export const Profile: React.FC<ProfType> = (props) => {
+    const {profile,onLogOut} = props;
     return <section>
-        Profile
+        <div className={style.profile}>
+            <ProfileInfo profile={profile}/>
+            <MyBtn name={'LogOut'} onClick={onLogOut}/>
+        </div>
     </section>
 }
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ export const profileReducer = (state: initialStateType = initialState, action: P
 export const profileActions = {
     setProfileAC: (profile: ProfileType) => ({type: 'profile/SET-PROFILE', profile} as const),
 }
+//thunks
 
 type initialStateType = typeof initialState
 type ThunkType = BaseThunkType<ProfileActionsType>

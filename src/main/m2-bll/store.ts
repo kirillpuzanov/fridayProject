@@ -1,9 +1,8 @@
 import {Action, applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction} from 'redux-thunk';
-import {signInReducer} from './signIn-reducer';
-import {registrationReducer} from './registration-reducer';
 import {profileReducer} from './profile-reducer';
 import {appReducer} from './app-reducer';
+import {authReducer} from './auth-reducer';
 
 
 //actions type
@@ -14,8 +13,9 @@ export type BaseThunkType<A extends Action = Action, R = any> = ThunkAction<R, A
 export type AppStateType = ReturnType<typeof reducers>;
 
 const reducers = combineReducers({
-    signIn: signInReducer,
-    registration: registrationReducer,
+    // signIn: signInReducer,
+    // registration: registrationReducer,
+    auth:authReducer,
     profile:profileReducer,
     app: appReducer,
     //newPassword: setNewPasswordReducer
