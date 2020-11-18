@@ -23,19 +23,20 @@ export const appActions = {
 // thunks
 export const AuthMe = (): ThunkType =>
     async (dispatch) => {
-    try{
-        let response = await authAPI.authMe()
-        dispatch(profileActions.setProfileAC(response))
-        dispatch(authActions.setIsAuthAC(true))
-    } catch (err){
-        // флаг isAuth стается false редирект на логин автом. console.log просто так
-        console.log(err.response.data.error)
+        try {
+            let response = await authAPI.authMe()
+            dispatch(profileActions.setProfileAC(response))
+            dispatch(authActions.setIsAuthAC(true))
+        } catch (err) {
+            dispatch(authActions.setError(err.response.data.error))
+        }
+        dispatch(appActions.setInitializing(true))
     }
-    dispatch(appActions.setInitializing(true))
-}
 
 
 export type AppInitialStateType = typeof initialState
 type ThunkType = BaseThunkType<AppActionsType>
-export type AppActionsType = InferActionsTypes<typeof appActions> | ProfileActionsType | authActionsType
+export type AppActionsType = InferActionsTypes<typeof appActions>
+    | ProfileActionsType
+    | authActionsType
 

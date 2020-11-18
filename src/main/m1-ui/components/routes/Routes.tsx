@@ -6,6 +6,7 @@ import {SetNewPassword} from '../setNewPassword/SetNewPassword';
 import {RegistrationContainer} from '../registration/RegistrationContainer';
 import {SignIn} from '../signIn/SingIn';
 import {ProfileContainer} from '../profile/ProfileContainer';
+import {RecoveryPasswordContainer} from '../recoveryPassword/RecoveryPasswordContainer';
 
 
 export const SIGN_IN_PATH = '/';
@@ -24,7 +25,7 @@ export const Routes: React.FC<any> = () => {
             <Route exact path={SIGN_IN_PATH} component={SignIn}/>
             <Route path={REGISTRATION_PATH} component={RegistrationContainer}/>
             <Route path={PROFILE_PATH} component={ProfileContainer}/>
-            <Route path={RECOVERY_PASSWORD_PATH} component={RecoveryPassword}/>
+            <Route path={RECOVERY_PASSWORD_PATH} component={RecoveryPasswordContainer}/>
             <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPassword}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>

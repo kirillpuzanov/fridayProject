@@ -3,6 +3,8 @@ import {MyInput} from '../../common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
 import style from './Registration.module.css';
 import {FormikErrorType} from './RegistrationContainer';
+import {Snackbar} from '@material/react-snackbar';
+import  '@material/react-snackbar/dist/snackbar.css';
 
 type RegistrationType = {
     email: string
@@ -16,7 +18,7 @@ type RegistrationType = {
 
 export const Registration: React.FC<RegistrationType> = (props) => {
 
-    const {email, password, repeatPass, error, errors, onChange, formSubmit} = props;
+    const {email, password, repeatPass, error:errorServer, errors, onChange, formSubmit} = props;
     const {email: errorEmail, password: errorPassword, repeatPass: errorRepeatPass} = errors;
     const disBtn = errorEmail || errorPassword || errorRepeatPass;
 
@@ -50,10 +52,11 @@ export const Registration: React.FC<RegistrationType> = (props) => {
                     {errorRepeatPass ?
                         <div className={style.reg_form__error}>{errors.repeatPass}</div> : null}
                 </div>
-                {error ? <p className={style.reg_form__error}> {error} </p> : ''}
+                {errorServer ? <p className={style.reg_form__error}> {errorServer} </p> : ''}
                 <div>
                     <MyBtn error={!!disBtn} disabled={!!disBtn} name={'Register'} onClick={formSubmit}/>
                 </div>
+                {/*{error && <Snackbar message={error} timeoutMs={4000}/>}*/}
             </form>
         </main>
     </section>
