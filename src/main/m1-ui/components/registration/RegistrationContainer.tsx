@@ -55,6 +55,9 @@ export type FormikErrorType = {
     email?: string
     password?: string
     repeatPass?: string
+    confirm?: string
+
+
 }
 
 //old method
