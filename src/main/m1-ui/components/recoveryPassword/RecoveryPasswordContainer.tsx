@@ -32,7 +32,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
                 from: 'kirillpuzanov@mail.ru',
                 message: `<div style="background-color: lime; padding: 15px">
                         password recovery link: 
-	                    <a href='http://localhost:3000/#/new-pass/:token?/$token$'>link</a>
+	                    <a href='http://localhost:3000/#/new-pass/$token$'>link</a>
 	                    </div>`
             }
             dispatch(recoveryPassTC(RecoveryPassObj))

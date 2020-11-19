@@ -33,6 +33,7 @@ export const SetNewPasswordContainer: React.FC = () => {
                resetPasswordToken: token
            }
             dispatch(setNewPassTC(setNewPassData))
+            console.log(token)
         },
     })
 
