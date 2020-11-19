@@ -16,7 +16,7 @@ function App() {
     }, [])
 
     if (!isInitializing) return <Preloader/>
-    if (initializeError) return <div> {initializeError} </div>
+    // if (initializeError) return <div> {initializeError} </div>
     return (
         <div className="App">
             <Header/>
