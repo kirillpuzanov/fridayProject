@@ -32,7 +32,7 @@ export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
 
 
                 <MyBtn name='Send' onClick={formSubmit}
-                       error={!!errorEmail} disabled={!!errorEmail}/>
+                       error={!!errorEmail} disabled={!!errorEmail} type={'submit'}/>
                 {errorServer ? <p className={style.reg_form__error}> {errorServer} </p> : ''}
                 {/*{error && <Snackbar message={error} timeoutMs={4000}/>}*/}
             </form>

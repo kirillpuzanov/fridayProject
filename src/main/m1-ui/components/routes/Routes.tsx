@@ -1,7 +1,6 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {PNF} from '../notFound/PNF';
-import {RecoveryPassword} from '../recoveryPassword/RecoveryPassword';
 import {SetNewPassword} from '../setNewPassword/SetNewPassword';
 import {RegistrationContainer} from '../registration/RegistrationContainer';
 import {SignIn} from '../signIn/SingIn';

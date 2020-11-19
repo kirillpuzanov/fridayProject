@@ -19,7 +19,7 @@ export const authAPI = {
             .then(r => r.data)
     },
     recoveryPass(recoveryPassObj:RecoveryPassObjType ){
-        return instance.post<LogoutResType>('auth/forgot', {recoveryPassObj})
+        return instance.post<LogoutResType>('auth/forgot', recoveryPassObj)
     }
 }
 

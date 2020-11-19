@@ -36,6 +36,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
 	                    </div>`
             }
             dispatch(recoveryPassTC(RecoveryPassObj))
+            console.log(RecoveryPassObj)
         },
     })
 

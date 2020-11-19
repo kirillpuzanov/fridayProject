@@ -1,70 +1,52 @@
-import React, {ChangeEvent, useState} from 'react';
-import styles from './SetNewPassword.module.css'
-import axios from 'axios'
-import {useDispatch} from "react-redux";
+import React from 'react';
+import {useDispatch} from 'react-redux';
+import style from './SetNewPassword.module.css'
+import {MyInput} from '../../common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
+import {SetNewPassErrorType} from './SetNewPasswordContainer';
 
+type NewPassType = {
+    onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
+    formSubmit: () => void
+    errors: SetNewPassErrorType
+    password: string
+    repeatPass: string
+    error: string
+}
 
-export const SetNewPassword: React.FC = () => {
-
+export const SetNewPassword: React.FC<NewPassType> = (props) => {
+    const {onChange, formSubmit, errors, password, repeatPass} = props;
+    const {password: errorPassword, repeatPass: errorRepeatPass} = errors;
+    const disBtn = !!errorPassword || !!errorRepeatPass;
     const dispatch = useDispatch()
 
-    const [oldPassword, setOldPassword] = useState('')
-    const [newPassword, setNewPassword] = useState('')
-    const [acceptedNewPassword, setAcceptedNewPassword] = useState('')
-
-    const [error, setError] = useState(false)
-
-    const oldPasswordHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('oldPassword value: ', oldPassword)
-        const checkOldPassword = event.target.value.trim()
-        setOldPassword(checkOldPassword)
-    }
-
-    const newPasswordHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('newPassword value: ', newPassword)
-        const checkNewPassword = event.target.value.trim()
-        setNewPassword(checkNewPassword)
-    }
-
-    const acceptPasswordHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('acceptedNewPassword value: ', acceptedNewPassword)
-        const checkAcceptedNewPassword = event.target.value.trim()
-        setAcceptedNewPassword(checkAcceptedNewPassword)
-    }
-
-    const acceptNewPassword = () => {
-        if (newPassword !== acceptedNewPassword) {
-            setError(true)
-        } else{
-
-        }
-    }
-
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then(res => {
-            console.log(res)
-        })
-
-
     return <section>
-        <h1>Change your password</h1>
-        <div>
-            <span>Enter your old password:</span><br/>
-            <input type="text" onChange={oldPasswordHandler}/>
-        </div>
-        <div>
-            <span>Enter your new password:</span><br/>
-            <input type="text" onChange={newPasswordHandler}/>
-        </div>
-        <div>
-            <span>Repeat your new password:</span><br/>
-            <input type="text" onChange={acceptPasswordHandler}/>
-        </div>
-        {
-            error && <div className={styles.error}>Your new password fields are different</div>
-        }
-        <div>
-            <button onClick={() => acceptNewPassword()}>Accept</button>
-        </div>
+        <main className={style.newPass}>
+            <form>
+                <h2 className={style.newPass_title}> Смена пароля </h2>
+                <div>
+                    <p className={style.newPass_descr}> Введите ваш новый пароль.. </p>
+                    <MyInput error={!!errorPassword} type='password'
+                             value={password} onChange={onChange}
+                             placeholder='min 8 symbols..' name='password'/>
+                    {errorPassword
+                        ? <div className={style.reg_form__error}>{errors.password}</div>
+                        : null}
+                </div>
+                <div>
+                    <p>Повторите ваш новый пароль..</p>
+                    <MyInput error={!!errorRepeatPass} type='password'
+                             value={repeatPass} onChange={onChange}
+                             placeholder='min 8 symbols...' name='repeatPass'/>
+                    {errorRepeatPass
+                        ? <div className={style.reg_form__error}>{errors.repeatPass}</div>
+                        : null}
+                </div>
+                <div>
+                    <MyBtn name='Send' onClick={formSubmit}
+                           error={disBtn} disabled={disBtn} type={'submit'}/>
+                </div>
+            </form>
+        </main>
     </section>
 }
