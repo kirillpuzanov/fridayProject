@@ -5,14 +5,13 @@ import {useFormik} from 'formik';
 import {SetNewPassword} from './SetNewPassword';
 import {AuthInitialStateType, setNewPassTC} from '../../../m2-bll/auth-reducer';
 import {Redirect, useParams} from 'react-router-dom';
-import {SIGN_IN_PATH} from '../routes/Routes';
-
+import {PROFILE_PATH, SIGN_IN_PATH} from '../routes/Routes';
 
 export const SetNewPasswordContainer: React.FC = () => {
 
-    const {error,newPassSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
+    const {error,newPassSuccess,isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
     const dispatch = useDispatch();
-    const { token } = useParams<{token:string}>();
+    const {token} = useParams<tokenType>();
 
     const formik = useFormik({
         initialValues: {
@@ -34,12 +33,11 @@ export const SetNewPasswordContainer: React.FC = () => {
                resetPasswordToken: token
            }
             dispatch(setNewPassTC(setNewPassData))
-            console.log(setNewPassData)
         },
     })
 
     if (newPassSuccess) return <Redirect to={SIGN_IN_PATH}/>
-
+    if (isAuth) return <Redirect to={PROFILE_PATH}/>;
     return <section>
         <div>
             <SetNewPassword
@@ -61,4 +59,5 @@ export type SetNewPassErrorType = {
     password?: string,
     repeatPass?: string,
 }
+type tokenType = {token:string}
 

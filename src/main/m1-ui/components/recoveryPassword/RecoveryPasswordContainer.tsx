@@ -4,11 +4,13 @@ import {AppStateType} from '../../../m2-bll/store';
 import {AuthInitialStateType, recoveryPassTC} from '../../../m2-bll/auth-reducer';
 import {useFormik} from 'formik';
 import {RecoveryPassword} from './RecoveryPassword';
+import {Redirect} from 'react-router-dom';
+import {PROFILE_PATH} from '../routes/Routes';
 
 
 export const RecoveryPasswordContainer: React.FC = () => {
 
-    const {error, recoveryPassSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
+    const {error, recoveryPassSuccess,isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -30,7 +32,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
                 from: 'kirillpuzanov@mail.ru',
                 message: `<div style="background-color: lime; padding: 15px">
                         password recovery link: 
-	                    <a href='http://localhost:3000/#/new-pass/$token$'>link</a>
+	                    <a href='http://localhost:3000/#//new-pass/:token?/$token$'>link</a>
 	                    </div>`
             }
             dispatch(recoveryPassTC(RecoveryPassObj))
@@ -38,8 +40,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
         },
     })
 
-
-
+    if (isAuth) return <Redirect to={PROFILE_PATH}/>;
     return <section>
         <div>
             <RecoveryPassword
@@ -55,7 +56,6 @@ export const RecoveryPasswordContainer: React.FC = () => {
 }
 export type RecoveryPassErrorType = {
     email?: string
-
 }
 export type RecoveryPassObjType = {
     email: string

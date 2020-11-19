@@ -13,10 +13,9 @@ function App() {
 
     useEffect(() => {
         dispatch(AuthMe())
-    }, [])
+    }, [dispatch])
 
     if (!isInitializing) return <Preloader/>
-
     return (
         <div className="App">
             <Header/>

@@ -13,7 +13,7 @@ export const REGISTRATION_PATH = '/registration';
 export const PROFILE_PATH = '/profile';
 export const PAGE_NOT_FOUND_PATH = '/404';
 export const RECOVERY_PASSWORD_PATH = '/recoveryPass';
-export const SET_NEW_PASSWORD_PATH = '/new-pass';
+export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const TEST_COMPONENT_PATH = '/testComponent';
 
 
