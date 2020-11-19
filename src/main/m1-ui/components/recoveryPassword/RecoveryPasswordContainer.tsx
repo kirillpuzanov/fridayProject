@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
 import {AuthInitialStateType, recoveryPassTC} from '../../../m2-bll/auth-reducer';
 import {useFormik} from 'formik';
-import {Redirect} from 'react-router-dom';
-import {SET_NEW_PASSWORD_PATH} from '../routes/Routes';
 import {RecoveryPassword} from './RecoveryPassword';
 
 
@@ -32,7 +30,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
                 from: 'kirillpuzanov@mail.ru',
                 message: `<div style="background-color: lime; padding: 15px">
                         password recovery link: 
-	                    <a href='http://localhost:3000/#/set-new-password/$token$'>link</a>
+	                    <a href='http://localhost:3000/#/new-pass/$token$'>link</a>
 	                    </div>`
             }
             dispatch(recoveryPassTC(RecoveryPassObj))
@@ -40,7 +38,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
         },
     })
 
-    if (recoveryPassSuccess) return <Redirect to={SET_NEW_PASSWORD_PATH}/>
+
 
     return <section>
         <div>
@@ -50,6 +48,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
                 formSubmit={formik.handleSubmit}
                 errors={formik.errors}
                 error={error}
+                recoveryPassSuccess={recoveryPassSuccess}
             />
         </div>
     </section>

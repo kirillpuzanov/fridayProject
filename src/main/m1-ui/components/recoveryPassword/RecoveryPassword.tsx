@@ -11,11 +11,12 @@ type RecPasstype = {
     errors: FormikErrorType
     email: string
     error: string
+    recoveryPassSuccess: boolean
 }
 
 export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
 
-    const {onChange, formSubmit, errors, email, error:errorServer} = props;
+    const {onChange, formSubmit, errors, email, error: errorServer, recoveryPassSuccess} = props;
     const {email: errorEmail} = errors;
     return <section>
         <div className={style.recPass}>
@@ -29,7 +30,8 @@ export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
                          value={email} placeholder='your email...' error={!!errorEmail}/>
                 {errorEmail ?
                     <div>{errorEmail}</div> : null}
-
+                {recoveryPassSuccess ?
+                    <div> Перейдите на почтовый ящик и следуйте дальнейщим инструкциям... </div> : null}
 
                 <MyBtn name='Send' onClick={formSubmit}
                        error={!!errorEmail} disabled={!!errorEmail} type={'submit'}/>
@@ -37,7 +39,5 @@ export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
                 {/*{error && <Snackbar message={error} timeoutMs={4000}/>}*/}
             </form>
         </div>
-
-
     </section>
 }
