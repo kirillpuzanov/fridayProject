@@ -3,15 +3,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../m2-bll/store';
 import {useFormik} from 'formik';
 import {SetNewPassword} from './SetNewPassword';
-import {AuthInitialStateType} from '../../../m2-bll/auth-reducer';
-import {Redirect} from 'react-router-dom';
+import {AuthInitialStateType, setNewPassTC} from '../../../m2-bll/auth-reducer';
+import {Redirect, useParams} from 'react-router-dom';
 import {SIGN_IN_PATH} from '../routes/Routes';
 
 
 export const SetNewPasswordContainer: React.FC = () => {
 
-    const {error,setNewPassSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
-    const dispatch = useDispatch()
+    const {error,newPassSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
+    const dispatch = useDispatch();
+    const { token } = useParams<{token:string}>();
 
     const formik = useFormik({
         initialValues: {
@@ -28,16 +29,16 @@ export const SetNewPasswordContainer: React.FC = () => {
             return errors;
         },
         onSubmit: (values) => {
-           const setNewPassData = {
+           const setNewPassData:setNewPassDatatype = {
                password:values.password,
-               resetPasswordToken: ''
+               resetPasswordToken: token
            }
-            // dispatch(setNewPassTC(setNewPassData))
+            dispatch(setNewPassTC(setNewPassData))
             console.log(setNewPassData)
         },
     })
 
-    if (setNewPassSuccess) return <Redirect to={SIGN_IN_PATH}/>
+    if (newPassSuccess) return <Redirect to={SIGN_IN_PATH}/>
 
     return <section>
         <div>
@@ -52,9 +53,9 @@ export const SetNewPasswordContainer: React.FC = () => {
         </div>
     </section>
 }
-export type RecoveryPassErrorType = {
-    email?: string
-
+export type setNewPassDatatype = {
+    password:string
+    resetPasswordToken:string
 }
 export type SetNewPassErrorType = {
     password?: string,

@@ -23,7 +23,6 @@ export const Registration: React.FC<RegistrationType> = (props) => {
     const disBtn = errorEmail || errorPassword || errorRepeatPass;
 
 
-
     return <section>
         <main className={style.reg}>
             <div className={style.reg_title}> Registration form</div>

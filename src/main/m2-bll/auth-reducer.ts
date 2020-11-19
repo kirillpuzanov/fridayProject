@@ -2,6 +2,7 @@ import {BaseThunkType, InferActionsTypes} from './store';
 import {authAPI, LoginParamsType} from '../m3-dal/authAPI';
 import {profileActions, ProfileActionsType} from './profile-reducer';
 import {RecoveryPassObjType} from '../m1-ui/components/recoveryPassword/RecoveryPasswordContainer';
+import {setNewPassDatatype} from '../m1-ui/components/setNewPassword/SetNewPasswordContainer';
 
 
 export const AuthInitialState = {
@@ -10,7 +11,7 @@ export const AuthInitialState = {
     error: '',
     registerSuccess: false,
     recoveryPassSuccess: false,
-    setNewPassSuccess:false,
+    newPassSuccess: false,
 };
 export const authReducer = (state: AuthInitialStateType = AuthInitialState, action: authActionsType): AuthInitialStateType => {
     switch (action.type) {
@@ -24,6 +25,8 @@ export const authReducer = (state: AuthInitialStateType = AuthInitialState, acti
             return {...state, loading: action.loading}
         case '/REC/SET-RECOVERY-PASS-SUCCESS':
             return {...state, recoveryPassSuccess: true}
+        case '/NEW-PASS/SET-NEW-PASS-SUCCESS':
+            return {...state, newPassSuccess: true}
         default:
             return state;
     }
@@ -34,6 +37,7 @@ export const authActions = {
     setIsAuthAC: (isAuth: boolean) => ({type: 'singIn/SET-IS-AUTH', isAuth} as const),
     setRegisterSuccess: () => ({type: '/REG/SET-REGISTER-SUCCESS'} as const),
     setRecoveryPassSuccess: () => ({type: '/REC/SET-RECOVERY-PASS-SUCCESS'} as const),
+    setNewPassSuccess: () => ({type: '/NEW-PASS/SET-NEW-PASS-SUCCESS'} as const),
     setLoading: (loading: boolean) => ({type: '/REG/SET-LOADING', loading} as const),
     setError: (error: string) => ({type: '/SERVER-ERROR/SET-ERROR', error} as const),
 };
@@ -82,6 +86,14 @@ export const recoveryPassTC = (RecoveryPassObj: RecoveryPassObjType): ThunkType 
             dispatch(authActions.setError(err.response.data.error))
         }
     };
+export const setNewPassTC = (setNewPassData: setNewPassDatatype): ThunkType => async (dispatch) => {
+    try {
+        await authAPI.newPass(setNewPassData)
+        dispatch(authActions.setNewPassSuccess())
+    } catch (err) {
+        dispatch(authActions.setError(err.response.data.error))
+    }
+}
 
 //type's
 export type AuthInitialStateType = typeof AuthInitialState;

@@ -1,5 +1,4 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
 import style from './SetNewPassword.module.css'
 import {MyInput} from '../../common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
@@ -18,7 +17,6 @@ export const SetNewPassword: React.FC<NewPassType> = (props) => {
     const {onChange, formSubmit, errors, password, repeatPass} = props;
     const {password: errorPassword, repeatPass: errorRepeatPass} = errors;
     const disBtn = !!errorPassword || !!errorRepeatPass;
-    const dispatch = useDispatch()
 
     return <section>
         <main className={style.newPass}>

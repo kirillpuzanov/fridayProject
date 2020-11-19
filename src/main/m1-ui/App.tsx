@@ -8,7 +8,7 @@ import {AppStateType} from '../m2-bll/store';
 import {AppInitialStateType, AuthMe} from '../m2-bll/app-reducer';
 
 function App() {
-    const {isInitializing, initializeError} = useSelector<AppStateType, AppInitialStateType>(state => state.app)
+    const {isInitializing} = useSelector<AppStateType, AppInitialStateType>(state => state.app)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function App() {
     }, [])
 
     if (!isInitializing) return <Preloader/>
-    // if (initializeError) return <div> {initializeError} </div>
+
     return (
         <div className="App">
             <Header/>
