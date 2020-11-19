@@ -8,12 +8,12 @@ import {store} from './main/m2-bll/store';
 import {HashRouter} from 'react-router-dom';
 
 ReactDOM.render(
-  <Provider store={store}>
-      <HashRouter>
-          <App/>
-      </HashRouter>
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <HashRouter>
+                <App/>
+        </HashRouter>
+    </Provider>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
