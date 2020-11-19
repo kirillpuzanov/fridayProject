@@ -7,6 +7,7 @@ import {SignInForm} from './SignInForm';
 import {Redirect} from 'react-router-dom';
 import {PROFILE_PATH} from '../routes/Routes';
 import {SingInTC} from '../../../m2-bll/auth-reducer';
+import {FormikErrorType} from '../registration/RegistrationContainer';
 
 
 export const SignIn: React.FC<any> = () => {
@@ -40,12 +41,9 @@ export const SignIn: React.FC<any> = () => {
             const action = await dispatch(SingInTC(values));
             formikHelpers.setFieldError('confirm', 'Incorrect email or password');
             console.log(JSON.stringify(action) + 'novoe');
-
-
         },
     });
-    const hasEmailFieldError = !!formik.errors.email;
-    const hasPasswordFieldError = !!formik.errors.password;
+
 
     if (isAuth) return <Redirect to={PROFILE_PATH}/>;
 
@@ -54,23 +52,20 @@ export const SignIn: React.FC<any> = () => {
             <SignInForm
                 title={'LOGIN FORM'}
                 onChange={formik.handleChange}
-                onClick={formik.handleSubmit}
-                emailValue={formik.values.email}
-                formikConfirmError={formik.errors.confirm}
-                formikEmailError={formik.errors.email}
-                formikPassError={formik.errors.password}
-                passValue={formik.values.password}
-                hasEmailFieldError={hasEmailFieldError}
-                hasPasswordFieldError={hasPasswordFieldError}
+                formSubmit={formik.handleSubmit}
+                email={formik.values.email}
+                password={formik.values.password}
+                errors={formik.errors}
+
             />
         </form>
 
     </div>;
 };
 
-type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-    confirm?: string
-}
+// export type FormikErrorType = {
+//     email?: string
+//     password?: string
+//     // rememberMe?: boolean
+//     confirm?: string
+// }

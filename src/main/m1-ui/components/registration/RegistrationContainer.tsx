@@ -8,9 +8,9 @@ import {useFormik} from 'formik';
 import {AuthInitialStateType, registerTC} from '../../../m2-bll/auth-reducer';
 
 export const RegistrationContainer = () => {
-    const { error, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
+    const {error, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
     const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -32,11 +32,11 @@ export const RegistrationContainer = () => {
             return errors;
         },
         onSubmit: (values) => {
-            dispatch(registerTC(values.email, values.password))
+            dispatch(registerTC(values.email, values.password));
         },
-    })
+    });
 
-    if (registerSuccess) return <Redirect to={SIGN_IN_PATH}/>
+    if (registerSuccess) return <Redirect to={SIGN_IN_PATH}/>;
     if (isAuth) return <Redirect to={PROFILE_PATH}/>;
     return (
         <Registration
@@ -48,13 +48,16 @@ export const RegistrationContainer = () => {
             onChange={formik.handleChange}
             formSubmit={formik.handleSubmit}
         />
-    )
-}
+    );
+};
 
 export type FormikErrorType = {
     email?: string
     password?: string
     repeatPass?: string
+    confirm?: string
+
+
 }
 
 //old method

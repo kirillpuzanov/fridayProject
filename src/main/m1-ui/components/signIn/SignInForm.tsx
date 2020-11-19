@@ -5,60 +5,57 @@ import {MyBtnTest} from '../../common/myComponent/myBtnTest/MyBtnTest';
 import {NavLink} from 'react-router-dom';
 import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../routes/Routes';
 import style from '../header/Header.module.css';
+import {FormikErrorType} from '../registration/RegistrationContainer';
 
 type PropsType = {
+    email: string
+    password: string
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
     title: string
-    emailValue: string
-    hasEmailFieldError: boolean
-    formikEmailError: string | undefined
-    passValue: string
-    hasPasswordFieldError: boolean
-    formikPassError: string | undefined
-    onClick: () => void
-    formikConfirmError: string | undefined
-
+    formSubmit: () => void
+    errors: FormikErrorType
 }
 
 
 export const SignInForm: React.FC<PropsType> = (props) => {
-    const disableErrorField = props.hasPasswordFieldError || props.hasEmailFieldError;
+
+    const {email, password, errors, onChange, formSubmit, title} = props;
+    const {email: errorEmail, password: errorPassword, confirm: errorConfirm} = errors;
+    const disableErrorField = errorEmail || errorPassword;
+
     return <div>
-        <div className={st.title}>{props.title}</div>
+        <div className={st.title}>{title}</div>
         <MyInputTest type='email'
-                     onChange={props.onChange}
-                     value={props.emailValue}
+                     onChange={onChange}
+                     value={email}
                      placeholder={'email'}
                      name={'email'}
-                     error={props.hasEmailFieldError}
-        /> {props.formikEmailError ?
-        <div className={st.has_error}>{props.formikEmailError}</div> : null}
-        {props.formikConfirmError ? <div className={st.has_error}>{props.formikConfirmError}</div> : null}
+                     error={!!errorEmail}
+        /> {errorEmail ?
+        <div className={st.has_error}>{errorEmail}</div> : null}
+
+        {errorConfirm ? <div className={st.has_error}>{errorConfirm}</div> : null}
+
         <MyInputTest type='password'
-                     onChange={props.onChange}
-                     value={props.passValue}
+                     onChange={onChange}
+                     value={password}
                      placeholder={'password'}
-                     error={props.hasPasswordFieldError} name={'password'}
+                     error={!!errorPassword} name={'password'}
         />
-        {props.formikPassError ?
-            <div className={st.has_error}>{props.formikPassError}</div> : null}
+        {errorPassword ?
+            <div className={st.has_error}>{errorPassword}</div> : null}
 
         <div className={st.click}>
             <div>
-                <input type='checkbox' onChange={props.onChange}/>RememberMe
+                <input type='checkbox' onChange={onChange}/>RememberMe
             </div>
             {!disableErrorField ? <MyBtnTest name='Login'
                                              type="submit"
-                                             onClick={props.onClick}
-                                             disabled={disableErrorField}
-                                             error={disableErrorField}
+                                             onClick={formSubmit}
+                                             disabled={!!disableErrorField}
+                                             error={!!disableErrorField}
             /> : null}
-            {/*<MyBtnTest name='Login'*/}
-            {/*           type="submit"*/}
-            {/*           onClick={props.onClick}*/}
-            {/*           disabled={disableErrorField}*/}
-            {/*           error={disableErrorField}*/}
-            {/*/>*/}
+
         </div>
         <div className={st.footer}>
             <nav>
