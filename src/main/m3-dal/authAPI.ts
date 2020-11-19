@@ -3,6 +3,7 @@ import {RecoveryPassObjType} from '../m1-ui/components/recoveryPassword/Recovery
 import {setNewPassDatatype} from '../m1-ui/components/setNewPassword/SetNewPasswordContainer';
 
 
+
 export const authAPI = {
     register(email: string, password: string) {
         return instance.post<ResponseReg>('auth/register', {email, password})
@@ -23,7 +24,7 @@ export const authAPI = {
         return instance.post<LogoutResType>('auth/forgot', {...recoveryPassObj})
     },
     newPass(setNewPassData: setNewPassDatatype){
-        return instance.post('/auth/set-new-password', {...setNewPassData})
+        return instance.post('auth/set-new-password', {...setNewPassData})
     }
 }
 
