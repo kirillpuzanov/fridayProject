@@ -3,6 +3,7 @@ import thunk, {ThunkAction} from 'redux-thunk';
 import {profileReducer} from './profile-reducer';
 import {appReducer} from './app-reducer';
 import {authReducer} from './auth-reducer';
+import {cardDeckReducer} from './cardDeck-reducer';
 
 
 //actions type
@@ -16,6 +17,7 @@ const reducers = combineReducers({
     auth:authReducer,
     profile:profileReducer,
     app: appReducer,
+    cardDeck: cardDeckReducer,
     //newPassword: setNewPasswordReducer
 });
 
