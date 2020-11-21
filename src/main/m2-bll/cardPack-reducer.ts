@@ -15,7 +15,8 @@ const initialState = {
         rating: 0,
         created: '',
         updated: '',
-        __v: '',
+        __v: 0,
+        type: 'pack'
     }],
     cardPacksTotalCount: 14,
     maxCardsCount: 4,

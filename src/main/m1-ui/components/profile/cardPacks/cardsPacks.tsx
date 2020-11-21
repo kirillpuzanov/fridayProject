@@ -18,13 +18,14 @@ const CardPacks:React.FC<CardsPackType> = (props) => {
                 user_id={''}
                 name={''}
                 path={''}
-                cardsCount={1}
-                grade={1}
-                shots={1}
-                rating={1}
+                cardsCount={25}
+                grade={0}
+                shots={0}
+                rating={0}
                 created={''}
                 updated={''}
-                __v={''}/>)}
+                __v={0}
+            type={'pack'}/>)}
         </>
     );
 };

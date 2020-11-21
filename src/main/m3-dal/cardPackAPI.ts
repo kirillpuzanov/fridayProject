@@ -24,7 +24,8 @@ export type CardPackType = {
     rating:number
     created:string
     updated:string
-    __v:string
+    __v:number
+    type: string
 }
 
 export type ResponseCardPackRequestType={
