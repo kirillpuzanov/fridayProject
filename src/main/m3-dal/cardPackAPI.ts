@@ -6,8 +6,8 @@ import {setNewPassDatatype} from '../m1-ui/components/setNewPassword/SetNewPassw
 
 export const cardPackAPI = {
 
-    pack() {
-        return instance.get<ResponseCardPackRequestType>('cards/pack')
+    pack(page:number = 1,pageCount:number = 10) {
+        return instance.get<ResponseCardPackRequestType>(`cards/pack&page=${page}&count=${pageCount}&user_id=5eb543f6bea3ad21480f1ee7`)
             .then(res => res.data)
     },
 
@@ -33,7 +33,7 @@ export type ResponseCardPackRequestType={
     minCardsCount:number
     page:number
     pageCount:number
-    cardPacks: CardPackType
+    cardPacks: Array<CardPackType>
 }
 
 
