@@ -6,6 +6,7 @@ import {SignIn} from '../signIn/SingIn';
 import {ProfileContainer} from '../profile/ProfileContainer';
 import {RecoveryPasswordContainer} from '../recoveryPassword/RecoveryPasswordContainer';
 import {SetNewPasswordContainer} from '../setNewPassword/SetNewPasswordContainer';
+import {TestComponent} from '../../../../test/t-1-table/testComponent';
 
 
 export const SIGN_IN_PATH = '/';
@@ -27,6 +28,7 @@ export const Routes: React.FC<any> = () => {
             <Route path={RECOVERY_PASSWORD_PATH} component={RecoveryPasswordContainer}/>
             <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPasswordContainer}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
+            <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 
