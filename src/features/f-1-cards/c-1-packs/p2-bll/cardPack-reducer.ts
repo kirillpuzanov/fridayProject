@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
-import {PackAPI} from '../packs3-dal/cardPackAPI';
+import {PackAPI} from '../p3-dal/cardPackAPI';
 import {CardPackType, PacksType} from './cardPackTypes';
 
 const initialState: PacksType = {

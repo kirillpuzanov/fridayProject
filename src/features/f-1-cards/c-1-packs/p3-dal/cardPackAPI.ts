@@ -1,5 +1,5 @@
 import {instance} from '../../../../main/m3-dal/api';
-import {ResponseCardPackRequestType} from '../packs2-bll/cardPackTypes';
+import {ResponseCardPackRequestType} from '../p2-bll/cardPackTypes';
 
 
 export const PackAPI = {
