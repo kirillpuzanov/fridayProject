@@ -57,28 +57,5 @@ export type ProfileType = {
     token: string
 }
 
-export type CardDeckType = {
-    _id:string
-    user_ud:string
-    name:string
-    path:string
-    cardsCount:number
-    grade:number
-    shots:number
-    rating:number
-    created:string
-    updated:string
-    __v:string
-}
-
-export type ResponseCardDeckRequestType={
-    cardPacksTotalCount:string
-    maxCardsCount:number
-    minCardsCount:number
-    page:number
-    pageCount:number
-    cardPacks: Array<CardDeckType>
-}
-
 
 
