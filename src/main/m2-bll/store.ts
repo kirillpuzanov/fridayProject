@@ -3,7 +3,7 @@ import thunk, {ThunkAction} from 'redux-thunk';
 import {profileReducer} from './profile-reducer';
 import {appReducer} from './app-reducer';
 import {authReducer} from './auth-reducer';
-import {cardPackReducer} from './cardPack-reducer';
+import {cardPackReducer} from '../../features/f-2-cards/c-1-card-paks/packs2-bll/cardPack-reducer';
 
 
 //actions type

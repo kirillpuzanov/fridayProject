@@ -1,5 +1,6 @@
 import React from 'react';
-import {CardPackType} from '../../../../m3-dal/cardPackAPI';
+import { v1 } from 'uuid';
+import {CardPackType} from '../../../../../features/f-2-cards/c-1-card-paks/packs3-dal/cardPackAPI';
 import CardPack from './cardPack/cardPack';
 
 
@@ -14,6 +15,7 @@ const CardPacks:React.FC<CardsPackType> = (props) => {
     return (
         <>
             {props.cardPacks.map((cardPack:CardPackType)=> <CardPack
+                key={v1()}
                 _id={''}
                 user_id={''}
                 name={''}

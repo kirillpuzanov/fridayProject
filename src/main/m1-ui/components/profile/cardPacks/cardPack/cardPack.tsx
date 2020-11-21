@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardPackType} from '../../../../../m3-dal/cardPackAPI';
+import {CardPackType} from '../../../../../../features/f-2-cards/c-1-card-paks/packs2-bll/cardPackTypes';
 
 
 
@@ -7,6 +7,8 @@ import {CardPackType} from '../../../../../m3-dal/cardPackAPI';
 
 const CardPack:React.FC<CardPackType> = (props)=>{
     return (<div>
+
+
     </div>)
 }
 
