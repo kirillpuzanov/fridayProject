@@ -16,6 +16,7 @@ export const ProfileContainer: React.FC = () => {
     const onLogOut = () => dispatch(logoutTC())
 
     if (!isAuth) return <Redirect to={SIGN_IN_PATH}/>
+
     return <section>
         <Profile
             profile={profile}

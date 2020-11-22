@@ -7,7 +7,7 @@ const PacksPage1 = () => {
     return (
         <>
 
-
+            PacksPage
             <PacksContainer/>
         </>
     );
