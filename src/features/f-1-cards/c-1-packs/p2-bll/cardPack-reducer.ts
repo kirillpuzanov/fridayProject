@@ -62,6 +62,47 @@ export const CardPackTC = (): ThunkType =>
     };
 
 
+export const addPack = (): ThunkType => async (dispatch
+) => {
+    try {
+        const data = await PackAPI.addPack();
+        dispatch(CardPackTC());
+        console.log(data);
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
+        console.log(error);
+        return error;
+    }
+
+};
+export const deletePack = (packId:string): ThunkType => async (dispatch
+) => {
+    try {
+        const data = await PackAPI.deletePack(packId);
+        dispatch(CardPackTC());
+        console.log(data);
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
+        console.log(error);
+        return error;
+    }
+
+};
+export const updatePack = (packId:string): ThunkType => async (dispatch
+) => {
+    try {
+        const data = await PackAPI.updatePack(packId);
+        dispatch(CardPackTC());
+        console.log(data);
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
+        console.log(error);
+        return error;
+    }
+
+};
+
+
 export type CardPackInitialStateType = typeof initialState;
 type ThunkType = BaseThunkType<CardPackActionsType>;
 export type CardPackActionsType = InferActionsTypes<typeof cardPackActions>

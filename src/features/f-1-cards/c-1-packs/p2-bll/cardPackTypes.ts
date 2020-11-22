@@ -16,6 +16,7 @@ export type CardPackType = {
     updated: string
     __v: number
     type: string
+    deckCover: string;
 }
 
 

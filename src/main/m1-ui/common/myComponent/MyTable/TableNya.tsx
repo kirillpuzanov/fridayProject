@@ -6,14 +6,13 @@ export type TableNyaModelType = {
 }
 
 export type TableNyaPropsType = {
-    loading?: boolean; title?: string; model?: TableNyaModelType[]; data: any;
+    loading?: boolean; title?: string; model: TableNyaModelType[]; data: any;
     headerStyle?: CSSProperties, tableStyle?: CSSProperties, rowsStyle?: CSSProperties, rowStyle?: CSSProperties,
 }
 
-const MyTable: React.FC<any> = (
+const MyTable: React.FC<TableNyaPropsType> = (
     {
         loading = false, title = 'table', model, data,
-
         headerStyle, tableStyle,
         rowsStyle, rowStyle,
     }

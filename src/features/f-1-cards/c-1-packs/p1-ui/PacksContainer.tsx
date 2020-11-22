@@ -2,12 +2,16 @@ import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../../main/m2-bll/store';
 import {PacksType} from '../p2-bll/cardPackTypes';
-import {CardPackTC} from '../p2-bll/cardPack-reducer';
+import {addPack, cardPackActions, CardPackTC, deletePack, updatePack} from '../p2-bll/cardPack-reducer';
+import {ProfileType} from '../../../../main/m3-dal/authAPI';
+import {packsModel} from './PacksModel';
+import MyTable from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 
 const PacksContainer = React.memo(() => {
 
-    const packs = useSelector<AppStateType, PacksType>(state => state.cardPack);
-
+    const {cardPacks, userPack_id} = useSelector<AppStateType, PacksType>(state => state.cardPack);
+    const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
+    const [myPacks, setMyPacks] = useState<boolean>(!!userPack_id);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -16,18 +20,17 @@ const PacksContainer = React.memo(() => {
     }, [dispatch]);
 
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(PacksActions.setPackUser_id(myPacks ? '' : _id));
-        dispatch(getPacks());
+        dispatch(cardPackActions.setUserPack_id(myPacks ? '' : _id));
+        dispatch(CardPackTC());
         setMyPacks(e.target.checked);
     }, [setMyPacks, dispatch, myPacks, _id]);
 
     const model = packsModel(
         () => dispatch(addPack()),
-        (id: string) => dispatch(deletePack(id)),
-        (id: string) => dispatch(updatePack(id)),
+        (packId: string) => dispatch(deletePack(packId)),
+        (packId: string) => dispatch(updatePack(packId)),
     );
 
-    DEV_VERSION && console.log('render PacksContainer');
     return (
         <div>
             <label>
@@ -38,7 +41,7 @@ const PacksContainer = React.memo(() => {
                 />
                 my packs
             </label>
-            <TableNya model={model} data={packs} title={'CardPacks'}/>
+            <MyTable model={model} data={cardPacks} title={'CardPacks'}/>
         </div>
     );
 });
