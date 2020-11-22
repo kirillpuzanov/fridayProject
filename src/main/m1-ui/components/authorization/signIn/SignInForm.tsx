@@ -1,11 +1,11 @@
 import React from 'react';
 import st from './SingInForm.module.css';
-import {MyInputTest} from '../../common/myComponent/myInput/MyInputTest';
-import {MyBtnTest} from '../../common/myComponent/myBtnTest/MyBtnTest';
 import {NavLink} from 'react-router-dom';
-import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../routes/Routes';
-import style from '../header/Header.module.css';
+import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../routes/Routes';
+import style from '../../header/Header.module.css';
 import {FormikErrorType} from '../registration/RegistrationContainer';
+import {MyInput} from '../../../common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../../common/myComponent/myBtn/MyBtn';
 
 type PropsType = {
     email: string
@@ -25,7 +25,7 @@ export const SignInForm: React.FC<PropsType> = (props) => {
 
     return <div>
         <div className={st.title}>{title}</div>
-        <MyInputTest type='email'
+        <MyInput type='email'
                      onChange={onChange}
                      value={email}
                      placeholder={'email'}
@@ -36,7 +36,7 @@ export const SignInForm: React.FC<PropsType> = (props) => {
 
         {errorConfirm ? <div className={st.has_error}>{errorConfirm}</div> : null}
 
-        <MyInputTest type='password'
+        <MyInput type='password'
                      onChange={onChange}
                      value={password}
                      placeholder={'password'}
@@ -49,7 +49,7 @@ export const SignInForm: React.FC<PropsType> = (props) => {
             <div>
                 <input type='checkbox' onChange={onChange}/>RememberMe
             </div>
-            {!disableErrorField ? <MyBtnTest name='Login'
+            {!disableErrorField ? <MyBtn name='Login'
                                              type="submit"
                                              onClick={formSubmit}
                                              disabled={!!disableErrorField}

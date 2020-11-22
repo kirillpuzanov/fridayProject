@@ -1,9 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {
+    PACKS_PATH,
     PAGE_NOT_FOUND_PATH,
-    PROFILE_PATH, RECOVERY_PASSWORD_PATH,
-    REGISTRATION_PATH, SET_NEW_PASSWORD_PATH,
+    PROFILE_PATH,
+    RECOVERY_PASSWORD_PATH,
+    REGISTRATION_PATH,
+    SET_NEW_PASSWORD_PATH,
     SIGN_IN_PATH,
     TEST_COMPONENT_PATH
 } from '../routes/Routes';
@@ -23,6 +26,7 @@ export const Header = (props: HeaderType) => {
             <NavLink to={PAGE_NOT_FOUND_PATH} activeClassName={style.header_nav__link}>404</NavLink>
             <NavLink to={TEST_COMPONENT_PATH} activeClassName={style.header_nav__link}>Test</NavLink>
 
+            <NavLink to={PACKS_PATH} activeClassName={style.header_nav__link}>Packs</NavLink>
         </nav>
     </section>
 }

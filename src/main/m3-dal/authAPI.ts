@@ -1,6 +1,6 @@
 import {instance} from './api';
-import {RecoveryPassObjType} from '../m1-ui/components/recoveryPassword/RecoveryPasswordContainer';
-import {setNewPassDatatype} from '../m1-ui/components/setNewPassword/SetNewPasswordContainer';
+import {RecoveryPassObjType} from '../m1-ui/components/authorization/recoveryPassword/RecoveryPasswordContainer';
+import {setNewPassDatatype} from '../m1-ui/components/authorization/setNewPassword/SetNewPasswordContainer';
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './SetNewPassword.module.css'
-import {MyInput} from '../../common/myComponent/myInput/MyInput';
-import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
+import {MyInput} from '../../../common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../../common/myComponent/myBtn/MyBtn';
 import {SetNewPassErrorType} from './SetNewPasswordContainer';
 
 type NewPassType = {

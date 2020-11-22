@@ -4,11 +4,9 @@ import {PNF} from '../notFound/PNF';
 import {RegistrationContainer} from '../registration/RegistrationContainer';
 import {SignIn} from '../signIn/SingIn';
 import {ProfileContainer} from '../profile/ProfileContainer';
-import {RecoveryPasswordContainer} from '../recoveryPassword/RecoveryPasswordContainer';
-import {SetNewPasswordContainer} from '../setNewPassword/SetNewPasswordContainer';
-import {TestComponent} from '../../../../test/t-1-table/testComponent';
-import PacksPage1 from '../../../../features/f-1-cards/c-1-packs/p1-ui/PacksPage';
-import PacksPage from '../../../../features/f-1-cards/c-1-packs/p1-ui/PacksPage';
+import {RecoveryPasswordContainer} from '../authorization/recoveryPassword/RecoveryPasswordContainer';
+import {SetNewPasswordContainer} from '../authorization/setNewPassword/SetNewPasswordContainer';
+import {Packs} from '../tablePacks/Packs';
 
 
 export const SIGN_IN_PATH = '/';
@@ -19,6 +17,7 @@ export const RECOVERY_PASSWORD_PATH = '/recoveryPass';
 export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const TEST_COMPONENT_PATH = '/testComponent';
 export const PACKS_PAGE = '/pack-page'
+export const PACKS_PATH = '/packs';
 
 
 export const Routes: React.FC<any> = () => {
@@ -30,6 +29,7 @@ export const Routes: React.FC<any> = () => {
             <Route path={PROFILE_PATH} component={ProfileContainer}/>
             <Route path={RECOVERY_PASSWORD_PATH} component={RecoveryPasswordContainer}/>
             <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPasswordContainer}/>
+            <Route path={PACKS_PATH} component={Packs}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
             <Route path={PACKS_PAGE} component={PacksPage}/>
