@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import PacksContainer from "./PacksContainer";
+import PacksContainer from './PacksContainer';
 
 const PacksPage1 = () => {
 
     return (
         <>
 
-            PacksPage
             <PacksContainer/>
         </>
     );

@@ -1,3 +1,9 @@
 .item {
     width: 20%;
 }
+.containerWrapper {
+    margin: 0 auto;
+    background-color: #2b446e;
+    width: 80%;
+    padding: 10px;
+}

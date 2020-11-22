@@ -1,7 +1,8 @@
 import React, {CSSProperties, ReactNode} from 'react';
+import st from './MyTable.module.css';
 
 export type TableNyaModelType = {
-    title: (index: number, loading: boolean) => ReactNode ;
+    title: (index: number, loading: boolean) => ReactNode;
     render: (dataItem: any, modelIndex: number, dataIndex: number, loading: boolean) => ReactNode;
 }
 
@@ -19,24 +20,20 @@ const MyTable: React.FC<TableNyaPropsType> = (
 ) => {
 
     return (
-        <div style={{margin: '0 10px', ...tableStyle}}>
+        <div className={st.wrapper}>
             {title}
 
-            <div style={{border: '1px solid red', width: '100%', display: 'flex', ...headerStyle}}>
-
-
-                { model.map((m:any, index:any) => m.title(index, loading))}
+            <div className={st.header}>
+                {model.map((m, index) => m.title(index, loading))}
 
 
             </div>
 
-            <div style={{border: '1px solid lime', width: '100%', ...rowsStyle}}>
-
-
+            <div className={st.row}>
                 {data.map((dataItem: any, dataIndex: number) => (
                     <div key={title + '-row-' + (dataItem._id || dataIndex)}
-                         style={{width: '100%', display: 'flex', ...rowStyle}}>
-                        {model.map((m:any, modelIndex:any) =>
+                        className={st.inside}>
+                        {model.map((m: any, modelIndex: any) =>
                             m.render(dataItem, modelIndex, dataIndex, loading))}
 
                     </div>
@@ -46,4 +43,4 @@ const MyTable: React.FC<TableNyaPropsType> = (
     );
 };
 
-export default  MyTable;
+export default MyTable;

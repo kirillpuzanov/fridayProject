@@ -1,0 +1,23 @@
+.header {
+    border: 1px solid black;
+    width: 80%;
+    display: flex;
+
+}
+.row{
+
+    width: 80%;
+}
+
+.wrapper {
+margin: auto 0;
+
+}
+.inside {
+    border: 1px solid black;
+    border-top: none;
+    width: 100%;
+    display: flex;
+
+
+}

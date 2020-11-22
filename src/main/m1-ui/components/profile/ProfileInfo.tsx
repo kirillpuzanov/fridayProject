@@ -2,7 +2,7 @@ import {ProfileType} from '../../../m3-dal/authAPI';
 import ava_default from '../../assets/img/ava_default.jpg';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {PACKS_PAGE, REGISTRATION_PATH} from '../routes/Routes';
+import {PACKS_PAGE} from '../routes/Routes';
 import style from '../header/Header.module.css';
 
 type ProfileInfoType = {

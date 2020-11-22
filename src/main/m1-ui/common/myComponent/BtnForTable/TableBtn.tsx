@@ -1,5 +1,5 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
-import styles from '../myBtn/MyBtn.module.css';
+import styles from './TableBtn.module.css'
 
 
 export type ButtonsPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>

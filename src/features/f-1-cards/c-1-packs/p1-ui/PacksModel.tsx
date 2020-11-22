@@ -57,7 +57,7 @@ export const packsModel = (
         ),
         render: (dataItem: CardPackType, modelIndex, dataIndex, loading) => (
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
-                <TableBtn onClick={() => deletePack(dataItem._id)}>del</TableBtn>
+                <TableBtn onClick={() => deletePack(dataItem._id)}>delete</TableBtn>
                 <TableBtn onClick={() => updatePack(dataItem._id)}>update</TableBtn>
 
             </div>
