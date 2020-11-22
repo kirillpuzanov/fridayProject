@@ -1,6 +1,7 @@
 import {AppStateType, BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {PackAPI} from '../p3-dal/cardPackAPI';
 import {CardPackType, PacksType} from './cardPackTypes';
+import {packsAPI} from '../../../../main/m3-dal/packsAPI';
 
 const initialState: PacksType = {
     cardPacks: [],
@@ -49,11 +50,12 @@ export const cardPackActions = {
 
 export const CardPackTC = (): ThunkType =>
     async (dispatch
-        , getStore: GetAppStoreType) => {
+        , getState: GetAppStoreType) => {
         try {
-            const {userPack_id} = getStore().cardPack;
-            const data = await PackAPI.getCardPacks(userPack_id);
-            dispatch(cardPackActions.setCardDeckAC(data.cardPacks));
+            const {userPack_id} = getState().cardPack;
+            // const data = await PackAPI.getCardPacks(userPack_id);
+            // const data = await packsAPI.getCardPacks(packUser_id)
+            // dispatch(cardPackActions.setCardDeckAC(data.cardPacks));
         } catch (e) {
             const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
             console.log(error);

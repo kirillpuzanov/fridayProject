@@ -4,8 +4,8 @@ import {PackType} from '../m2-bll/packs-reducer';
 
 export const packsAPI = {
     getPacks: (
-        max: number,
-        min: number,
+        max?: number,
+        min?: number,
         packName?: string,
         currentPage?: number,
         pageSize?: number,
@@ -24,7 +24,7 @@ export const packsAPI = {
     },
 }
 
-type ResponsePack = {
+export type ResponsePack = {
     cardPacks: PackType[]
     cardPacksTotalCount: number
     maxCardsCount: number
@@ -34,4 +34,5 @@ type ResponsePack = {
     token: string
     tokenDeathTime: number
     error:string
+    __v?:number
 }

@@ -1,5 +1,11 @@
 import {BaseThunkType, InferActionsTypes} from './store';
 import {packsAPI} from '../m3-dal/packsAPI';
+import {PackAPI} from '../../features/f-1-cards/c-1-packs/p3-dal/cardPackAPI';
+import {
+    cardPackActions,
+    CardPackActionsType,
+    GetAppStoreType
+} from '../../features/f-1-cards/c-1-packs/p2-bll/cardPack-reducer';
 
 
 export const PacksInitState = {
@@ -78,14 +84,13 @@ export const getPacks = (): ThunkType =>
         const {sortMax, sortMin, packName, currentPage, pageSize, sortPacks, packUser_id} = getState().pack
         dispatch(packsActions.setTableLoadingAC(true))
         try {
-            const response = await packsAPI
-                .getPacks(sortMax, sortMin, packName, currentPage, pageSize, sortPacks, packUser_id)
+            const response = await PackAPI
+                .getCardPacks(sortMax, sortMin, packName, currentPage, pageSize, sortPacks, packUser_id)
             if (response.error) {
                 dispatch(packsActions.setTableErrorAC(response.error));
                 console.log('Get Products Error!', response.error)
             } else {
-
-                // здесь нужно задиспатчить установку массива данных в стейт(колод карточек)..
+                dispatch(cardPackActions.setCardDeckAC(response.cardPacks));
                 dispatch(packsActions.setPacksTotalCount(response.cardPacksTotalCount))
                 dispatch(packsActions.setTableSuccessAC(true))
 
@@ -98,10 +103,24 @@ export const getPacks = (): ThunkType =>
         }
         dispatch(packsActions.setTableLoadingAC(false))
     }
+// export const CardPackTC = (): ThunkType =>
+//     async (dispatch
+//         , getStore: GetAppStoreType) => {
+//         try {
+//             const {userPack_id} = getStore().cardPack;
+//             const data = await PackAPI.getCardPacks(userPack_id);
+//             dispatch(cardPackActions.setCardDeckAC(data.cardPacks));
+//         } catch (e) {
+//             const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
+//             console.log(error);
+//             return error;
+//         }
+//     };
+
 
 //type's
 export type PacksStateType = typeof PacksInitState;
-export type PacksActionsType = InferActionsTypes<typeof packsActions>
+export type PacksActionsType = InferActionsTypes<typeof packsActions> | CardPackActionsType
 export type ThunkType = BaseThunkType<PacksActionsType>;
 export type PackType = {
     _id: string;
@@ -123,4 +142,5 @@ export type PackType = {
 
     created: string;
     updated: string;
+    __v:number
 }

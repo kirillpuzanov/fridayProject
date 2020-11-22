@@ -16,7 +16,7 @@ type SearchType = {
     onChangeMultiRange: (value: number[]) => void
 }
 
-export const Search = (props: SearchType) => {
+export const  Search = (props: SearchType) => {
 
     const {onSearch, valueMultiRAnge, domain, step, onChange, onChangeMultiRange} = props;
     const onInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.currentTarget.value);
