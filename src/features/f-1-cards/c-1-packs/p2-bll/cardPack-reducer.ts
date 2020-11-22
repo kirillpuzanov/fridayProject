@@ -63,7 +63,7 @@ export const CardPackTC = (): ThunkType =>
         }
     };
 
-
+//TODO объеденить редьюсеры
 export const addPack = (): ThunkType => async (dispatch
 ) => {
     try {
