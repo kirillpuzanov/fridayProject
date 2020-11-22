@@ -4,9 +4,9 @@ import {ResponseCardPackRequestType} from '../p2-bll/cardPackTypes';
 
 export const PackAPI = {
 
-    getCardPacks: async () => {
+    getCardPacks: async (userPack_id:string) => {
         const response = await instance.get<ResponseCardPackRequestType>(`cards/pack?`
-            + `&page=1`+`&count=4`)
+            + `&page=1`+`&count=4`+(userPack_id && `&user_id=${userPack_id}`))
         return response.data;
 
         },

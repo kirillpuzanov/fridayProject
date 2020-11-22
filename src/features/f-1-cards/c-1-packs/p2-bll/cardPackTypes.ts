@@ -1,5 +1,6 @@
 export type PacksType = {
     cardPacks: CardPackType[];
+    userPack_id:string
 }
 
 export type CardPackType = {

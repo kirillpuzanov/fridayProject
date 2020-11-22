@@ -1,9 +1,10 @@
-import {BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
+import {AppStateType, BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {PackAPI} from '../p3-dal/cardPackAPI';
 import {CardPackType, PacksType} from './cardPackTypes';
 
 const initialState: PacksType = {
-    cardPacks: []
+    cardPacks: [],
+    userPack_id: ''
 };
 // const initialState = {
 //
@@ -27,8 +28,13 @@ const initialState: PacksType = {
 
 export const cardPackReducer = (state: CardPackInitialStateType = initialState, action: CardPackActionsType): CardPackInitialStateType => {
     switch (action.type) {
-        case '/CARD-PACK/SET-PACKS':
+        case '/CARD_PACK/SET_PACKS':
             return {...state, cardPacks: action.cardPacks};
+        case '/CARD_PACK/SET_PACK_USER_ID':
+            return {
+                ...state,
+                userPack_id: action.userPack_id,
+            };
         default:
             return state;
     }
@@ -36,13 +42,17 @@ export const cardPackReducer = (state: CardPackInitialStateType = initialState, 
 
 
 export const cardPackActions = {
-    setCardDeckAC: (cardPacks: Array<CardPackType>) => ({type: '/CARD-PACK/SET-PACKS', cardPacks} as const),
+    setCardDeckAC: (cardPacks: Array<CardPackType>) => ({type: '/CARD_PACK/SET_PACKS', cardPacks} as const),
+    setUserPack_id: (userPack_id: string) => ({type: '/CARD_PACK/SET_PACK_USER_ID', userPack_id} as const)
+
 };
 
 export const CardPackTC = (): ThunkType =>
-    async (dispatch) => {
+    async (dispatch
+        , getStore: GetAppStoreType) => {
         try {
-            const data = await PackAPI.getCardPacks();
+            const {userPack_id} = getStore().cardPack;
+            const data = await PackAPI.getCardPacks(userPack_id);
             dispatch(cardPackActions.setCardDeckAC(data.cardPacks));
         } catch (e) {
             const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
@@ -55,5 +65,5 @@ export const CardPackTC = (): ThunkType =>
 export type CardPackInitialStateType = typeof initialState;
 type ThunkType = BaseThunkType<CardPackActionsType>;
 export type CardPackActionsType = InferActionsTypes<typeof cardPackActions>
-
+export type GetAppStoreType = () => AppStateType;
 
