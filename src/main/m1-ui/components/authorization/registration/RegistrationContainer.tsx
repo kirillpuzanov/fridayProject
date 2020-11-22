@@ -1,11 +1,11 @@
 import React from 'react';
 import {Registration} from './Registration';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../m2-bll/store';
+import {AppStateType} from '../../../../m2-bll/store';
 import {Redirect} from 'react-router-dom';
-import {PROFILE_PATH, SIGN_IN_PATH} from '../routes/Routes';
+import {PROFILE_PATH, SIGN_IN_PATH} from '../../routes/Routes';
 import {useFormik} from 'formik';
-import {AuthInitialStateType, registerTC} from '../../../m2-bll/auth-reducer';
+import {AuthInitialStateType, registerTC} from '../../../../m2-bll/auth-reducer';
 
 export const RegistrationContainer = () => {
     const {error, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);

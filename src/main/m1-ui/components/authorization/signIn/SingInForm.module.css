@@ -46,13 +46,6 @@
 .footer a{
     color: white;
 }
-/*.footer a:hover {*/
-/*    color: #fff;*/
-/*    border-color: #525aff;*/
-/*    !*background-color: #123cfc;*!*/
-/*    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);*/
-
-/*}*/
 a {
     font-size: 14px;
     padding: 2px;

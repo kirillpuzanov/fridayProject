@@ -1,8 +1,8 @@
 import {BaseThunkType, InferActionsTypes} from './store';
 import {authAPI, LoginParamsType} from '../m3-dal/authAPI';
 import {profileActions, ProfileActionsType} from './profile-reducer';
-import {RecoveryPassObjType} from '../m1-ui/components/recoveryPassword/RecoveryPasswordContainer';
-import {setNewPassDatatype} from '../m1-ui/components/setNewPassword/SetNewPasswordContainer';
+import {RecoveryPassObjType} from '../m1-ui/components/authorization/recoveryPassword/RecoveryPasswordContainer';
+import {setNewPassDatatype} from '../m1-ui/components/authorization/setNewPassword/SetNewPasswordContainer';
 
 
 export const AuthInitialState = {
@@ -97,7 +97,7 @@ export const setNewPassTC = (setNewPassData: setNewPassDatatype): ThunkType => a
 
 //type's
 export type AuthInitialStateType = typeof AuthInitialState;
-type ThunkType = BaseThunkType<authActionsType>;
+export type ThunkType = BaseThunkType<authActionsType>;
 export type authActionsType = InferActionsTypes<typeof authActions>
     | ProfileActionsType;
 
