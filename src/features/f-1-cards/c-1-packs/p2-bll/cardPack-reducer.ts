@@ -75,7 +75,7 @@ export const addPack = (): ThunkType => async (dispatch
     }
 
 };
-export const deletePack = (packId:string): ThunkType => async (dispatch
+export const deletePack = (packId: string): ThunkType => async (dispatch
 ) => {
     try {
         const data = await PackAPI.deletePack(packId);
@@ -88,7 +88,7 @@ export const deletePack = (packId:string): ThunkType => async (dispatch
     }
 
 };
-export const updatePack = (packId:string): ThunkType => async (dispatch
+export const updatePack = (packId: string): ThunkType => async (dispatch
 ) => {
     try {
         const data = await PackAPI.updatePack(packId);

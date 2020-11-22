@@ -6,7 +6,7 @@ import {addPack, cardPackActions, CardPackTC, deletePack, updatePack} from '../p
 import {ProfileType} from '../../../../main/m3-dal/authAPI';
 import {packsModel} from './PacksModel';
 import MyTable from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
-import st from './PacksModel.module.css'
+import st from './PacksModel.module.css';
 
 const PacksContainer = React.memo(() => {
 

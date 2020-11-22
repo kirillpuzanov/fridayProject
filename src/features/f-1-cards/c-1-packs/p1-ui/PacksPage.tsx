@@ -2,14 +2,13 @@ import React from 'react';
 
 import PacksContainer from './PacksContainer';
 
-const PacksPage1 = () => {
+const PacksPage = () => {
 
     return (
         <>
-
             <PacksContainer/>
         </>
     );
 };
 
-export default PacksPage1;
+export default PacksPage;

@@ -8,6 +8,7 @@ import {RecoveryPasswordContainer} from '../recoveryPassword/RecoveryPasswordCon
 import {SetNewPasswordContainer} from '../setNewPassword/SetNewPasswordContainer';
 import {TestComponent} from '../../../../test/t-1-table/testComponent';
 import PacksPage1 from '../../../../features/f-1-cards/c-1-packs/p1-ui/PacksPage';
+import PacksPage from '../../../../features/f-1-cards/c-1-packs/p1-ui/PacksPage';
 
 
 export const SIGN_IN_PATH = '/';
@@ -31,7 +32,7 @@ export const Routes: React.FC<any> = () => {
             <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPasswordContainer}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
-            <Route path={PACKS_PAGE} component={PacksPage1}/>
+            <Route path={PACKS_PAGE} component={PacksPage}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 
