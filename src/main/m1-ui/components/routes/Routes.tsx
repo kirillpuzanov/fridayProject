@@ -1,12 +1,15 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {PNF} from '../notFound/PNF';
-import {RegistrationContainer} from '../registration/RegistrationContainer';
-import {SignIn} from '../signIn/SingIn';
+
 import {ProfileContainer} from '../profile/ProfileContainer';
 import {RecoveryPasswordContainer} from '../authorization/recoveryPassword/RecoveryPasswordContainer';
 import {SetNewPasswordContainer} from '../authorization/setNewPassword/SetNewPasswordContainer';
 import {Packs} from '../tablePacks/Packs';
+import {SignIn} from '../authorization/signIn/SingIn';
+import {RegistrationContainer} from '../authorization/registration/RegistrationContainer';
+import {TestComponent} from '../../../../test/t-1-table/testComponent';
+import PacksPage from '../../../../features/f-1-cards/c-1-packs/p1-ui/PacksPage';
 
 
 export const SIGN_IN_PATH = '/';
