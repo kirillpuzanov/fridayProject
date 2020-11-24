@@ -47,7 +47,7 @@ export const packsAPI = {
 
 };
 
-type ResponsePack = {
+export type ResponsePack = {
     cardPacks: CardPackType[]
     cardPacksTotalCount: number
     maxCardsCount: number

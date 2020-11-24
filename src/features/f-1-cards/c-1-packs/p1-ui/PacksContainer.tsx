@@ -1,35 +1,45 @@
 import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../../main/m2-bll/store';
-import {PacksType} from '../p2-bll/cardPackTypes';
-import {addPack, cardPackActions, CardPackTC, deletePack, updatePack} from '../p2-bll/cardPack-reducer';
-import {ProfileType} from '../../../../main/m3-dal/authAPI';
+import {PacksTypeF} from '../p2-bll/cardPackTypes';
+import {addPack, cardPackActions, deletePack, updatePack} from '../p2-bll/cardPack-reducer';
 import {packsModel} from './PacksModel';
 import MyTable from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 import st from './PacksModel.module.css';
-import {SearchContainer} from '../../../../main/m1-ui/common/search/SearchContainer';
-import {PaginatorContainer} from '../../../../main/m1-ui/common/Paginator/PaginatorContainer';
-import {getPacks, PacksStateType} from '../../../../main/m2-bll/packs-reducer';
+import {getPacks} from '../../../../main/m2-bll/packs-reducer';
+import {SearchContainer} from '../../../../main/common/search/SearchContainer';
+import {PaginatorContainer} from '../../../../main/common/Paginator/PaginatorContainer';
+import {ProfileType} from '../../../../fiatures/f-1_autorization/f-1_dal/authAPI';
+import {CardPacksStateType} from '../../../../fiatures/f-2_PacksTable/f-2_bll/cardPacks-reducer';
 
 const PacksContainer = React.memo(() => {
-
-    const {cardPacks, userPack_id} = useSelector<AppStateType, PacksType>(state => state.cardPack);
+    const {
+        sortMax,
+        sortMin,
+        packName,
+        currentPage,
+        pageSize,
+        sortPacks,
+        user_id,
+        cardPacks
+    } = useSelector<AppStateType, CardPacksStateType & PacksTypeF>(state => state.cardPack);
     const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
-    const [myPacks, setMyPacks] = useState<boolean>(!!userPack_id);
-    const {sortMax, sortMin, packName, currentPage, pageSize, sortPacks, packUser_id} = useSelector<AppStateType, PacksStateType>(state => state.pack)
+
+
+    const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
 
 
     const dispatch = useDispatch();
     useEffect(() => {
         // dispatch(CardPackTC());
-        dispatch(getPacks())
+        dispatch(getPacks());
 
     }, [dispatch]);
 
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(cardPackActions.setUserPack_id(myPacks ? '' : _id));
         // dispatch(CardPackTC());
-        dispatch(getPacks())
+        dispatch(getPacks());
         setMyPacks(e.target.checked);
     }, [setMyPacks, dispatch, myPacks, _id]);
 
@@ -39,8 +49,8 @@ const PacksContainer = React.memo(() => {
         (packId: string) => dispatch(updatePack(packId)),
     );
     useEffect(() => {
-        dispatch(getPacks())
-    }, [sortMax, sortMin, packName, currentPage, pageSize, sortPacks, packUser_id])
+        dispatch(getPacks());
+    }, [sortMax, sortMin, packName, currentPage, pageSize, sortPacks, user_id]);
     return (
         <div className={st.containerWrapper}>
             <SearchContainer/>

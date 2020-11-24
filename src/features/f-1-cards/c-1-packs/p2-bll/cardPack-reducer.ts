@@ -1,11 +1,10 @@
 import {AppStateType, BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {PackAPI} from '../p3-dal/cardPackAPI';
-import {CardPackType, PacksType} from './cardPackTypes';
-import {packsAPI} from '../../../../main/m3-dal/packsAPI';
+import {CardPackType, PacksTypeF} from './cardPackTypes';
 
-const initialState: PacksType = {
+const initialState: PacksTypeF = {
     cardPacks: [],
-    userPack_id: ''
+    user_id: ''
 };
 // const initialState = {
 //
@@ -34,7 +33,7 @@ export const cardPackReducer = (state: CardPackInitialStateType = initialState, 
         case '/CARD_PACK/SET_PACK_USER_ID':
             return {
                 ...state,
-                userPack_id: action.userPack_id,
+                user_id: action.user_id,
             };
         default:
             return state;
@@ -44,7 +43,7 @@ export const cardPackReducer = (state: CardPackInitialStateType = initialState, 
 
 export const cardPackActions = {
     setCardDeckAC: (cardPacks: Array<CardPackType>) => ({type: '/CARD_PACK/SET_PACKS', cardPacks} as const),
-    setUserPack_id: (userPack_id: string) => ({type: '/CARD_PACK/SET_PACK_USER_ID', userPack_id} as const)
+    setUserPack_id: (user_id: string) => ({type: '/CARD_PACK/SET_PACK_USER_ID', user_id} as const)
 
 };
 
@@ -52,7 +51,7 @@ export const CardPackTC = (): ThunkType =>
     async (dispatch
         , getState: GetAppStoreType) => {
         try {
-            const {userPack_id} = getState().cardPack;
+            const {user_id} = getState().cardPack;
             // const data = await PackAPI.getCardPacks(userPack_id);
             // const data = await packsAPI.getCardPacks(packUser_id)
             // dispatch(cardPackActions.setCardDeckAC(data.cardPacks));

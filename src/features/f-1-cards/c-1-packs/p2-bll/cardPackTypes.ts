@@ -1,6 +1,6 @@
-export type PacksType = {
+export type PacksTypeF = {
     cardPacks: CardPackType[];
-    userPack_id: string
+    user_id: string
 }
 
 export type CardPackType = {

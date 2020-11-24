@@ -2,7 +2,6 @@ import {ProfileType} from '../../../fiatures/f-1_autorization/f-1_dal/authAPI';
 import ava_default from '../../assets/img/ava_default.jpg';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {PACKS_PAGE} from '../routes/Routes';
 import style from '../header/Header.module.css';
 
 type ProfileInfoType = {
@@ -17,7 +16,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             <div>Email : {profile.email}</div>
             <div>Public Card Packs Count : {profile.publicCardPacksCount}</div>
             <nav>
-                <NavLink to={PACKS_PAGE} activeClassName={style.header_nav__link}>PacksPage</NavLink>
+                {/*<NavLink to={PACKS_PAGE} activeClassName={style.header_nav__link}>PacksPage</NavLink>*/}
             </nav>
         </div>
     )
