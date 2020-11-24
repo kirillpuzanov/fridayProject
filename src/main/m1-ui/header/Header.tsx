@@ -10,7 +10,7 @@ import {
     SIGN_IN_PATH,
     TEST_COMPONENT_PATH
 } from '../routes/Routes';
-import style from './Header.module.css'
+import style from './Header.module.css';
 
 export type HeaderType = {}
 
@@ -24,9 +24,8 @@ export const Header = (props: HeaderType) => {
             <NavLink to={REGISTRATION_PATH} activeClassName={style.header_nav__link}>Registration</NavLink>
             <NavLink to={PROFILE_PATH} activeClassName={style.header_nav__link}>Profile</NavLink>
             <NavLink to={PAGE_NOT_FOUND_PATH} activeClassName={style.header_nav__link}>404</NavLink>
-            <NavLink to={TEST_COMPONENT_PATH} activeClassName={style.header_nav__link}>Test</NavLink>
-
             <NavLink to={PACKS_PATH} activeClassName={style.header_nav__link}>Packs</NavLink>
+            <NavLink to={TEST_COMPONENT_PATH} activeClassName={style.header_nav__link}>Test</NavLink>
         </nav>
-    </section>
-}
+    </section>;
+};
