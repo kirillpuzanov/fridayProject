@@ -1,6 +1,6 @@
 import {BaseThunkType, InferActionsTypes} from './store';
-import {authAPI} from '../m3-dal/authAPI';
-import {authActions, authActionsType} from './auth-reducer';
+import {authAPI} from '../../fiatures/f-1_autorization/f-1_dal/authAPI';
+import {authActions, authActionsType} from '../../fiatures/f-1_autorization/f-1_bll/auth-reducer';
 import {profileActions, ProfileActionsType} from './profile-reducer';
 
 
