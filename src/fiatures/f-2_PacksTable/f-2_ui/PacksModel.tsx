@@ -3,6 +3,7 @@ import st from './Packs.module.css';
 import {CardPackType} from '../f-2_bll/cardPacks-reducer';
 import {TableModelType} from '../../../main/common/table/Table';
 import {MyBtn} from '../../../main/common/myComponent/myBtn/MyBtn';
+import TableBtn from '../../../main/common/myComponent/BtnForTable/TableBtn';
 
 
 export const packsModel = (
@@ -53,13 +54,13 @@ export const packsModel = (
     {
         title: (index, loading) => (
             <div key={'buttons-title-' + index} className={st.item}>
-                <MyBtn onClick={addPack} name={'add'}/>
+                <TableBtn onClick={addPack} name={'add'}>add</TableBtn>
             </div>
         ),
         render: (dataItem: CardPackType, modelIndex, dataIndex, loading) => (
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
-                <MyBtn onClick={() => deletePack(dataItem._id)} name='delete' />
-                <MyBtn onClick={() => updatePack(dataItem._id)} name='update' />
+                <TableBtn onClick={() => deletePack(dataItem._id)} name='delete'>delete</TableBtn>
+                <TableBtn onClick={() => updatePack(dataItem._id)} name='update'>update</TableBtn>
             </div>
         )
     },
