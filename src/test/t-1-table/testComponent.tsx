@@ -8,7 +8,7 @@ export const TestComponent:React.FC = ()=> {
 
     return <section className={style.pnf}>
 
-        <p className={style.pnf_descr}>TestComponent.</p>
+        <p className={style.pnf_descr}>TestComponent</p>
         <hr/>
 
         <PackPageTest/>

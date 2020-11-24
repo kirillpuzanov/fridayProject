@@ -7,6 +7,7 @@ import {ProfileContainer} from '../profile/ProfileContainer';
 import {RecoveryPasswordContainer} from '../../../fiatures/f-1_autorization/f-1_ui/recoveryPassword/RecoveryPasswordContainer';
 import {SetNewPasswordContainer} from '../../../fiatures/f-1_autorization/f-1_ui/setNewPassword/SetNewPasswordContainer';
 import {PacksPage} from '../../../fiatures/f-2_PacksTable/f-2_ui/PacksPage';
+import {TestComponent} from '../../../test/t-1-table/testComponent';
 
 
 export const SIGN_IN_PATH = '/';
@@ -16,6 +17,7 @@ export const PAGE_NOT_FOUND_PATH = '/404';
 export const RECOVERY_PASSWORD_PATH = '/recoveryPass';
 export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const PACKS_PATH = '/packs';
+export const TEST_COMPONENT_PATH = '/test';
 
 
 export const Routes: React.FC<any> = () => {
@@ -29,6 +31,7 @@ export const Routes: React.FC<any> = () => {
             <Route path={SET_NEW_PASSWORD_PATH} component={SetNewPasswordContainer}/>
             <Route path={PACKS_PATH} component={PacksPage}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
+            <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 
