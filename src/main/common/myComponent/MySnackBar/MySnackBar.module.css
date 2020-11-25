@@ -1,0 +1,36 @@
+
+.MySnackBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fa5959;
+    color: #ffffff;
+    min-width: 300px;
+    min-height: 30px;
+    position: absolute;
+    bottom: 50px;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 1s;
+}
+
+.MySnackBar_text{
+    font-style: italic;
+}
+button,
+button:active,
+button:focus {
+    outline: none !important;
+}
+.MySnackBar_btn{
+    width: 27px;
+    height: 27px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 1;
+    cursor:pointer;
+    transform: rotate(45deg);
+}

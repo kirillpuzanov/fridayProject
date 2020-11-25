@@ -6,13 +6,13 @@ import st from './SingInForm.module.css';
 import {SignInForm} from './SignInForm';
 import {Redirect} from 'react-router-dom';
 import {PROFILE_PATH} from '../../../../main/m1-ui/routes/Routes';
-import {SingInTC} from '../../f-1_bll/auth-reducer';
+import {AuthInitialStateType, SingInTC} from '../../f-1_bll/auth-reducer';
 import {FormikErrorType} from '../registration/RegistrationContainer';
 
 
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
-    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
+    const {isAuth, error} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -56,7 +56,7 @@ export const SignIn: React.FC<any> = () => {
                 email={formik.values.email}
                 password={formik.values.password}
                 errors={formik.errors}
-
+                errorServer={error}
             />
         </form>
 

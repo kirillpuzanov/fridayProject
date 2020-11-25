@@ -52,6 +52,7 @@ export const SingInTC = (data: LoginParamsType): ThunkType =>
         } catch (e) {
             const error = e.response ? e.response.data.error : (e.message + ',more details on the console');
             dispatch(authActions.setIsAuthAC(false));
+            dispatch(authActions.setError(error))
             console.log(error);
             return error;
         }

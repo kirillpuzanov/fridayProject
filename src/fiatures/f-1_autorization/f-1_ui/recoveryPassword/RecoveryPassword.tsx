@@ -3,7 +3,7 @@ import style from './RecoveryPass.module.css'
 import {MyInput} from '../../../../main/common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../../../main/common/myComponent/myBtn/MyBtn';
 import {FormikErrorType} from '../registration/RegistrationContainer';
-import {Snackbar} from '@material/react-snackbar';
+import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 type RecPasstype = {
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
@@ -35,9 +35,8 @@ export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
 
                 <MyBtn name='Send' onClick={formSubmit}
                        error={!!errorEmail} disabled={!!errorEmail} type={'submit'}/>
-                {errorServer ? <p className={style.reg_form__error}> {errorServer} </p> : ''}
-                {/*{error && <Snackbar message={error} timeoutMs={4000}/>}*/}
             </form>
         </div>
+        {errorServer && <MySnackBar errorServer={errorServer}/>}
     </section>
 }
