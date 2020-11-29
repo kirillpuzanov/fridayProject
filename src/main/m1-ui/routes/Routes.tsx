@@ -8,6 +8,7 @@ import {RecoveryPasswordContainer} from '../../../features/f-1-all/f-1_autorizat
 import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorization/f-1_ui/setNewPassword/SetNewPasswordContainer';
 import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {TestComponent} from '../../../test/t-1-table/testComponent';
+import CardsPage from '../../../features/f-1-cards/c-2-cards/c1-ui/CardsPage';
 
 
 export const SIGN_IN_PATH = '/';
@@ -18,6 +19,7 @@ export const RECOVERY_PASSWORD_PATH = '/recoveryPass';
 export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const PACKS_PATH = '/packs';
 export const TEST_COMPONENT_PATH = '/test';
+export const CARDS_PATH = '/cards';
 
 
 export const Routes: React.FC<any> = () => {
@@ -32,8 +34,9 @@ export const Routes: React.FC<any> = () => {
             <Route path={PACKS_PATH} component={PacksPage}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
+            <Route path={CARDS_PATH} component={CardsPage}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 
-    </>
-}
+    </>;
+};

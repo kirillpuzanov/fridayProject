@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {
+    CARDS_PATH,
     PACKS_PATH,
     PAGE_NOT_FOUND_PATH,
     PROFILE_PATH,
@@ -25,7 +26,7 @@ export const Header = (props: HeaderType) => {
             <NavLink to={PROFILE_PATH} activeClassName={style.header_nav__link}>Profile</NavLink>
             <NavLink to={PAGE_NOT_FOUND_PATH} activeClassName={style.header_nav__link}>404</NavLink>
             <NavLink to={PACKS_PATH} activeClassName={style.header_nav__link}>Packs</NavLink>
-            <NavLink to={TEST_COMPONENT_PATH} activeClassName={style.header_nav__link}>Test</NavLink>
+            <NavLink to={CARDS_PATH} activeClassName={style.header_nav__link}>Cards</NavLink>
         </nav>
     </section>;
 };

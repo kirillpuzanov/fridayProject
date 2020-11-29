@@ -3,6 +3,8 @@ import st from './Packs.module.css';
 import {CardPackType} from '../f-2_bll/cardPacks-reducer';
 import {TableModelType} from '../../../../main/common/table/Table';
 import TableBtn from '../../../../main/common/myComponent/BtnForTable/TableBtn';
+import LinkNya from '../../../../main/common/myComponent/link/LinkNya';
+import {CARDS_PATH} from '../../../../main/m1-ui/routes/Routes';
 
 
 export const packsModel = (
@@ -60,6 +62,7 @@ export const packsModel = (
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
                 <TableBtn onClick={() => deletePack(dataItem._id)} name='delete'>delete</TableBtn>
                 <TableBtn onClick={() => updatePack(dataItem._id)} name='update'>update</TableBtn>
+                <LinkNya to={CARDS_PATH + '/' + dataItem._id}>cards</LinkNya>
             </div>
         )
     },
