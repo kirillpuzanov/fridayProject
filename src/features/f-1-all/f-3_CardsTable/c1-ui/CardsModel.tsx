@@ -1,6 +1,6 @@
 import React from 'react';
 import {TableNyaModelType} from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
-import {CardType} from '../c1-bll/CardTypes';
+import {CardType} from '../c2-bll/CardTypes';
 import TableBtn from '../../../../main/m1-ui/common/myComponent/BtnForTable/TableBtn';
 
 export const cardsModel = (

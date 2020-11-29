@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {AppStateType} from '../../../../main/m2-bll/store';
 import MyTable, {TableNyaModelType} from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 import {cardsModel} from './CardsModel';
-import {addCardTC, deleteCardTC, getCardsTC, updateCardTC} from '../c1-bll/cards-reducer';
+import {addCardTC, deleteCardTC, getCardsTC, updateCardTC} from '../c2-bll/cards-reducer';
 
 
 const CardsContainer = React.memo(() => {

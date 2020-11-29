@@ -8,7 +8,7 @@ import {RecoveryPasswordContainer} from '../../../features/f-1-all/f-1_autorizat
 import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorization/f-1_ui/setNewPassword/SetNewPasswordContainer';
 import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {TestComponent} from '../../../test/t-1-table/testComponent';
-import CardsPage from '../../../features/f-1-cards/c-2-cards/c1-ui/CardsPage';
+import CardsPage from '../../../features/f-1-all/f-3_CardsTable/c1-ui/CardsPage';
 
 
 export const SIGN_IN_PATH = '/';

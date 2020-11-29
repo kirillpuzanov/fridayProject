@@ -1,6 +1,6 @@
 import {BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {CardsInitState, CardsStateType, CardType} from './CardTypes';
-import {CardsAPI} from '../c1-dal/CardsAPI';
+import {CardsAPI} from '../c3-dal/CardsAPI';
 
 
 export const cardsReducer = (state = CardsInitState, action: CardsActionsType): CardsStateType => {

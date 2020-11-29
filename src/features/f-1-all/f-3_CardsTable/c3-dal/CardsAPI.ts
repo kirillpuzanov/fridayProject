@@ -1,5 +1,5 @@
 import {instance} from '../../../../main/m3-dal/api';
-import {CardType} from '../c1-bll/CardTypes';
+import {CardType} from '../c2-bll/CardTypes';
 
 
 export type GetDataType = {
