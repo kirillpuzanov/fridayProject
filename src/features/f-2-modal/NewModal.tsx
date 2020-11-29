@@ -7,30 +7,33 @@ type ModalType = {
     isOpen: boolean
     onCancel: () => void
     onSubmit: () => void
-    children:any
+    children: any
 
 }
 
 
-export const ModalTwo: React.FC<ModalType> = ({title, isOpen, onCancel, onSubmit,children}) => {
+export const ModalTwo: React.FC<ModalType> = ({title, isOpen, onCancel, onSubmit, children}) => {
     return (
-        <Portal>
-            <div className={st.modalOverlay}>
-                <div className={st.modalWindow}>
-                    <div className={st.modalHeader}>
-                        <div className={st.modalTitle}>{title}</div>
-                        <button onClick={onCancel}>Close</button>
-                    </div>
-                    <div className={st.modalBody}>
-                        {children}
-                    </div>
-                    <div className={st.modalFooter}>
-                        <button onClick={onCancel} >Close</button>
-                        <button onSubmit={onSubmit}>Submit</button>
+        <>
+            {isOpen && <Portal>
+                <div className={st.modalOverlay}>
+                    <div className={st.modalWindow}>
+                        <div className={st.modalHeader}>
+                            <div className={st.modalTitle}>{title}</div>
+                            <button onClick={onCancel}>Close</button>
+                        </div>
+                        <div className={st.modalBody}>
+                            {children}
+                        </div>
+                        <div className={st.modalFooter}>
+                            <button onClick={onCancel}>Close</button>
+                            <button onSubmit={onSubmit}>Submit</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Portal>
+            </Portal>
+            }
+        </>
     );
 };
 
