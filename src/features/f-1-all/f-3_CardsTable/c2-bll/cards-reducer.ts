@@ -36,7 +36,18 @@ export const CardsActions = {
     } as const),
 
 };
-
+export const getCardsTC = (id: string): ThunkType => async (
+    dispatch
+) => {
+    try {
+        const data = await CardsAPI.getCards(id);
+        dispatch(CardsActions.setCards(data.cards));
+    } catch (e) {
+        const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
+        console.log(error);
+        return error;
+    }
+};
 export const updateCardTC = (id: string, pack_id: string): ThunkType => async (
     dispatch) => {
 
@@ -49,19 +60,6 @@ export const updateCardTC = (id: string, pack_id: string): ThunkType => async (
         return error;
     }
 
-};
-
-export const getCardsTC = (id: string): ThunkType => async (
-    dispatch
-) => {
-    try {
-        const data = await CardsAPI.getCards(id);
-        dispatch(CardsActions.setCards(data.cards));
-    } catch (e) {
-        const error = e.response ? e.response.data.error : (e.message + ',more details in the console');
-        console.log(error);
-        return error;
-    }
 };
 
 export const deleteCardTC = (id: string, pack_id: string): ThunkType => async (dispatch) => {
