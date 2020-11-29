@@ -3,7 +3,8 @@ import {CardPackType} from '../f-2_bll/cardPacks-reducer';
 
 
 export const packsAPI = {
-    getCardPacks: (
+
+    getCardPacks: async (
         max: number,
         min: number,
         packName?: string,
@@ -11,16 +12,16 @@ export const packsAPI = {
         pageSize?: number,
         sortPacks?: string,
         packUser_id?: string,) => {
-        return instance.get<ResponsePack>(
+        const res = await instance.get<ResponsePack>(
             'cards/pack?'
             + (packName ? `packName=${packName}&` : '')
             + (sortPacks ? `sortPacks=${sortPacks}&` : '')
             + (max ? `max=${max}&min=${min}&` : '')
             + (currentPage ? `page=${currentPage}&` : '')
             + (pageSize ? `pageCount=${pageSize}&` : '')
-            // + (packUser_id && `user_id=${packUser_id}&`)
-        )
-            .then(res => res.data);
+            + (packUser_id && `user_id=${packUser_id}`)
+        );
+        return res.data;
     },
     addPack: async () => {
         const response = await instance.post<any>('/cards/pack', {
@@ -56,5 +57,5 @@ export type ResponsePack = {
     pageCount: number
     token: string
     tokenDeathTime: number
-    error:string
+    error: string
 }

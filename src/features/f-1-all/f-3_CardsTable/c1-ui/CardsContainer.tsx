@@ -8,11 +8,10 @@ import {addCardTC, deleteCardTC, getCardsTC, updateCardTC} from '../c2-bll/cards
 
 
 const CardsContainer = React.memo(() => {
-    const {id} = useParams<any>();
+    const {id} = useParams<{id:string}>();
     const {cards} = useSelector((store: AppStateType) => store.cards);
     const dispatch = useDispatch();
     useEffect(() => {
-
         dispatch(getCardsTC(id));
     }, [dispatch, id]);
 

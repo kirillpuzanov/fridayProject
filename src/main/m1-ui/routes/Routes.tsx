@@ -34,7 +34,7 @@ export const Routes: React.FC<any> = () => {
             <Route path={PACKS_PATH} component={PacksPage}/>
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
-            <Route path={CARDS_PATH} component={CardsPage}/>
+            <Route path={CARDS_PATH + '/:id?'} component={CardsPage}/>
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 

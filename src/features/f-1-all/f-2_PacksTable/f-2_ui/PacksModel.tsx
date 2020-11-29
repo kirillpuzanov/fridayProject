@@ -6,7 +6,6 @@ import TableBtn from '../../../../main/common/myComponent/BtnForTable/TableBtn';
 import LinkNya from '../../../../main/common/myComponent/link/LinkNya';
 import {CARDS_PATH} from '../../../../main/m1-ui/routes/Routes';
 
-
 export const packsModel = (
     addPack: () => void,
     deletePack: (packId: string) => void,
@@ -59,6 +58,7 @@ export const packsModel = (
             </div>
         ),
         render: (dataItem: CardPackType, modelIndex, dataIndex, loading) => (
+
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
                 <TableBtn onClick={() => deletePack(dataItem._id)} name='delete'>delete</TableBtn>
                 <TableBtn onClick={() => updatePack(dataItem._id)} name='update'>update</TableBtn>
