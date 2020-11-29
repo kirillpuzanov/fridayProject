@@ -1,5 +1,5 @@
 import React from 'react';
-import Portal from './Portal';
+import Portal1 from './Portal1';
 import st from './modal.module.css';
 
 type ModalType = {
@@ -15,7 +15,7 @@ type ModalType = {
 export const ModalTwo: React.FC<ModalType> = ({title, isOpen, onCancel, onSubmit, children}) => {
     return (
         <>
-            {isOpen && <Portal>
+            {isOpen && <Portal1>
                 <div className={st.modalOverlay}>
                     <div className={st.modalWindow}>
                         <div className={st.modalHeader}>
@@ -31,7 +31,7 @@ export const ModalTwo: React.FC<ModalType> = ({title, isOpen, onCancel, onSubmit
                         </div>
                     </div>
                 </div>
-            </Portal>
+            </Portal1>
             }
         </>
     );

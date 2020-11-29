@@ -2,7 +2,7 @@ import {Component} from 'react';
 import ReactDOM from 'react-dom'
 
 
-class Portal extends Component<any, any> {
+class Portal1 extends Component<any, any> {
     el = document.createElement('div');
 
     componentDidMount() {
@@ -20,4 +20,4 @@ class Portal extends Component<any, any> {
 
 }
 
-export default Portal;
+export default Portal1;
