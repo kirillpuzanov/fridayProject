@@ -1,4 +1,4 @@
-import {instance} from '../../../main/m3-dal/api';
+import {instance} from '../../../../main/m3-dal/api';
 import {RecoveryPassObjType} from '../f-1_ui/recoveryPassword/RecoveryPasswordContainer';
 import {setNewPassDatatype} from '../f-1_ui/setNewPassword/SetNewPasswordContainer';
 

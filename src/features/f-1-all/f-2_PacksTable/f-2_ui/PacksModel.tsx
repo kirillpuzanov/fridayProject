@@ -1,9 +1,8 @@
 import React from 'react';
 import st from './Packs.module.css';
 import {CardPackType} from '../f-2_bll/cardPacks-reducer';
-import {TableModelType} from '../../../main/common/table/Table';
-import {MyBtn} from '../../../main/common/myComponent/myBtn/MyBtn';
-import TableBtn from '../../../main/common/myComponent/BtnForTable/TableBtn';
+import {TableModelType} from '../../../../main/common/table/Table';
+import TableBtn from '../../../../main/common/myComponent/BtnForTable/TableBtn';
 
 
 export const packsModel = (

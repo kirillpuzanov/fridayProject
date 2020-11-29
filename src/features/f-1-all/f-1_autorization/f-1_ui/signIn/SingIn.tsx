@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../../main/m2-bll/store';
+import {AppStateType} from '../../../../../main/m2-bll/store';
 import {useFormik} from 'formik';
 import st from './SingInForm.module.css';
 import {SignInForm} from './SignInForm';
 import {Redirect} from 'react-router-dom';
-import {PROFILE_PATH} from '../../../../main/m1-ui/routes/Routes';
+import {PROFILE_PATH} from '../../../../../main/m1-ui/routes/Routes';
 import {SingInTC} from '../../f-1_bll/auth-reducer';
 import {FormikErrorType} from '../registration/RegistrationContainer';
 

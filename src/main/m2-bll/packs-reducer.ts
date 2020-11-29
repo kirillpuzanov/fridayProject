@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsTypes} from './store';
-import {packsAPI} from '../../fiatures/f-2_PacksTable/f-2_dal/packsAPI';
+import {packsAPI} from '../../features/f-1-all/f-2_PacksTable/f-2_dal/packsAPI';
 
 
 export const PacksInitState = {

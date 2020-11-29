@@ -1,4 +1,4 @@
-import {BaseThunkType, InferActionsTypes} from '../../../main/m2-bll/store';
+import {BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {packsAPI} from '../f-2_dal/packsAPI';
 
 

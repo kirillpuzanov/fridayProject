@@ -1,9 +1,9 @@
 import React from 'react';
 import {Registration} from './Registration';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../../main/m2-bll/store';
+import {AppStateType} from '../../../../../main/m2-bll/store';
 import {Redirect} from 'react-router-dom';
-import {PROFILE_PATH, SIGN_IN_PATH} from '../../../../main/m1-ui/routes/Routes';
+import {PROFILE_PATH, SIGN_IN_PATH} from '../../../../../main/m1-ui/routes/Routes';
 import {useFormik} from 'formik';
 import {AuthInitialStateType, registerTC} from '../../f-1_bll/auth-reducer';
 

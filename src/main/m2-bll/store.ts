@@ -2,8 +2,8 @@ import {Action, applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {profileReducer} from './profile-reducer';
 import {appReducer} from './app-reducer';
-import {authReducer} from '../../fiatures/f-1_autorization/f-1_bll/auth-reducer';
-import {cardPacksReducer} from '../../fiatures/f-2_PacksTable/f-2_bll/cardPacks-reducer';
+import {authReducer} from '../../features/f-1-all/f-1_autorization/f-1_bll/auth-reducer';
+import {cardPacksReducer} from '../../features/f-1-all/f-2_PacksTable/f-2_bll/cardPacks-reducer';
 
 
 //actions type

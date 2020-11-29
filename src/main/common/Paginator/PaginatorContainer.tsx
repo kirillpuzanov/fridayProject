@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {Paginator} from './Paginator';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../m2-bll/store';
-import {cardPackActions, CardPacksStateType} from '../../../fiatures/f-2_PacksTable/f-2_bll/cardPacks-reducer';
+import {cardPackActions, CardPacksStateType} from '../../../features/f-1-all/f-2_PacksTable/f-2_bll/cardPacks-reducer';
 
 
 export const PaginatorContainer = ()=> {

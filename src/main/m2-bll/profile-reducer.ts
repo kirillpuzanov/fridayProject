@@ -1,4 +1,4 @@
-import {ProfileType} from '../../fiatures/f-1_autorization/f-1_dal/authAPI';
+import {ProfileType} from '../../features/f-1-all/f-1_autorization/f-1_dal/authAPI';
 import {InferActionsTypes} from './store';
 
 

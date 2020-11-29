@@ -9,8 +9,8 @@ import st from './PacksModel.module.css';
 import {getPacks} from '../../../../main/m2-bll/packs-reducer';
 import {SearchContainer} from '../../../../main/common/search/SearchContainer';
 import {PaginatorContainer} from '../../../../main/common/Paginator/PaginatorContainer';
-import {ProfileType} from '../../../../fiatures/f-1_autorization/f-1_dal/authAPI';
-import {CardPacksStateType} from '../../../../fiatures/f-2_PacksTable/f-2_bll/cardPacks-reducer';
+import {ProfileType} from '../../../f-1-all/f-1_autorization/f-1_dal/authAPI';
+import {CardPacksStateType} from '../../../f-1-all/f-2_PacksTable/f-2_bll/cardPacks-reducer';
 
 const PacksContainer = React.memo(() => {
     const {

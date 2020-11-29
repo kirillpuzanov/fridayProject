@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../main/m2-bll/store';
+import {AppStateType} from '../../../../main/m2-bll/store';
 import {ProfileType} from '../../f-1_autorization/f-1_dal/authAPI';
 import {
     addPack,
@@ -11,10 +11,10 @@ import {
     updatePack
 } from '../f-2_bll/cardPacks-reducer';
 import {packsModel} from './PacksModel';
-import {SearchContainer} from '../../../main/common/search/SearchContainer';
-import {PaginatorContainer} from '../../../main/common/Paginator/PaginatorContainer';
-import st from'./Packs.module.css'
-import {MyTable} from '../../../main/common/table/Table';
+import {SearchContainer} from '../../../../main/common/search/SearchContainer';
+import {PaginatorContainer} from '../../../../main/common/Paginator/PaginatorContainer';
+import st from './Packs.module.css'
+import {MyTable} from '../../../../main/common/table/Table';
 
 
 export const PacksPage = React.memo(() => {

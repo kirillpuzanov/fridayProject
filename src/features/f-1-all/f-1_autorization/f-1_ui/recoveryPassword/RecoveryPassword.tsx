@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './RecoveryPass.module.css'
-import {MyInput} from '../../../../main/common/myComponent/myInput/MyInput';
-import {MyBtn} from '../../../../main/common/myComponent/myBtn/MyBtn';
+import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
 import {FormikErrorType} from '../registration/RegistrationContainer';
 import {Snackbar} from '@material/react-snackbar';
 

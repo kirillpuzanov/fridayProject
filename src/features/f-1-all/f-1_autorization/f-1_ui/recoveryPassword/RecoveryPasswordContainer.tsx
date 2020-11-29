@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../../main/m2-bll/store';
+import {AppStateType} from '../../../../../main/m2-bll/store';
 import {AuthInitialStateType, recoveryPassTC} from '../../f-1_bll/auth-reducer';
 import {useFormik} from 'formik';
 import {RecoveryPassword} from './RecoveryPassword';
 import {Redirect} from 'react-router-dom';
-import {PROFILE_PATH} from '../../../../main/m1-ui/routes/Routes';
+import {PROFILE_PATH} from '../../../../../main/m1-ui/routes/Routes';
 
 
 export const RecoveryPasswordContainer: React.FC = () => {

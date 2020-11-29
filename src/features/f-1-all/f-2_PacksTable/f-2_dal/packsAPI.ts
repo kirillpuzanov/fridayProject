@@ -1,4 +1,4 @@
-import {instance} from '../../../main/m3-dal/api';
+import {instance} from '../../../../main/m3-dal/api';
 import {CardPackType} from '../f-2_bll/cardPacks-reducer';
 
 

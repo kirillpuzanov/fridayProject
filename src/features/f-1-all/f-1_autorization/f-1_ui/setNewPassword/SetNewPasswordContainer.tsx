@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../../main/m2-bll/store';
+import {AppStateType} from '../../../../../main/m2-bll/store';
 import {useFormik} from 'formik';
 import {SetNewPassword} from './SetNewPassword';
 import {AuthInitialStateType, setNewPassTC} from '../../f-1_bll/auth-reducer';
 import {Redirect, useParams} from 'react-router-dom';
-import {PROFILE_PATH, SIGN_IN_PATH} from '../../../../main/m1-ui/routes/Routes';
+import {PROFILE_PATH, SIGN_IN_PATH} from '../../../../../main/m1-ui/routes/Routes';
 
 export const SetNewPasswordContainer: React.FC = () => {
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {PNF} from '../notFound/PNF';
-import {RegistrationContainer} from '../../../fiatures/f-1_autorization/f-1_ui/registration/RegistrationContainer';
-import {SignIn} from '../../../fiatures/f-1_autorization/f-1_ui/signIn/SingIn';
+import {RegistrationContainer} from '../../../features/f-1-all/f-1_autorization/f-1_ui/registration/RegistrationContainer';
+import {SignIn} from '../../../features/f-1-all/f-1_autorization/f-1_ui/signIn/SingIn';
 import {ProfileContainer} from '../profile/ProfileContainer';
-import {RecoveryPasswordContainer} from '../../../fiatures/f-1_autorization/f-1_ui/recoveryPassword/RecoveryPasswordContainer';
-import {SetNewPasswordContainer} from '../../../fiatures/f-1_autorization/f-1_ui/setNewPassword/SetNewPasswordContainer';
-import {PacksPage} from '../../../fiatures/f-2_PacksTable/f-2_ui/PacksPage';
+import {RecoveryPasswordContainer} from '../../../features/f-1-all/f-1_autorization/f-1_ui/recoveryPassword/RecoveryPasswordContainer';
+import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorization/f-1_ui/setNewPassword/SetNewPasswordContainer';
+import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {TestComponent} from '../../../test/t-1-table/testComponent';
 
 

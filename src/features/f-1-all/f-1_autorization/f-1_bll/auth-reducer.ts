@@ -1,6 +1,6 @@
-import {BaseThunkType, InferActionsTypes} from '../../../main/m2-bll/store';
+import {BaseThunkType, InferActionsTypes} from '../../../../main/m2-bll/store';
 import {authAPI, LoginParamsType} from '../f-1_dal/authAPI';
-import {profileActions, ProfileActionsType} from '../../../main/m2-bll/profile-reducer';
+import {profileActions, ProfileActionsType} from '../../../../main/m2-bll/profile-reducer';
 import {RecoveryPassObjType} from '../f-1_ui/recoveryPassword/RecoveryPasswordContainer';
 import {setNewPassDatatype} from '../f-1_ui/setNewPassword/SetNewPasswordContainer';
 

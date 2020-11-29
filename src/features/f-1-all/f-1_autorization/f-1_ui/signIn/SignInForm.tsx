@@ -1,11 +1,11 @@
 import React from 'react';
 import st from './SingInForm.module.css';
 import {NavLink} from 'react-router-dom';
-import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../../../main/m1-ui/routes/Routes';
-import style from '../../../../main/m1-ui/header/Header.module.css';
+import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../../../../main/m1-ui/routes/Routes';
+import style from '../../../../../main/m1-ui/header/Header.module.css';
 import {FormikErrorType} from '../registration/RegistrationContainer';
-import {MyInput} from '../../../../main/common/myComponent/myInput/MyInput';
-import {MyBtn} from '../../../../main/common/myComponent/myBtn/MyBtn';
+import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
 
 type PropsType = {
     email: string

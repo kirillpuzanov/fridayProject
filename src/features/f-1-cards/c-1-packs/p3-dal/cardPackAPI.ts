@@ -1,5 +1,5 @@
 import {instance} from '../../../../main/m3-dal/api';
-import {ResponsePack} from '../../../../fiatures/f-2_PacksTable/f-2_dal/packsAPI';
+import {ResponsePack} from '../../../f-1-all/f-2_PacksTable/f-2_dal/packsAPI';
 
 
 export const PackAPI = {
