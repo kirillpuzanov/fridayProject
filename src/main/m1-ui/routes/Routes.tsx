@@ -9,6 +9,8 @@ import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorizatio
 import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {TestComponent} from '../../../test/t-1-table/testComponent';
 import CardsPage from '../../../features/f-1-all/f-3_CardsTable/c1-ui/CardsPage';
+import SandboxB from '../../../features/f-2-modal/test/button/SandboxB';
+import Sandbox from '../../../features/f-2-modal/test/modal/Sandbox';
 
 
 export const SIGN_IN_PATH = '/';
@@ -20,6 +22,7 @@ export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const PACKS_PATH = '/packs';
 export const TEST_COMPONENT_PATH = '/test';
 export const CARDS_PATH = '/cards';
+export const SAND = '/sandbox';
 
 
 export const Routes: React.FC<any> = () => {
@@ -35,6 +38,8 @@ export const Routes: React.FC<any> = () => {
             <Route path={PAGE_NOT_FOUND_PATH} component={PNF}/>
             <Route path={TEST_COMPONENT_PATH} component={TestComponent}/>
             <Route path={CARDS_PATH + '/:id?'} component={CardsPage}/>
+            <Route path={SAND} component={Sandbox}/>
+
             <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
         </Switch>
 

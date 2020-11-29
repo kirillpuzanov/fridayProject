@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import Icon from './Icon';
 import Button from '../button/Button';
 
-const Sandbox = () => (
+const SandboxI = () => (
   <Fragment>
 
     <h2><span>1. Base icon:</span></h2>
@@ -32,5 +32,5 @@ const Sandbox = () => (
   </Fragment>
 );
 
-export default Sandbox;
+export default SandboxI;
 /* eslint-enable */

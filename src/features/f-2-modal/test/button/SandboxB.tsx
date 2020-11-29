@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import Button from './Button';
 
-const Sandbox = () => (
+const SandboxB = () => (
   <Fragment>
 
     <h2><span>1. Text and onClick function:</span></h2>
@@ -28,5 +28,5 @@ const Sandbox = () => (
   </Fragment>
 );
 
-export default Sandbox;
+export default SandboxB;
 /* eslint-enable */

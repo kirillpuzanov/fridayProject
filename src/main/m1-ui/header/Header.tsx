@@ -6,7 +6,7 @@ import {
     PAGE_NOT_FOUND_PATH,
     PROFILE_PATH,
     RECOVERY_PASSWORD_PATH,
-    REGISTRATION_PATH,
+    REGISTRATION_PATH, SAND,
     SET_NEW_PASSWORD_PATH,
     SIGN_IN_PATH,
     TEST_COMPONENT_PATH
@@ -27,6 +27,7 @@ export const Header = (props: HeaderType) => {
             <NavLink to={PAGE_NOT_FOUND_PATH} activeClassName={style.header_nav__link}>404</NavLink>
             <NavLink to={PACKS_PATH} activeClassName={style.header_nav__link}>Packs</NavLink>
             <NavLink to={CARDS_PATH} activeClassName={style.header_nav__link}>Cards</NavLink>
+            <NavLink to={SAND} activeClassName={style.header_nav__link}>SandBox</NavLink>
         </nav>
     </section>;
 };
