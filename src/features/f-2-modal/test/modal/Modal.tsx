@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import  st from './Modal.module.css'
-
-
 import Portal from '../portal/Portal';
-import Icon from '../icon/Icon';
 
-const Modal:React.FC<any> = ({
+type ModalType ={
+  title: string
+  isOpen: boolean,
+  onCancel: ()=>void,
+  onSubmit: ()=>void
+  children: React.ReactNode
+}
+
+const Modal:React.FC<ModalType> = ({
   title, isOpen, onCancel, onSubmit, children,
 }) => {
 
@@ -35,20 +40,14 @@ const Modal:React.FC<any> = ({
   );
 };
 
-Modal.propTypes = {
-  title: PropTypes.string,
-  isOpen: PropTypes.bool,
-  onCancel: PropTypes.func,
-  onSubmit: PropTypes.func,
-  children: PropTypes.node,
-};
+
 
 Modal.defaultProps = {
   title: 'Modal title',
   isOpen: false,
   onCancel: () => {},
   onSubmit: () => {},
-  children: null,
+  children: null
 };
 
 export default Modal;
