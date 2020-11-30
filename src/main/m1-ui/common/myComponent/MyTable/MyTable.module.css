@@ -1,13 +1,13 @@
 .header {
     border: 1px solid black;
-    width: 80%;
+    width: 100%;
     display: flex;
 
 
 }
 .row{
 
-    width: 80%;
+    width: 100%;
 }
 
 .wrapper {

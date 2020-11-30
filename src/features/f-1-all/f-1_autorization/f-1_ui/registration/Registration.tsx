@@ -3,14 +3,14 @@ import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
 import style from './Registration.module.css';
 import {FormikErrorType} from './RegistrationContainer';
-import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
+import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 
 type RegistrationType = {
     email: string
     password: string
     repeatPass: string
-    error: string
+    serverError: string
     errors: FormikErrorType
     formSubmit: () => void
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
@@ -18,7 +18,7 @@ type RegistrationType = {
 
 export const Registration: React.FC<RegistrationType> = (props) => {
 
-    const {email, password, repeatPass, error:errorServer, errors, onChange, formSubmit} = props;
+    const {email, password, repeatPass, serverError, errors, onChange, formSubmit} = props;
     const {email: errorEmail, password: errorPassword, repeatPass: errorRepeatPass} = errors;
     const disBtn = errorEmail || errorPassword || errorRepeatPass;
 
@@ -58,7 +58,7 @@ export const Registration: React.FC<RegistrationType> = (props) => {
 
             </form>
         </main>
-        {errorServer && <MySnackBar errorServer={errorServer}/>}
+        {serverError && <MySnackBar errorServer={serverError}/>}
     </section>
 }
 

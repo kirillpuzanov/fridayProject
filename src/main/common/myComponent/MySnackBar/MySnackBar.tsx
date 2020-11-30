@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import style from './MySnackBar.module.css';
 import {useDispatch} from 'react-redux';
-import {authActions} from '../../../../fiatures/f-1_autorization/f-1_bll/auth-reducer';
+import {appActions} from '../../../m2-bll/app-reducer';
 
 
 type SnackBarType = {
@@ -13,12 +13,12 @@ export const MySnackBar = React.memo((props: SnackBarType) => {
     const {errorServer} = props;
     useEffect( ()=> {
         setTimeout( ()=> {
-            dispatch(authActions.setError(''))
+            closeSnackBar()
         }, 4000)
     },[])
 
     const closeSnackBar = () => {
-        dispatch(authActions.setError(''))
+        dispatch(appActions.setServerError(''))
     }
 
     return (

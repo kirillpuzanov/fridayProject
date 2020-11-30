@@ -4,33 +4,35 @@ import {AppStateType} from '../../../../main/m2-bll/store';
 import {ProfileType} from '../../f-1_autorization/f-1_dal/authAPI';
 import {
     addPack,
-    cardPackActions,
-    CardPacksStateType,
-    CardPackTC,
+    packActions,
+    PacksStateType,
+    PackTC,
     deletePack,
     updatePack
-} from '../f-2_bll/cardPacks-reducer';
+} from '../f-2_bll/packs-reducer';
 import {packsModel} from './PacksModel';
-import {SearchContainer} from '../../../../main/common/search/SearchContainer';
-import {PaginatorContainer} from '../../../../main/common/Paginator/PaginatorContainer';
 import st from './Packs.module.css';
 import {MyTable} from '../../../../main/common/table/Table';
+import {PacksPagination} from './packsPagination/PacksPagination';
+import {PacksSearch} from './packsSearch/PacksSearch';
+import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 
 export const PacksPage = React.memo(() => {
 
     const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
-    const {currentPage, pageSize, sortPacks, user_id, cardPacks} = useSelector<AppStateType, CardPacksStateType>(state => state.cardPack);
+    const {currentPage, pageSize, sortPacks, cardPacks, user_id} = useSelector<AppStateType, PacksStateType>(state => state.packs);
+    const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
 
     const dispatch = useDispatch();
 
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(cardPackActions.setUserPack_id(myPacks ? '' : _id));
-        // dispatch(CardPackTC());
-        dispatch(CardPackTC());
-        setMyPacks(e.target.checked);
-    }, [setMyPacks, dispatch, myPacks, _id]);
+        setMyPacks(e.currentTarget.checked);
+        dispatch(packActions.setUserPack_id(myPacks ? '' : _id));
+
+        dispatch(PackTC());
+    }, [_id, dispatch, myPacks]);
 
     const model = packsModel(
         () => dispatch(addPack()),
@@ -38,11 +40,11 @@ export const PacksPage = React.memo(() => {
         (packId: string) => dispatch(updatePack(packId)),
     );
     useEffect(() => {
-        dispatch(CardPackTC());
-    }, [currentPage, pageSize, sortPacks, user_id]);
+        dispatch(PackTC());
+    }, [dispatch, currentPage, pageSize, sortPacks]);
     return (
         <section className={st.containerWrapper}>
-            <SearchContainer/>
+            <PacksSearch/>
             <label>
                 <input
                     type={'checkbox'}
@@ -52,7 +54,8 @@ export const PacksPage = React.memo(() => {
                 my packs
             </label>
             <MyTable model={model} data={cardPacks} title={'CardPacks'}/>
-            <PaginatorContainer/>
+            <PacksPagination/>
+            {serverError && <MySnackBar errorServer={serverError}/>}
         </section>
     );
 });

@@ -3,20 +3,20 @@ import style from './RecoveryPass.module.css'
 import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
 import {FormikErrorType} from '../registration/RegistrationContainer';
-import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
+import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 type RecPasstype = {
     onChange: (e: string | React.ChangeEvent<HTMLInputElement>) => void
     formSubmit: () => void
     errors: FormikErrorType
     email: string
-    error: string
+    serverError: string
     recoveryPassSuccess: boolean
 }
 
 export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
 
-    const {onChange, formSubmit, errors, email, error: errorServer, recoveryPassSuccess} = props;
+    const {onChange, formSubmit, errors, email, serverError, recoveryPassSuccess} = props;
     const {email: errorEmail} = errors;
     return <section>
         <div className={style.recPass}>
@@ -37,6 +37,6 @@ export const RecoveryPassword: React.FC<RecPasstype> = (props) => {
                        error={!!errorEmail} disabled={!!errorEmail} type={'submit'}/>
             </form>
         </div>
-        {errorServer && <MySnackBar errorServer={errorServer}/>}
+        {serverError && <MySnackBar errorServer={serverError}/>}
     </section>
 }

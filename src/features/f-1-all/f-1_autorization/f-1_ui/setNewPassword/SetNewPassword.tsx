@@ -10,8 +10,8 @@ type NewPassType = {
     errors: SetNewPassErrorType
     password: string
     repeatPass: string
-    error: string
 }
+
 
 export const SetNewPassword: React.FC<NewPassType> = (props) => {
     const {onChange, formSubmit, errors, password, repeatPass} = props;

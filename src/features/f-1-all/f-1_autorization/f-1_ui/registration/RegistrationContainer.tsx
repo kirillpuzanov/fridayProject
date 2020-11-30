@@ -8,8 +8,8 @@ import {useFormik} from 'formik';
 import {AuthInitialStateType, registerTC} from '../../f-1_bll/auth-reducer';
 
 export const RegistrationContainer = () => {
-    const {error, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
-    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
+    const {isAuth, registerSuccess} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
+    const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const dispatch = useDispatch();
 
     const formik = useFormik({
@@ -43,7 +43,7 @@ export const RegistrationContainer = () => {
             email={formik.values.email}
             password={formik.values.password}
             repeatPass={formik.values.repeatPass}
-            error={error}
+            serverError={serverError}
             errors={formik.errors}
             onChange={formik.handleChange}
             formSubmit={formik.handleSubmit}

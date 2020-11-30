@@ -7,6 +7,7 @@ import {profileActions, ProfileActionsType} from './profile-reducer';
 const initialState = {
     isInitializing: false,
     initializeError: '',
+    serverError: '',
 }
 export const appReducer = (state: AppInitialStateType = initialState, action: AppActionsType): AppInitialStateType => {
     switch (action.type) {
@@ -14,6 +15,8 @@ export const appReducer = (state: AppInitialStateType = initialState, action: Ap
             return {...state, isInitializing: action.isInitializing}
         case '/INITIALIZE/SET-ERROR':
             return {...state, initializeError: action.initialiseError}
+        case '/SERVER-ERROR/SET-ERROR':
+            return {...state, serverError: action.error}
         default:
             return state
     }
@@ -23,23 +26,22 @@ export const appReducer = (state: AppInitialStateType = initialState, action: Ap
 export const appActions = {
     setInitializing: (isInitializing: boolean) => ({type: '/APP/SET-INITIALIZED', isInitializing} as const),
     setInitializeError: (initialiseError: string) => ({type: '/INITIALIZE/SET-ERROR', initialiseError} as const),
+    setServerError: (error: string) => ({type: '/SERVER-ERROR/SET-ERROR', error} as const),
 }
 // thunks
 export const AuthMe = (): ThunkType => async (dispatch) => {
-        try {
-            let response = await authAPI.authMe()
-            dispatch(profileActions.setProfileAC(response))
-            dispatch(authActions.setIsAuthAC(true))
-        } catch (err) {
-            const error = err.response
-                ? err.response.data.error
-                : (err + ' ... О-оу зовите бородатых сеньоров!!');
-            dispatch(appActions.setInitializeError(error))
-        }
-        dispatch(appActions.setInitializing(true))
+    try {
+        let response = await authAPI.authMe()
+        dispatch(profileActions.setProfileAC(response))
+        dispatch(authActions.setIsAuthAC(true))
+    } catch (err) {
+        const error = err.response
+            ? err.response.data.error
+            : (err + ' ... О-оу зовите бородатых сеньоров!!');
+        dispatch(appActions.setInitializeError(error))
     }
-
-
+    dispatch(appActions.setInitializing(true))
+}
 
 
 export type AppInitialStateType = typeof initialState
@@ -47,4 +49,5 @@ type ThunkType = BaseThunkType<AppActionsType>
 export type AppActionsType = InferActionsTypes<typeof appActions>
     | ProfileActionsType
     | authActionsType
+
 

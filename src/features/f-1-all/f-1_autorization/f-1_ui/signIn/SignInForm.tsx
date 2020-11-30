@@ -1,11 +1,12 @@
 import React from 'react';
 import st from './SingInForm.module.css';
 import {NavLink} from 'react-router-dom';
-import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../../../main/m1-ui/routes/Routes';
-import style from '../../../../main/m1-ui/header/Header.module.css';
+import style from '../../../../../main/m1-ui/header/Header.module.css';
 import {FormikErrorType} from '../registration/RegistrationContainer';
-import {MyInput} from '../../../../main/common/myComponent/myInput/MyInput';
-import {MyBtn} from '../../../../main/common/myComponent/myBtn/MyBtn';
+import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
+import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
+import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../../../../main/m1-ui/routes/Routes';
+import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 type PropsType = {
     email: string
@@ -55,7 +56,6 @@ export const SignInForm: React.FC<PropsType> = (props) => {
                                              disabled={!!disableErrorField}
                                              error={!!disableErrorField}
             /> : null}
-
         </div>
         <div className={st.footer}>
             <nav>
@@ -65,7 +65,5 @@ export const SignInForm: React.FC<PropsType> = (props) => {
                 <NavLink to={RECOVERY_PASSWORD_PATH} activeClassName={style.header_nav__link}>Forgot?</NavLink>
             </nav>
         </div>
-
-
     </div>;
 };

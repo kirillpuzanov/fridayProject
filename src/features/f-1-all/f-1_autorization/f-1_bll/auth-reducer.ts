@@ -3,12 +3,12 @@ import {authAPI, LoginParamsType} from '../f-1_dal/authAPI';
 import {profileActions, ProfileActionsType} from '../../../../main/m2-bll/profile-reducer';
 import {RecoveryPassObjType} from '../f-1_ui/recoveryPassword/RecoveryPasswordContainer';
 import {setNewPassDatatype} from '../f-1_ui/setNewPassword/SetNewPasswordContainer';
+import {appActions, AppActionsType} from '../../../../main/m2-bll/app-reducer';
 
 
 export const AuthInitialState = {
     isAuth: false,
     loading: false,
-    error: '',
     registerSuccess: false,
     recoveryPassSuccess: false,
     newPassSuccess: false,
@@ -17,8 +17,7 @@ export const authReducer = (state: AuthInitialStateType = AuthInitialState, acti
     switch (action.type) {
         case 'singIn/SET-IS-AUTH':
             return {...state, isAuth: action.isAuth}
-        case '/SERVER-ERROR/SET-ERROR':
-            return {...state, error: action.error}
+
         case '/REG/SET-REGISTER-SUCCESS':
             return {...state, registerSuccess: true}
         case '/REG/SET-LOADING':
@@ -39,7 +38,6 @@ export const authActions = {
     setRecoveryPassSuccess: () => ({type: '/REC/SET-RECOVERY-PASS-SUCCESS'} as const),
     setNewPassSuccess: () => ({type: '/NEW-PASS/SET-NEW-PASS-SUCCESS'} as const),
     setLoading: (loading: boolean) => ({type: '/REG/SET-LOADING', loading} as const),
-    setError: (error: string) => ({type: '/SERVER-ERROR/SET-ERROR', error} as const),
 };
 
 //thunk's
@@ -52,7 +50,7 @@ export const SingInTC = (data: LoginParamsType): ThunkType =>
         } catch (e) {
             const error = e.response ? e.response.data.error : (e.message + ',more details on the console');
             dispatch(authActions.setIsAuthAC(false));
-            dispatch(authActions.setError(error))
+            dispatch(appActions.setServerError(error))
             console.log(error);
             return error;
         }
@@ -64,7 +62,7 @@ export const registerTC = (email: string, password: string): ThunkType =>
             let response = await authAPI.register(email, password)
             if (response.addedUser) dispatch(authActions.setRegisterSuccess())
         } catch (err) {
-            dispatch(authActions.setError(err.response.data.error))
+            dispatch(appActions.setServerError(err.response.data.error))
         }
         dispatch(authActions.setLoading(false))
     };
@@ -75,7 +73,7 @@ export const logoutTC = (): ThunkType =>
             await authAPI.logout()
             dispatch(authActions.setIsAuthAC(false))
         } catch (err) {
-            dispatch(authActions.setError(err.response.data.error))
+            dispatch(appActions.setServerError(err.response.data.error))
         }
     };
 export const recoveryPassTC = (RecoveryPassObj: RecoveryPassObjType): ThunkType =>
@@ -84,7 +82,7 @@ export const recoveryPassTC = (RecoveryPassObj: RecoveryPassObjType): ThunkType 
             await authAPI.recoveryPass(RecoveryPassObj)
             dispatch(authActions.setRecoveryPassSuccess())
         } catch (err) {
-            dispatch(authActions.setError(err.response.data.error))
+            dispatch(appActions.setServerError(err.response.data.error))
         }
     };
 export const setNewPassTC = (setNewPassData: setNewPassDatatype): ThunkType => async (dispatch) => {
@@ -92,13 +90,13 @@ export const setNewPassTC = (setNewPassData: setNewPassDatatype): ThunkType => a
         await authAPI.newPass(setNewPassData)
         dispatch(authActions.setNewPassSuccess())
     } catch (err) {
-        dispatch(authActions.setError(err.response.data.error))
+        dispatch(appActions.setServerError(err.response.data.error))
     }
 }
 
 //type's
 export type AuthInitialStateType = typeof AuthInitialState;
-export type ThunkType = BaseThunkType<authActionsType>;
+export type ThunkType = BaseThunkType<authActionsType | AppActionsType>;
 export type authActionsType = InferActionsTypes<typeof authActions>
     | ProfileActionsType;
 

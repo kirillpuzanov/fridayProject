@@ -10,7 +10,8 @@ import {PROFILE_PATH} from '../../../../../main/m1-ui/routes/Routes';
 
 export const RecoveryPasswordContainer: React.FC = () => {
 
-    const {error, recoveryPassSuccess,isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
+    const {recoveryPassSuccess,isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth)
+    const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -48,7 +49,7 @@ export const RecoveryPasswordContainer: React.FC = () => {
                 onChange={formik.handleChange}
                 formSubmit={formik.handleSubmit}
                 errors={formik.errors}
-                error={error}
+                serverError={serverError}
                 recoveryPassSuccess={recoveryPassSuccess}
             />
         </div>

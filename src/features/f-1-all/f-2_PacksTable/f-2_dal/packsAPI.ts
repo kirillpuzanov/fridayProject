@@ -1,5 +1,5 @@
 import {instance} from '../../../../main/m3-dal/api';
-import {CardPackType} from '../f-2_bll/cardPacks-reducer';
+import {PackType} from '../f-2_bll/packs-reducer';
 
 
 export const packsAPI = {
@@ -11,7 +11,7 @@ export const packsAPI = {
         currentPage?: number,
         pageSize?: number,
         sortPacks?: string,
-        packUser_id?: string,) => {
+        user_id?: string,) => {
         const res = await instance.get<ResponsePack>(
             'cards/pack?'
             + (packName ? `packName=${packName}&` : '')
@@ -19,7 +19,7 @@ export const packsAPI = {
             + (max ? `max=${max}&min=${min}&` : '')
             + (currentPage ? `page=${currentPage}&` : '')
             + (pageSize ? `pageCount=${pageSize}&` : '')
-            + (packUser_id && `user_id=${packUser_id}`)
+            + (user_id && `user_id=${user_id}&`)
         );
         return res.data;
     },
@@ -49,7 +49,7 @@ export const packsAPI = {
 };
 
 export type ResponsePack = {
-    cardPacks: CardPackType[]
+    cardPacks: PackType[]
     cardPacksTotalCount: number
     maxCardsCount: number
     minCardsCount: number

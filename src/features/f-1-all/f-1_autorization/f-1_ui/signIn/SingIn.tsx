@@ -1,18 +1,21 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../../main/m2-bll/store';
 import {useFormik} from 'formik';
 import st from './SingInForm.module.css';
 import {SignInForm} from './SignInForm';
 import {Redirect} from 'react-router-dom';
-import {PROFILE_PATH} from '../../../../main/m1-ui/routes/Routes';
 import {SingInTC} from '../../f-1_bll/auth-reducer';
 import {FormikErrorType} from '../registration/RegistrationContainer';
+import {AppStateType} from '../../../../../main/m2-bll/store';
+import {PROFILE_PATH} from '../../../../../main/m1-ui/routes/Routes';
+import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 
 export const SignIn: React.FC<any> = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
+    const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -59,7 +62,7 @@ export const SignIn: React.FC<any> = () => {
 
             />
         </form>
-
+        {serverError && <MySnackBar errorServer={serverError}/>}
     </div>;
 };
 

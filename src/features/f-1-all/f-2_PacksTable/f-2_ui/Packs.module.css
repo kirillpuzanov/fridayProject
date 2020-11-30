@@ -4,7 +4,6 @@
 
 .containerWrapper {
     margin: 0 auto;
-    background-color: grey;
-    width: 80%;
+    background-color: #f9f9f9;
     padding: 10px;
 }

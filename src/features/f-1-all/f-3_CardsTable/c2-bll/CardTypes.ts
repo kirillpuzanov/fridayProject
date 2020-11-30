@@ -23,10 +23,20 @@ export type CardType = {
     updated: string;
 }
 
-export type CardsStateType = {
-    cards: CardType[];
-}
+export type CardsStateType = typeof CardsInitState;
 
-export const CardsInitState: CardsStateType = {
-    cards: [],
+export const CardsInitState = {
+    cards: [] as CardType[],
+    cardsTotalCount: 0,
+
+    cardQuestion:'',
+    maxGrade: 5,
+    minGrade: 0,
+    currentPage: 1,
+    pageSize: 5,
+    packUserId: '',
+    sortCards: '0grade',
+
+    tableLoading: false,
+    tableSuccess: false,
 };

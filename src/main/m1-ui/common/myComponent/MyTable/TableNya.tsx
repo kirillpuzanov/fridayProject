@@ -14,8 +14,6 @@ export type TableNyaPropsType = {
 const MyTable: React.FC<TableNyaPropsType> = (
     {
         loading = false, title = 'table', model, data,
-        headerStyle, tableStyle,
-        rowsStyle, rowStyle,
     }
 ) => {
 

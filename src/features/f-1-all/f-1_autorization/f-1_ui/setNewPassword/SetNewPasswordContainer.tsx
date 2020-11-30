@@ -6,10 +6,12 @@ import {SetNewPassword} from './SetNewPassword';
 import {AuthInitialStateType, setNewPassTC} from '../../f-1_bll/auth-reducer';
 import {Redirect, useParams} from 'react-router-dom';
 import {PROFILE_PATH, SIGN_IN_PATH} from '../../../../../main/m1-ui/routes/Routes';
+import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 export const SetNewPasswordContainer: React.FC = () => {
 
-    const {error,newPassSuccess,isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
+    const {newPassSuccess, isAuth} = useSelector<AppStateType, AuthInitialStateType>(state => state.auth);
+    const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const dispatch = useDispatch();
     const {token} = useParams<tokenType>();
 
@@ -28,10 +30,10 @@ export const SetNewPasswordContainer: React.FC = () => {
             return errors;
         },
         onSubmit: (values) => {
-           const setNewPassData:setNewPassDatatype = {
-               password:values.password,
-               resetPasswordToken: token
-           }
+            const setNewPassData: setNewPassDatatype = {
+                password: values.password,
+                resetPasswordToken: token
+            }
             dispatch(setNewPassTC(setNewPassData))
             console.log(token)
         },
@@ -44,21 +46,21 @@ export const SetNewPasswordContainer: React.FC = () => {
             <SetNewPassword
                 password={formik.values.password}
                 repeatPass={formik.values.repeatPass}
-                error={error}
                 errors={formik.errors}
                 onChange={formik.handleChange}
                 formSubmit={formik.handleSubmit}
             />
+            {serverError && <MySnackBar errorServer={serverError}/>}
         </div>
     </section>
 }
 export type setNewPassDatatype = {
-    password:string
-    resetPasswordToken:string
+    password: string
+    resetPasswordToken: string
 }
 export type SetNewPassErrorType = {
     password?: string,
     repeatPass?: string,
 }
-type tokenType = {token:string}
+type tokenType = { token: string }
 
