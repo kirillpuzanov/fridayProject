@@ -4,8 +4,8 @@ import {AppStateType} from '../../m2-bll/store';
 import {Redirect} from 'react-router-dom';
 import {SIGN_IN_PATH} from '../routes/Routes';
 import {Profile} from './Profile';
-import {ProfileType} from '../../../fiatures/f-1_autorization/f-1_dal/authAPI';
-import {logoutTC} from '../../../fiatures/f-1_autorization/f-1_bll/auth-reducer';
+import {ProfileType} from '../../../features/f-1-all/f-1_autorization/f-1_dal/authAPI';
+import {logoutTC} from '../../../features/f-1-all/f-1_autorization/f-1_bll/auth-reducer';
 
 export const ProfileContainer: React.FC = () => {
 

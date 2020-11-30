@@ -21,7 +21,7 @@ export const MyTable: React.FC<TablePropsType> = ({
                 {data.map((dataItem: any, dataIndex: number) => (
                     <div key={title + '-row-' + (dataItem._id || dataIndex)}
                          className={st.inside}>
-                        {model.map((m: any, modelIndex: any) =>
+                        {model.map((m, modelIndex) =>
                             m.render(dataItem, modelIndex, dataIndex, loading))}
                     </div>
                 ))}

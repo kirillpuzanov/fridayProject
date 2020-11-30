@@ -1,0 +1,10 @@
+.item {
+    width: 20%;
+}
+
+.containerWrapper {
+    margin: 0 auto;
+    background-color: grey;
+    width: 80%;
+    padding: 10px;
+}

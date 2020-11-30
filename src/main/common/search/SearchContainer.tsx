@@ -6,7 +6,7 @@ import {
     cardPackActions,
     CardPacksStateType,
     CardPackTC
-} from '../../../fiatures/f-2_PacksTable/f-2_bll/cardPacks-reducer';
+} from '../../../features/f-1-all/f-2_PacksTable/f-2_bll/cardPacks-reducer';
 
 
 export const SearchContainer = () => {

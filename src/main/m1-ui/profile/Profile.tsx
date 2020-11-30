@@ -1,5 +1,5 @@
 import React from 'react';
-import {ProfileType} from '../../../fiatures/f-1_autorization/f-1_dal/authAPI';
+import {ProfileType} from '../../../features/f-1-all/f-1_autorization/f-1_dal/authAPI';
 import style from './Profile.module.css';
 import {ProfileInfo} from './ProfileInfo';
 import {MyBtn} from '../../common/myComponent/myBtn/MyBtn';
