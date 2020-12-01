@@ -1,6 +1,5 @@
-/* eslint-disable */
 import React, {Component} from 'react';
-import Modal from './Modal';
+import Modal from '../../../modal/Modal';
 
 class Sandbox extends Component {
     state = {

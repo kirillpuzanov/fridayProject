@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {
+    MODAL,
     PACKS_PATH,
     PAGE_NOT_FOUND_PATH,
     PROFILE_PATH,
@@ -26,6 +27,8 @@ export const Header = (props: HeaderType) => {
             <NavLink to={PAGE_NOT_FOUND_PATH} activeClassName={style.header_nav__link}>404</NavLink>
             <NavLink to={PACKS_PATH} activeClassName={style.header_nav__link}>Packs</NavLink>
             <NavLink to={TEST_COMPONENT_PATH} activeClassName={style.header_nav__link}>Test</NavLink>
+            <NavLink to={MODAL} activeClassName={style.header_nav__link}>MODAL</NavLink>
+
         </nav>
     </section>;
 };

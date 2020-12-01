@@ -1,8 +1,8 @@
 import {Component} from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
+class PortalCC extends Component {
 
-class Portal1 extends Component<any, any> {
     el = document.createElement('div');
 
     componentDidMount() {
@@ -12,12 +12,12 @@ class Portal1 extends Component<any, any> {
     componentWillUnmount() {
         document.body.removeChild(this.el);
     }
-    render(){
-        const {children} = this.props
-        return ReactDOM.createPortal(children,this.el)
+
+    render() {
+        const {children} = this.props;
+
+        return ReactDOM.createPortal(children, this.el);
     }
-
-
 }
 
-export default Portal1;
+export default PortalCC;

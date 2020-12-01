@@ -1,6 +1,6 @@
 import React from 'react';
 import st from './Modal.module.css';
-import Portal from '../../main/common/portal/Portal';
+import Portal from '../portal/Portal';
 
 type ModalType = {
     title: string
