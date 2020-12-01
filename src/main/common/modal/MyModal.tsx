@@ -1,5 +1,5 @@
 import React from 'react';
-import st from './Modal.module.css';
+import st from './MyModal.module.css';
 import Portal from '../portal/Portal';
 
 type ModalType = {
@@ -10,9 +10,9 @@ type ModalType = {
     children: React.ReactNode
 }
 
-const Modal: React.FC<ModalType> = ({
-                                        title, isOpen, onCancel, onSubmit, children,
-                                    }) => {
+const MyModal: React.FC<ModalType> = ({
+                                          title, isOpen, onCancel, onSubmit, children,
+                                      }) => {
 
     return (
         <>
@@ -40,7 +40,7 @@ const Modal: React.FC<ModalType> = ({
 };
 
 
-Modal.defaultProps = {
+MyModal.defaultProps = {
     title: 'Modal title',
     isOpen: false,
     onCancel: () => {
@@ -50,4 +50,4 @@ Modal.defaultProps = {
     children: null
 };
 
-export default Modal;
+export default MyModal;

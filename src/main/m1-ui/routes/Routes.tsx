@@ -9,7 +9,7 @@ import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorizatio
 import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {LearnPage} from '../../../features/f-3-learn/LearnPage';
 import {CardsPage} from '../../../features/f-1-all/f-3_CardsTable/c1-ui/CardsPage';
-import ModalContainer from '../../common/modal/ModalContainer';
+import ModalContainer from '../../../features/f-2-modal/ModalContainer';
 
 
 export const SIGN_IN_PATH = '/';
@@ -20,7 +20,7 @@ export const RECOVERY_PASSWORD_PATH = '/recoveryPass';
 export const SET_NEW_PASSWORD_PATH = '/new-pass/:token?';
 export const PACKS_PATH = '/packs';
 export const TEST_COMPONENT_PATH = '/test';
-export const CARDS_PATH = '/cards';
+export const CARDS_PATH = '/cards'; // почему не цепляется id??
 export const LEARN_PATH = '/learn';
 export const MODAL = '/modal';
 

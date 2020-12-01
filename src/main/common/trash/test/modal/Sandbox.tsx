@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Modal from '../../../modal/Modal';
+import Modal from '../../../modal/MyModal';
 
 class Sandbox extends Component {
     state = {

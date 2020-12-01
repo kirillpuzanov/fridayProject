@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, {useState} from 'react';
-import Modal from './Modal';
+import Modal from './MyModal';
 
-const ModalContainer = () => {
+const MyModalContainer = () => {
     console.log('render');
     const [isOpen, setIsOpen] = useState(false);
 
@@ -42,5 +42,5 @@ const ModalContainer = () => {
 };
 
 
-export default ModalContainer;
+export default MyModalContainer;
 /* eslint-enable */
