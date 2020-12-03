@@ -7,7 +7,7 @@ import LinkNya from '../../../../main/common/myComponent/link/LinkNya';
 import {CARDS_PATH, LEARN_PATH} from '../../../../main/m1-ui/routes/Routes';
 
 export const packsModel = (
-    addPack: () => void,
+    addModalPack: () => void,
     deletePack: (packId: string) => void,
     updatePack: (packId: string) => void,
 ): TableModelType[] => [
@@ -54,7 +54,9 @@ export const packsModel = (
     {
         title: (index) => (
             <div key={'buttons-title-' + index} className={st.item}>
-                <TableBtn onClick={addPack} name={'add'}>add</TableBtn>
+                <TableBtn onClick={() => {
+                    addModalPack();
+                }} name={'add'}>add</TableBtn>
             </div>
         ),
         render: (dataItem: PackType) => (

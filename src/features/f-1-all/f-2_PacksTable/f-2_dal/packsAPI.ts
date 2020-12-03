@@ -23,10 +23,10 @@ export const packsAPI = {
         );
         return res.data;
     },
-    addPack: async () => {
+    addPack: async (name:string) => {
         const response = await instance.post<any>('/cards/pack', {
             cardsPack: {
-                name: 'NewPack',
+                name: name,
             }
         });
         return response.data;

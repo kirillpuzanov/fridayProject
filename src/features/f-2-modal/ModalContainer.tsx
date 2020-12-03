@@ -1,45 +1,54 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import Modal from './Modal';
+import {MyInput} from '../../main/common/myComponent/myInput/MyInput';
+import {useDispatch} from 'react-redux';
+import {addPack} from '../f-1-all/f-2_PacksTable/f-2_bll/packs-reducer';
 
-const ModalContainer = () => {
-    console.log('render');
-    const [isOpen, setIsOpen] = useState(false);
+type ContainerType = {
+    isOpen: boolean
+    closeModal: () => void
+    // addPack:(value:string)=>void
+}
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
 
+export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) => {
+    const dispatch = useDispatch();
+    const [packName, setPackName] = useState('');
+    useEffect(() => {
+        setPackName(packName);
+    }, [packName]);
     const handleSubmit = () => {
-        console.log('Submit function!');
-        setIsOpen(false);
+        dispatch(addPack(packName));
+        setPackName('');
+        closeModal();
     };
-
     const handleCancel = () => {
-        console.log('Cancel function!');
-        setIsOpen(false);
+        closeModal();
     };
-
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setPackName(e.currentTarget.value);
+    };
 
     return (
         <>
+            {isOpen &&
+            <Modal title="Test Dialog window"
+                   onCancel={() => {
+                       handleCancel();
+                   }}
+                   onSubmit={handleSubmit}
+                   onBlur={() => {
+                       handleCancel();
+                   }}
 
-            <h2><span>1. Base Dialog (Modal) window:</span></h2>
-            <button onClick={openModal}>Show modal</button>
-            <Modal
-                title="Test Dialog window"
-                isOpen={isOpen}
-                onCancel={handleCancel}
-                onSubmit={handleSubmit}
             >
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a</p>
+                <p>Hello</p>
+                <MyInput autoFocus={true} onChange={onStatusChange} type={'text'} value={packName}/>
             </Modal>
-
+            }
         </>
     );
 };
 
 
 export default ModalContainer;
-/* eslint-enable */

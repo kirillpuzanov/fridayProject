@@ -19,38 +19,40 @@ export const PacksInitState = {
     tableLoading: false,
     tableSuccess: false,
     tableError: '',
-}
+};
 
 export const packsReducer = (state: PacksStateType = PacksInitState, action: PackActionsType): PacksStateType => {
     switch (action.type) {
         case '/PACK/PACKS-TOTAL-COUNT':
-            return {...state, cardPacksTotalCount: action.totalCount}
+            return {...state, cardPacksTotalCount: action.totalCount};
         case '/PACK/SET_PACKS':
             return {...state, cardPacks: action.cardPacks};
         case '/PACK/SET_PACK_USER_ID':
             return {...state, user_id: action.userPack_id,};
 
         case '/PACK/SET-SORT-MAX':
-            return {...state, sortMax: action.sortMax}
+            return {...state, sortMax: action.sortMax};
         case '/PACK/SET-SORT-MIN':
-            return {...state, sortMin: action.sortMin}
+            return {...state, sortMin: action.sortMin};
         case '/PACK/SET-PACK-NAME':
-            return {...state, packName: action.searchName}
+            return {...state, packName: action.searchName};
         case '/PACK/SET-CURRENT-PAGE':
-            return {...state, currentPage: action.currentPage}
+            return {...state, currentPage: action.currentPage};
         case '/PACK/SET-PAGE-SIZE':
-            return {...state, currentPage: action.currentPage, pageSize: action.pageSize}
+            return {...state, currentPage: action.currentPage, pageSize: action.pageSize};
         case '/PACK/SET-SORT-PACKS':
-            return {...state, sortPacks: action.sortPacks}
+            return {...state, sortPacks: action.sortPacks};
 
         case '/PACK/SET-TABLE-LOADING':
-            return {...state, tableLoading: action.tableLoading}
+            return {...state, tableLoading: action.tableLoading};
         case '/PACK/SET-TABLE-SUCCESS':
-            return {...state, tableSuccess: action.tableSuccess}
+            return {...state, tableSuccess: action.tableSuccess};
+        // case  '/PACK/ADD-NEW-PACK':
+        //     return {...state, packName: action.packName};
         default:
-            return state
+            return state;
     }
-}
+};
 
 //action's
 export const packActions = {
@@ -70,34 +72,36 @@ export const packActions = {
     setSortPacksAC: (sortPacks: string) => ({type: '/PACK/SET-SORT-PACKS', sortPacks} as const),
     setTableLoadingAC: (tableLoading: boolean) => ({type: '/PACK/SET-TABLE-LOADING', tableLoading} as const),
     setTableSuccessAC: (tableSuccess: boolean) => ({type: '/PACK/SET-TABLE-SUCCESS', tableSuccess} as const),
-}
+    setAddNewPackAC: (packName: string) => ({type: '/PACK/ADD-NEW-PACK', packName} as const)
+};
 
 
 // thunk's
 export const PackTC = (): ThunkType =>
     async (dispatch, getState) => {
-        const {sortMax, sortMin, packName, currentPage, pageSize, sortPacks, user_id} = getState().packs
-        dispatch(packActions.setTableLoadingAC(true))
+        const {sortMax, sortMin, packName, currentPage, pageSize, sortPacks, user_id} = getState().packs;
+        dispatch(packActions.setTableLoadingAC(true));
         try {
             const response = await packsAPI
-                .getCardPacks(sortMax, sortMin, packName, currentPage, pageSize, sortPacks, user_id)
+                .getCardPacks(sortMax, sortMin, packName, currentPage, pageSize, sortPacks, user_id);
             dispatch(packActions.setPacksAC(response.cardPacks));
-            dispatch(packActions.setPacksTotalCount(response.cardPacksTotalCount))
-            dispatch(packActions.setTableSuccessAC(true))
-            console.log('Get packs Success!', response)
+            dispatch(packActions.setPacksTotalCount(response.cardPacksTotalCount));
+            dispatch(packActions.setTableSuccessAC(true));
+            console.log('Get packs Success!', response);
         } catch (e) {
-            dispatch(appActions.setServerError(e.response.data.error))
+            dispatch(appActions.setServerError(e.response.data.error));
         }
-        dispatch(packActions.setTableLoadingAC(false))
-    }
+        dispatch(packActions.setTableLoadingAC(false));
+    };
 
-export const addPack = (): ThunkType => async (dispatch
+export const addPack = (packName: string): ThunkType => async (dispatch
 ) => {
     try {
-        await packsAPI.addPack();
+        await packsAPI.addPack(packName);
+        // packActions.setAddNewPackAC(packName)
         dispatch(PackTC());
     } catch (e) {
-        dispatch(appActions.setServerError(e.response.data.error))
+        dispatch(appActions.setServerError(e.response.data.error));
     }
 };
 
@@ -107,7 +111,7 @@ export const deletePack = (packId: string): ThunkType => async (dispatch
         await packsAPI.deletePack(packId);
         dispatch(PackTC());
     } catch (e) {
-        dispatch(appActions.setServerError(e.response.data.error))
+        dispatch(appActions.setServerError(e.response.data.error));
     }
 };
 export const updatePack = (packId: string): ThunkType => async (dispatch
@@ -116,7 +120,7 @@ export const updatePack = (packId: string): ThunkType => async (dispatch
         await packsAPI.updatePack(packId);
         dispatch(PackTC());
     } catch (e) {
-        dispatch(appActions.setServerError(e.response.data.error))
+        dispatch(appActions.setServerError(e.response.data.error));
     }
 };
 

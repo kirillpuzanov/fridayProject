@@ -28,8 +28,9 @@ const MyModal: React.FC<ModalType> = ({
                             {children}
                         </div>
                         <div className="modalFooter">
-                            <button onClick={onCancel}>Cancel</button>
                             <button onClick={onSubmit}>Submit</button>
+                            <button onClick={onCancel}>Cancel</button>
+
                         </div>
                     </div>
                 </div>
