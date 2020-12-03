@@ -7,7 +7,6 @@ import {addPack} from '../f-1-all/f-2_PacksTable/f-2_bll/packs-reducer';
 type ContainerType = {
     isOpen: boolean
     closeModal: () => void
-    // addPack:(value:string)=>void
 }
 
 
@@ -40,7 +39,6 @@ export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) =>
                    onBlur={() => {
                        handleCancel();
                    }}
-
             >
                 <p>Hello</p>
                 <MyInput autoFocus={true} onChange={onStatusChange} type={'text'} value={packName}/>
