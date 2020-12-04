@@ -46,7 +46,7 @@ export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) =>
             }
         </>
     );
-});
+};
 
 
 export default ModalContainer;
