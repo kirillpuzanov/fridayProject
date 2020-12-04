@@ -9,7 +9,7 @@ import {MyTable} from '../../../../main/common/table/Table';
 import {PacksPagination} from './packsPagination/PacksPagination';
 import {PacksSearch} from './packsSearch/PacksSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
-import ModalContainer from '../../../f-2-modal/ModalContainer';
+import {ModalContainer} from '../../../f-2-modal/ModalContainer';
 
 
 export const PacksPage = React.memo(() => {
