@@ -16,13 +16,13 @@ export const PacksPage = React.memo(() => {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [updateDeck, setUpdateDeck] = useState(true);
-    const [packName,setPackName]=useState('')
+    const [packName, setPackName] = useState('');
 
 
     const addModalPack = () => {
-        setUpdateDeck(false)
+        setUpdateDeck(false);
         setIsOpen(true);
-        dispatch(addPack(packName))
+        dispatch(addPack(packName));
         setTitle('It is time to create a new deck');
     };
     // const addModalPack2 = (packName:string) => {
@@ -31,7 +31,7 @@ export const PacksPage = React.memo(() => {
     //     setTitle('It is time to create a new deck');
     // };
     const updateModalPack = () => {
-        setUpdateDeck(true)
+        setUpdateDeck(true);
         setTitle('Put a new deck name');
     };
 
@@ -68,8 +68,9 @@ export const PacksPage = React.memo(() => {
         dispatch(PackTC());
     }, [dispatch, currentPage, pageSize, sortPacks]);
     return (<>
-            <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen} changePack={ updateDeck ? updateModalPack:addModalPack }
-            setPackName={setPackName} packName={packName}/>
+            <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
+                            changePack={updateDeck ? updateModalPack : addModalPack}
+                            setPackName={setPackName} packName={packName}/>
             {/*<ModalContainer title={'Do you want to delete this deck?'} closeModal={closeModal}*/}
             {/*                changePack={() => {*/}
             {/*                }} isOpen={isOpen}/>*/}
@@ -90,6 +91,6 @@ export const PacksPage = React.memo(() => {
             </section>
         </>
     );
-})
+});
 
 

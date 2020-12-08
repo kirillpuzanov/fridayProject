@@ -40,7 +40,7 @@ export const ModalContainer: React.FC<ContainerType> = ({
             <MyModal title={title}
                      onCancel={handleCancel}
                      onSubmit={handleSubmit}
-                // packName={packName}
+                     packName={packName}
             >
                 <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
             </MyModal>

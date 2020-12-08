@@ -7,12 +7,12 @@ type ModalType = {
     title: string
     onCancel: () => void,
     onSubmit: () => void
-    // packName: string
+    packName: string
 }
 
 export const MyModal: React.FC<ModalType> = ({
-                                        title, onCancel, onSubmit, children
-                                    }) => {
+                                                 title, onCancel, onSubmit, children, packName
+                                             }) => {
 
     return (
         <>
@@ -25,7 +25,7 @@ export const MyModal: React.FC<ModalType> = ({
                     {children}
                 </div>
                 <div className={st.modalFooter}>
-                    <TableBtn onClick={onSubmit}>Add</TableBtn>
+                    <TableBtn onClick={onSubmit} disabled={packName.length < 2}>Add</TableBtn>
                     <TableBtn onClick={onCancel}>Cancel</TableBtn>
                 </div>
             </div>
