@@ -1,25 +1,32 @@
-import React, {ChangeEvent, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {addPack} from '../f-1-all/f-2_PacksTable/f-2_bll/packs-reducer';
+import React, {ChangeEvent} from 'react';
 import {MyInput} from '../../main/common/myComponent/myInput/MyInput';
 import {MyModal} from '../../main/common/modal/MyModal';
 
 type ContainerType = {
     isOpen: boolean
     closeModal: () => void
-    // addPack:(value:string)=>void
+    title: string
+    changePack: () => void
+    setPackName: (value: string) => void
+    packName: string
 }
 
 
-export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) => {
-    const dispatch = useDispatch();
-    const [packName, setPackName] = useState('');
+export const ModalContainer: React.FC<ContainerType> = ({
+                                                            isOpen,
+                                                            closeModal,
+                                                            title,
+                                                            changePack,
+                                                            setPackName,
+                                                            packName
+                                                        }) => {
 
     const handleSubmit = () => {
-        dispatch(addPack(packName));
+        changePack();
         setPackName('');
         closeModal();
     };
+
     const handleCancel = () => {
         closeModal();
     };
@@ -30,12 +37,12 @@ export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) =>
     return (
         <>
             {isOpen &&
-            <MyModal title="Test Dialog window"
-                   onCancel={handleCancel}
-                   onSubmit={handleSubmit}
-                   packName={packName}
+            <MyModal title={title}
+                     onCancel={handleCancel}
+                     onSubmit={handleSubmit}
+                // packName={packName}
             >
-               <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
+                <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
             </MyModal>
             }
         </>

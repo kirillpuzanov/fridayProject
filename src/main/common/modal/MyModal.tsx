@@ -7,11 +7,11 @@ type ModalType = {
     title: string
     onCancel: () => void,
     onSubmit: () => void
-    packName: string
+    // packName: string
 }
 
 export const MyModal: React.FC<ModalType> = ({
-                                        title, onCancel, onSubmit, packName,children
+                                        title, onCancel, onSubmit, children
                                     }) => {
 
     return (

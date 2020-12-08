@@ -9,6 +9,7 @@ import {CARDS_PATH, LEARN_PATH} from '../../../../main/m1-ui/routes/Routes';
 export const packsModel = (
     addModalPack: () => void,
     deletePack: (packId: string) => void,
+    // updatePack: (packId: string, packName: string) => void,
     updatePack: (packId: string) => void,
 ): TableModelType[] => [
     {
@@ -63,6 +64,7 @@ export const packsModel = (
 
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
                 <TableBtn onClick={() => deletePack(dataItem._id)} name='delete'>delete</TableBtn>
+                {/*<TableBtn onClick={() => updatePack(dataItem._id)} name='update'>update</TableBtn>*/}
                 <TableBtn onClick={() => updatePack(dataItem._id)} name='update'>update</TableBtn>
                 <LinkNya to={CARDS_PATH + '/' + dataItem._id}>cards</LinkNya>
                 <LinkNya to={LEARN_PATH + '/' + dataItem._id}>learn</LinkNya>

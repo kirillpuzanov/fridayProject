@@ -35,7 +35,7 @@ export const packsAPI = {
         const response = await instance.put<any>('/cards/pack', {
             cardsPack: {
                 _id: packId,
-                name: 'Pack updated',
+                name: "packName",
                 deckCover: ''
             }
         });
