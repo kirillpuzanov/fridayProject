@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {MyInput} from '../../main/common/myComponent/myInput/MyInput';
 import {MyModal} from '../../main/common/modal/MyModal';
 
@@ -6,25 +6,31 @@ type ContainerType = {
     isOpen: boolean
     closeModal: () => void
     title: string
-    changePack: () => void
-    setPackName: (value: string) => void
-    packName: string
+    changePack: (value: string, packId?: string) => void
+    packId: string
+    buttonName: string
+    // setPackName: (value: string) => void
+    // packName: string
 }
 
 
-export const ModalContainer: React.FC<ContainerType> = ({
-                                                            isOpen,
-                                                            closeModal,
-                                                            title,
-                                                            changePack,
-                                                            setPackName,
-                                                            packName
-                                                        }) => {
+const ModalContainer: React.FC<ContainerType> = ({
+                                                     isOpen,
+                                                     closeModal,
+                                                     title,
+                                                     changePack,
+                                                     packId, buttonName
+
+                                                 }) => {
+
+    const [packName, setPackName] = useState('');
+
 
     const handleSubmit = () => {
-        changePack();
+        changePack(packName, packId);
         setPackName('');
         closeModal();
+
     };
 
     const handleCancel = () => {
@@ -41,13 +47,21 @@ export const ModalContainer: React.FC<ContainerType> = ({
                      onCancel={handleCancel}
                      onSubmit={handleSubmit}
                      packName={packName}
+                     buttonName={buttonName}
             >
-                <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
+                {buttonName !== 'DELETE' ?
+                    <div>
+                        <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
+                        {packName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
+                    </div>
+                    : null}
+
             </MyModal>
             }
         </>
     );
-};
+}
+;
 
 
 export default ModalContainer;

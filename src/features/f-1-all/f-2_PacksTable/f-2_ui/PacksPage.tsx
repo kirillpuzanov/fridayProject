@@ -9,36 +9,11 @@ import {MyTable} from '../../../../main/common/table/Table';
 import {PacksPagination} from './packsPagination/PacksPagination';
 import {PacksSearch} from './packsSearch/PacksSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
-import {ModalContainer} from '../../../f-2-modal/ModalContainer';
+import ModalContainer from '../../../f-2-modal/ModalContainer';
 
 
 export const PacksPage = React.memo(() => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [title, setTitle] = useState('');
-    const [updateDeck, setUpdateDeck] = useState(true);
-    const [packName, setPackName] = useState('');
-
-
-    const addModalPack = () => {
-        setUpdateDeck(false);
-        setIsOpen(true);
-        dispatch(addPack(packName));
-        setTitle('It is time to create a new deck');
-    };
-    // const addModalPack2 = (packName:string) => {
-    //     setIsOpen(true);
-    //     dispatch(addPack(packName))
-    //     setTitle('It is time to create a new deck');
-    // };
-    const updateModalPack = () => {
-        setUpdateDeck(true);
-        setTitle('Put a new deck name');
-    };
-
-
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+    const dispatch = useDispatch();
     const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
     const {
         currentPage,
@@ -49,8 +24,65 @@ export const PacksPage = React.memo(() => {
     } = useSelector<AppStateType, PacksStateType>(state => state.packs);
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
+    //Opens modal window
+    const [isOpen, setIsOpen] = useState(false);
+    // Set modal title
+    const [title, setTitle] = useState('');
+    // set right callback to modal (ternary expression)
+    const [updateDeck, setUpdateDeck] = useState(true);
+    //provide pack id for modal component
+    const [packId, setPackId] = useState('');
+    //delete or change modal
+    const [flagChangeModal, setFlagChangeModal] = useState(true);
 
-    const dispatch = useDispatch();
+    const openAddModalPack = () => {
+        setFlagChangeModal(true);
+        setTitle('It is time to create a new deck');
+        setUpdateDeck(false);
+        setIsOpen(true);
+
+    };
+
+    const openDeleteModal = () => {
+        setFlagChangeModal(false);
+        setTitle('Do you want to delete this deck?');
+        setIsOpen(true);
+
+    };
+//работает на правильно
+    const getCurrentId = (currentId: string) => {
+        setPackId(currentId);
+        if (flagChangeModal) {
+            openUpdateModalPack();
+        } else {
+            openDeleteModal();
+            setFlagChangeModal(true);
+        }
+    };
+    const openUpdateModalPack = () => {
+        debugger
+        setFlagChangeModal(true);
+        setUpdateDeck(true);
+        setTitle('Change title of your deck');
+        setIsOpen(true);
+
+    };
+    const confirmDeletePack = () => {
+        dispatch(deletePack(packId));
+    };
+
+
+    const addModalPack = (packName: string) => {
+        dispatch(addPack(packName));
+    };
+    const updateModalPack = (packName: string) => {
+        debugger
+        dispatch(updatePack(packId, packName));
+    };
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
 
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setMyPacks(e.currentTarget.checked);
@@ -60,20 +92,25 @@ export const PacksPage = React.memo(() => {
     }, [_id, dispatch, myPacks]);
 
     const model = packsModel(
-        () => addModalPack(),
-        (packId: string) => dispatch(deletePack(packId)),
-        (packId: string) => dispatch(updatePack(packId)),
+        () => openAddModalPack(),
+        // (packId: string) => dispatch(deletePack(packId)),
+        () => openDeleteModal(),
+        (currentId) => getCurrentId(currentId),
     );
     useEffect(() => {
         dispatch(PackTC());
     }, [dispatch, currentPage, pageSize, sortPacks]);
     return (<>
-            <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                            changePack={updateDeck ? updateModalPack : addModalPack}
-                            setPackName={setPackName} packName={packName}/>
-            {/*<ModalContainer title={'Do you want to delete this deck?'} closeModal={closeModal}*/}
-            {/*                changePack={() => {*/}
-            {/*                }} isOpen={isOpen}/>*/}
+            {flagChangeModal ?
+                <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
+                                packId={packId} changePack={updateDeck ? updateModalPack : addModalPack}
+                                buttonName={updateDeck ? 'UPDATE' : 'ADD'}/>
+                :
+                <ModalContainer title={title} closeModal={closeModal}
+                                changePack={confirmDeletePack} isOpen={isOpen} packId={packId}
+                                buttonName={'DELETE'}/>
+            }
+
 
             <section className={st.containerWrapper}>
                 <PacksSearch/>
