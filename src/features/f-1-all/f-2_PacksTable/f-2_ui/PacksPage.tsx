@@ -51,7 +51,6 @@ export const PacksPage = React.memo(() => {
     };
 //работает на правильно
     const getCurrentId = (currentId: string) => {
-        debugger
         setPackId(currentId);
         if (flagChangeModal) {
             openUpdateModalPack();
@@ -77,6 +76,7 @@ export const PacksPage = React.memo(() => {
         dispatch(addPack(packName));
     };
     const updateModalPack = (packName: string) => {
+        debugger
         dispatch(updatePack(packId, packName));
     };
     const closeModal = () => {

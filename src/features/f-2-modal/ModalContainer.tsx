@@ -9,8 +9,6 @@ type ContainerType = {
     changePack: (value: string, packId?: string) => void
     packId: string
     buttonName: string
-    // setPackName: (value: string) => void
-    // packName: string
 }
 
 
@@ -55,13 +53,9 @@ const ModalContainer: React.FC<ContainerType> = ({
                         {packName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
                     </div>
                     : null}
-
             </MyModal>
             }
         </>
     );
 }
-;
-
-
 export default ModalContainer;
