@@ -34,6 +34,7 @@ export const PacksPage = React.memo(() => {
     const [packId, setPackId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
+    const [currentPackName, setCurrentPackName] = useState('')
 
     const openAddModalPack = () => {
         setFlagChangeModal(true);
@@ -43,24 +44,17 @@ export const PacksPage = React.memo(() => {
 
     };
 
-    const openDeleteModal = () => {
+    const openDeleteModal = (currentId: string, currentDeletedPackName: string) => {
+        setPackId(currentId)
+        // setCurrentPackName(currentDeletedPackName)
         setFlagChangeModal(false);
-        setTitle('Do you want to delete this deck?');
+        setTitle('Do you want to delete ' + currentDeletedPackName + ' deck?');
         setIsOpen(true);
 
     };
-//работает на правильно
-    const getCurrentId = (currentId: string) => {
-        setPackId(currentId);
-        if (flagChangeModal) {
-            openUpdateModalPack();
-        } else {
-            openDeleteModal();
-            setFlagChangeModal(true);
-        }
-    };
-    const openUpdateModalPack = () => {
-        debugger
+
+    const openUpdateModalPack = (currentId: string) => {
+        setPackId(currentId)
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change title of your deck');
@@ -76,7 +70,6 @@ export const PacksPage = React.memo(() => {
         dispatch(addPack(packName));
     };
     const updateModalPack = (packName: string) => {
-        debugger
         dispatch(updatePack(packId, packName));
     };
     const closeModal = () => {
@@ -94,8 +87,8 @@ export const PacksPage = React.memo(() => {
     const model = packsModel(
         () => openAddModalPack(),
         // (packId: string) => dispatch(deletePack(packId)),
-        () => openDeleteModal(),
-        (currentId) => getCurrentId(currentId),
+        (currentId, currentDeletedPackName) => openDeleteModal(currentId, currentDeletedPackName),
+        (currentId) => openUpdateModalPack(currentId),
     );
     useEffect(() => {
         dispatch(PackTC());
