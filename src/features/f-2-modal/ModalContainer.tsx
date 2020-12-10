@@ -6,7 +6,7 @@ type ContainerType = {
     isOpen: boolean
     closeModal: () => void
     title: string
-    changePack: (value: string,  value2: string) => void
+    changePack: (value: string, value2: string) => void
     itemId: string
     buttonName: string
 }
@@ -15,7 +15,7 @@ const ModalContainer: React.FC<ContainerType> = ({
                                                      closeModal,
                                                      title,
                                                      changePack,
-                                                     itemId, buttonName
+                                                     buttonName
 
                                                  }) => {
 
@@ -26,6 +26,7 @@ const ModalContainer: React.FC<ContainerType> = ({
     const handleSubmit = () => {
         changePack(itemName, updateItem);
         setPackName('');
+        setUpdateItem('');
         closeModal();
     };
 
@@ -52,15 +53,12 @@ const ModalContainer: React.FC<ContainerType> = ({
                     <div>
                         <MyInput onChange={inputChange} type={'text'} value={itemName} placeholder='Enter Title..'/>
                         {itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
-                    </div>
-                    : null}
-                {buttonName !== 'DELETE' ?
-                    <div>
-                        <MyInput onChange={updateInputChange} type={'text'} value={updateItem}
-                                 placeholder='Enter Title..'/>
-                        {updateItem.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
-                    </div>
-                    : null}
+                        <div>
+                            <MyInput onChange={updateInputChange} type={'text'} value={updateItem}
+                                     placeholder='Enter Title..'/>
+                            {updateItem.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
+                        </div>
+                    </div> : null}
             </MyModal>
             }
         </>
