@@ -75,11 +75,11 @@ export const getCardsTC = (id: string): ThunkType => async (
         dispatch(appActions.setServerError(e.response.data.error))
     }
 };
-export const updateCardTC = (id: string, pack_id: string): ThunkType => async (
+export const updateCardTC = (id: string, pack_id: string, cardQuestion: string): ThunkType => async (
     dispatch) => {
 
     try {
-        await CardsAPI.updateCard(id);
+        await CardsAPI.updateCard(id, cardQuestion);
         dispatch(getCardsTC(pack_id));
     } catch (e) {
         dispatch(appActions.setServerError(e.error))

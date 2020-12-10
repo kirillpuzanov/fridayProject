@@ -90,11 +90,11 @@ export const PacksPage = React.memo(() => {
     return (<>
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                                packId={packId} changePack={updateDeck ? updateModalPack : addModalPack}
+                                itemId={packId} changePack={updateDeck ? updateModalPack : addModalPack}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}/>
                 :
                 <ModalContainer title={title} closeModal={closeModal}
-                                changePack={confirmDeletePack} isOpen={isOpen} packId={packId}
+                                changePack={confirmDeletePack} isOpen={isOpen} itemId={packId}
                                 buttonName={'DELETE'}/>
             }
 

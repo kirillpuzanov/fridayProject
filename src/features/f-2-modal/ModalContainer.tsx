@@ -6,26 +6,24 @@ type ContainerType = {
     isOpen: boolean
     closeModal: () => void
     title: string
-    changePack: (value: string, packId?: string) => void
-    packId: string
+    changePack: (value: string, itemId?: string) => void
+    itemId: string
     buttonName: string
 }
-
-
 const ModalContainer: React.FC<ContainerType> = ({
                                                      isOpen,
                                                      closeModal,
                                                      title,
                                                      changePack,
-                                                     packId, buttonName
+                                                     itemId, buttonName
 
                                                  }) => {
 
-    const [packName, setPackName] = useState('');
+    const [itemName, setPackName] = useState('');
 
 
     const handleSubmit = () => {
-        changePack(packName, packId);
+        changePack(itemName, itemId);
         setPackName('');
         closeModal();
 
@@ -44,13 +42,13 @@ const ModalContainer: React.FC<ContainerType> = ({
             <MyModal title={title}
                      onCancel={handleCancel}
                      onSubmit={handleSubmit}
-                     packName={packName}
+                     itemName={itemName}
                      buttonName={buttonName}
             >
                 {buttonName !== 'DELETE' ?
                     <div>
-                        <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
-                        {packName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
+                        <MyInput onChange={inputChange} type={'text'} value={itemName} placeholder='Enter Title..'/>
+                        {itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
                     </div>
                     : null}
             </MyModal>

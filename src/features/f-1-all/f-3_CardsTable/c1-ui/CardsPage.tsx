@@ -4,12 +4,11 @@ import {useParams} from 'react-router-dom';
 import {AppStateType} from '../../../../main/m2-bll/store';
 import MyTable, {TableNyaModelType} from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 import {cardsModel} from './CardsModel';
-import {addCardTC, deleteCardTC, getCardsTC} from '../c2-bll/cards-reducer';
+import {addCardTC, deleteCardTC, getCardsTC, updateCardTC} from '../c2-bll/cards-reducer';
 import {CardsPagination} from './cardsPagination/CardsPagination';
 import {CardsSearch} from './cardsSearch/CardsSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 import st from '../../f-2_PacksTable/f-2_ui/Packs.module.css';
-import {updatePack} from "../../f-2_PacksTable/f-2_bll/packs-reducer";
 import ModalContainer from "../../../f-2-modal/ModalContainer";
 
 
@@ -63,11 +62,11 @@ export const CardsPage = React.memo(() => {
     const confirmDelete = () => {
         dispatch(deleteCardTC(cardId, id));
     };
-    const addModal = (packName: string) => {
-        dispatch(addCardTC(id, packName));
+    const addModal = (cardQuestion: string) => {
+        dispatch(addCardTC(id, cardQuestion));
     };
-    const updateModal = (packName: string) => {
-        dispatch(updatePack(cardId, packName));
+    const updateModal = (cardQuestion: string) => {
+        dispatch(updateCardTC(cardId, id, cardQuestion));
     };
     const closeModal = () => {
         setIsOpen(false);
@@ -83,11 +82,11 @@ export const CardsPage = React.memo(() => {
         <>
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                                packId={cardId} changePack={updateDeck ? updateModal : addModal}
+                                itemId={cardId} changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}/>
                 :
                 <ModalContainer title={title} closeModal={closeModal}
-                                changePack={confirmDelete} isOpen={isOpen} packId={cardId}
+                                changePack={confirmDelete} isOpen={isOpen} itemId={cardId}
                                 buttonName={'DELETE'}/>
             }
 
