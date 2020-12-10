@@ -24,7 +24,7 @@ export const PacksPage = React.memo(() => {
     } = useSelector<AppStateType, PacksStateType>(state => state.packs);
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
-    //Opens modal window
+    //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
     // Set modal title
     const [title, setTitle] = useState('');
@@ -34,8 +34,9 @@ export const PacksPage = React.memo(() => {
     const [packId, setPackId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
-    const [currentPackName, setCurrentPackName] = useState('')
 
+
+    //these funcs open modals
     const openAddModalPack = () => {
         setFlagChangeModal(true);
         setTitle('It is time to create a new deck');
@@ -44,28 +45,25 @@ export const PacksPage = React.memo(() => {
 
     };
 
-    const openDeleteModal = (currentId: string, currentDeletedPackName: string) => {
+    const openDeleteModal = (currentId: string, currentPackName: string) => {
         setPackId(currentId)
-        // setCurrentPackName(currentDeletedPackName)
         setFlagChangeModal(false);
-        setTitle('Do you want to delete ' + currentDeletedPackName + ' deck?');
+        setTitle('Do you want to delete ' + currentPackName + ' deck?');
         setIsOpen(true);
 
     };
 
-    const openUpdateModalPack = (currentId: string) => {
+    const openUpdateModalPack = (currentId: string, currentPackName: string) => {
         setPackId(currentId)
         setFlagChangeModal(true);
         setUpdateDeck(true);
-        setTitle('Change title of your deck');
+        setTitle('Change name ' + currentPackName + ' on new one!');
         setIsOpen(true);
 
     };
     const confirmDeletePack = () => {
         dispatch(deletePack(packId));
     };
-
-
     const addModalPack = (packName: string) => {
         dispatch(addPack(packName));
     };
@@ -75,20 +73,16 @@ export const PacksPage = React.memo(() => {
     const closeModal = () => {
         setIsOpen(false);
     };
-
-
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setMyPacks(e.currentTarget.checked);
         dispatch(packActions.setUserPack_id(myPacks ? '' : _id));
-
         dispatch(PackTC());
     }, [_id, dispatch, myPacks]);
 
     const model = packsModel(
         () => openAddModalPack(),
-        // (packId: string) => dispatch(deletePack(packId)),
-        (currentId, currentDeletedPackName) => openDeleteModal(currentId, currentDeletedPackName),
-        (currentId) => openUpdateModalPack(currentId),
+        (currentId, currentPackName) => openDeleteModal(currentId, currentPackName),
+        (currentId, currentPackName) => openUpdateModalPack(currentId, currentPackName),
     );
     useEffect(() => {
         dispatch(PackTC());

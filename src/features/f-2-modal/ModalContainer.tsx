@@ -9,7 +9,6 @@ type ContainerType = {
     changePack: (value: string, packId?: string) => void
     packId: string
     buttonName: string
-    // setPackName: (value: string) => void
 }
 
 
@@ -22,45 +21,41 @@ const ModalContainer: React.FC<ContainerType> = ({
 
                                                  }) => {
 
-        const [packName, setPackName] = useState('');
+    const [packName, setPackName] = useState('');
 
 
-        const handleSubmit = () => {
-            changePack(packName, packId);
-            setPackName('');
-            closeModal();
+    const handleSubmit = () => {
+        changePack(packName, packId);
+        setPackName('');
+        closeModal();
 
-        };
+    };
 
-        const handleCancel = () => {
-            closeModal();
-        };
-        const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-            setPackName(e.currentTarget.value);
-        };
+    const handleCancel = () => {
+        closeModal();
+    };
+    const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setPackName(e.currentTarget.value);
+    };
 
-        return (
-            <>
-                {isOpen &&
-                <MyModal title={title}
-                         onCancel={handleCancel}
-                         onSubmit={handleSubmit}
-                         packName={packName}
-                         buttonName={buttonName}
-                >
-                    {buttonName !== 'DELETE' ?
-                        <div>
-                            <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
-                            {packName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
-                        </div>
-                        : null}
-
-                </MyModal>
-                }
-            </>
-        );
-    }
-;
-
-
+    return (
+        <>
+            {isOpen &&
+            <MyModal title={title}
+                     onCancel={handleCancel}
+                     onSubmit={handleSubmit}
+                     packName={packName}
+                     buttonName={buttonName}
+            >
+                {buttonName !== 'DELETE' ?
+                    <div>
+                        <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
+                        {packName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
+                    </div>
+                    : null}
+            </MyModal>
+            }
+        </>
+    );
+}
 export default ModalContainer;
