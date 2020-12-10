@@ -19,24 +19,26 @@ export const CardsAPI = {
         );
         return response.data;
     },
-    addCard: async (cardsPack_id: string) => {
+    addCard: async (cardsPack_id: string, cardQuestion?: string, cardAnswer?: string) => {
         const response = await instance.post<any>('/cards/card', {
             card: {
                 cardsPack_id,
-                question: 'new 2.0!',
+                question: cardQuestion,
                 grade: Math.random() * 5,
                 questionImg: 'some img',
+                answer: cardAnswer
             },
         });
         return response.data;
     },
-    updateCard: async (id: string) => {
+    updateCard: async (id: string, cardQuestion?: string, cardAnswer?: string) => {
         const response = await instance.put<any>('/cards/card', {
             card: {
                 _id: id,
-                question: 'updated question',
+                question: cardQuestion,
                 answerImg: 'some answer img',
                 comments: 'new com',
+                answer: cardAnswer
             }
         });
         return response.data;
@@ -49,7 +51,7 @@ export const CardsAPI = {
         const response = await instance.put<ResponseGradeType>('cards/grade', {grade, card_id});
         return response.data;
     },
-}
+};
 
 
 type ResponseGradeType = {

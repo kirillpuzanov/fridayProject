@@ -9,7 +9,7 @@ import {SetNewPasswordContainer} from '../../../features/f-1-all/f-1_autorizatio
 import {PacksPage} from '../../../features/f-1-all/f-2_PacksTable/f-2_ui/PacksPage';
 import {LearnPage} from '../../../features/f-3-learn/LearnPage';
 import {CardsPage} from '../../../features/f-1-all/f-3_CardsTable/c1-ui/CardsPage';
-import {ModalContainer} from '../../../features/f-2-modal/ModalContainer';
+import ModalContainer from '../../../features/f-2-modal/ModalContainer';
 
 
 export const SIGN_IN_PATH = '/';

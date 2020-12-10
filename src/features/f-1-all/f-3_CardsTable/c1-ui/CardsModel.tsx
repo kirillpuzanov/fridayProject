@@ -2,11 +2,12 @@ import React from 'react';
 import {TableNyaModelType} from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 import {CardType} from '../c2-bll/CardTypes';
 import TableBtn from '../../../../main/m1-ui/common/myComponent/BtnForTable/TableBtn';
-import st from './Cards.module.css'
+import st from './Cards.module.css';
+
 export const cardsModel = (
-    add: () => void,
-    del: (id: string) => void,
-    update: (id: string) => void,
+    addModalPack: () => void,
+    openDeleteModal: (cardId: string) => void,
+    openUpdateModalPack: (cardId: string) => void
 ): TableNyaModelType[] => [
     {
         title: (index) => (
@@ -14,7 +15,17 @@ export const cardsModel = (
         ),
         render: (dataItem: CardType) => (
             <div key={'question-cell-' + dataItem._id} className={st.item}>
-                {dataItem.question.slice(0,30)+'..'}
+                {dataItem.question.slice(0, 30) + '..'}
+            </div>
+        )
+    },
+    {
+        title: (index) => (
+            <div key={'answer-title-' + index} className={st.item}>answer</div>
+        ),
+        render: (dataItem: CardType) => (
+            <div key={'answer-cell-' + dataItem._id} className={st.item}>
+                {dataItem.answer.slice(0, 30) + '..'}
             </div>
         )
     },
@@ -55,13 +66,17 @@ export const cardsModel = (
     {
         title: (index) => (
             <div key={'buttons-title-' + index} className={st.item}>
-                <TableBtn onClick={add}>add</TableBtn>
+                <TableBtn onClick={() => {
+                    addModalPack();
+                }}>add</TableBtn>
             </div>
         ),
         render: (dataItem: CardType) => (
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
-                <TableBtn onClick={() => del(dataItem._id)}>delete</TableBtn>
-                <TableBtn onClick={() => update(dataItem._id)}>update</TableBtn>
+                <TableBtn onClick={() => openDeleteModal(dataItem._id)}>delete</TableBtn>
+                <TableBtn onClick={() => {
+                    openUpdateModalPack(dataItem._id);
+                }}>update</TableBtn>
             </div>
         )
     },

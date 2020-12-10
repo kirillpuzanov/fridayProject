@@ -1,44 +1,89 @@
-import React, {ChangeEvent, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {addPack} from '../f-1-all/f-2_PacksTable/f-2_bll/packs-reducer';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {MyInput} from '../../main/common/myComponent/myInput/MyInput';
 import {MyModal} from '../../main/common/modal/MyModal';
 
 type ContainerType = {
     isOpen: boolean
     closeModal: () => void
+    title: string
+    changePack: (value?: string, value2?: string) => void
+    buttonName: string
+    updateAnswer?: string
+    updateItemName?: string
 }
+const ModalContainer: React.FC<ContainerType> = ({
+                                                     isOpen,
+                                                     closeModal,
+                                                     title,
+                                                     changePack,
+                                                     buttonName,
+                                                     updateAnswer,
+                                                     updateItemName
 
+                                                 }) => {
 
-export const ModalContainer: React.FC<ContainerType> = ({isOpen, closeModal}) => {
-    const dispatch = useDispatch();
-    const [packName, setPackName] = useState('');
+    const [itemName, setItemName] = useState<string | undefined>('');
+    const [updateItem, setUpdateItem] = useState<string | undefined>('');
+
+    useEffect(() => {
+        setUpdateItem(updateAnswer);
+    }, [updateAnswer]);
+    useEffect(() => {
+        return () => {
+            setUpdateItem('');
+        };
+    }, []);
+    useEffect(() => {
+        setItemName(updateItemName);
+    }, [updateItemName]);
+    useEffect(() => {
+        return () => {
+            setItemName('');
+        };
+    }, []);
+
+    debugger
+
 
     const handleSubmit = () => {
-        dispatch(addPack(packName));
-        setPackName('');
+        changePack(itemName, updateItem);
+        setItemName('');
+        setUpdateItem('');
         closeModal();
     };
+
     const handleCancel = () => {
         closeModal();
     };
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPackName(e.currentTarget.value);
+        setItemName(e.currentTarget.value);
+    };
+    const updateInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setUpdateItem(e.currentTarget.value);
     };
 
     return (
         <>
             {isOpen &&
-            <MyModal title="Test Dialog window"
-                   onCancel={handleCancel}
-                   onSubmit={handleSubmit}
-                   packName={packName}
+            <MyModal title={title}
+                     onCancel={handleCancel}
+                     onSubmit={handleSubmit}
+                     itemName={itemName}
+                     buttonName={buttonName}
             >
-               <MyInput onChange={inputChange} type={'text'} value={packName} placeholder='Enter Title..'/>
+                {buttonName !== 'DELETE' ?
+                    <div>
+                        <MyInput onChange={inputChange} type={'text'} value={itemName} placeholder='Enter Title..'/>
+                        {/*{itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}*/}
+                        <div>
+                            <MyInput onChange={updateInputChange} type={'text'} value={updateItem}
+                                     placeholder='Enter Title..'/>
+                            {/*{updateItem.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}*/}
+                        </div>
+                    </div> : null}
             </MyModal>
             }
         </>
     );
 };
-
-
+export default ModalContainer;
