@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {MyInput} from '../../main/common/myComponent/myInput/MyInput';
 import {MyModal} from '../../main/common/modal/MyModal';
 
@@ -6,9 +6,10 @@ type ContainerType = {
     isOpen: boolean
     closeModal: () => void
     title: string
-    changePack: (value: string, value2?: string) => void
+    changePack: (value?: string, value2?: string) => void
     buttonName: string
-    updateAnswer?:string
+    updateAnswer?: string
+    updateItemName?: string
 }
 const ModalContainer: React.FC<ContainerType> = ({
                                                      isOpen,
@@ -16,19 +17,37 @@ const ModalContainer: React.FC<ContainerType> = ({
                                                      title,
                                                      changePack,
                                                      buttonName,
-                                                     updateAnswer
+                                                     updateAnswer,
+                                                     updateItemName
 
                                                  }) => {
 
-    const [itemName, setPackName] = useState('');
-    const [updateItem, setUpdateItem] = useState(updateAnswer);
-    debugger
+    const [itemName, setItemName] = useState<string | undefined>('');
+    const [updateItem, setUpdateItem] = useState<string | undefined>('');
 
+    useEffect(() => {
+        setUpdateItem(updateAnswer);
+    }, [updateAnswer]);
+    useEffect(() => {
+        return () => {
+            setUpdateItem('');
+        };
+    }, []);
+    useEffect(() => {
+        setItemName(updateItemName);
+    }, [updateItemName]);
+    useEffect(() => {
+        return () => {
+            setItemName('');
+        };
+    }, []);
+
+    debugger
 
 
     const handleSubmit = () => {
         changePack(itemName, updateItem);
-        setPackName('');
+        setItemName('');
         setUpdateItem('');
         closeModal();
     };
@@ -37,7 +56,7 @@ const ModalContainer: React.FC<ContainerType> = ({
         closeModal();
     };
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPackName(e.currentTarget.value);
+        setItemName(e.currentTarget.value);
     };
     const updateInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUpdateItem(e.currentTarget.value);
@@ -55,7 +74,7 @@ const ModalContainer: React.FC<ContainerType> = ({
                 {buttonName !== 'DELETE' ?
                     <div>
                         <MyInput onChange={inputChange} type={'text'} value={itemName} placeholder='Enter Title..'/>
-                        {itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
+                        {/*{itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}*/}
                         <div>
                             <MyInput onChange={updateInputChange} type={'text'} value={updateItem}
                                      placeholder='Enter Title..'/>

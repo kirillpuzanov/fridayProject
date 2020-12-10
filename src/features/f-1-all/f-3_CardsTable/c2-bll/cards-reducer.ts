@@ -72,10 +72,11 @@ export const getCardsTC = (id: string): ThunkType => async (
         dispatch(CardsActions.setCardsSuccess(true));
         console.log('Get cards Success!', data);
     } catch (e) {
+        debugger
         dispatch(appActions.setServerError(e.response.data.error));
     }
 };
-export const updateCardTC = (id: string, pack_id: string, cardQuestion: string, cardAnswer?: string): ThunkType => async (
+export const updateCardTC = (id: string, pack_id: string, cardQuestion?: string, cardAnswer?: string): ThunkType => async (
     dispatch) => {
 
     try {
@@ -94,7 +95,7 @@ export const deleteCardTC = (id: string, pack_id: string): ThunkType => async (d
         dispatch(appActions.setServerError(e.error));
     }
 };
-export const addCardTC = (id: string, cardQuestion: string, cardAnswer?: string): ThunkType => async (
+export const addCardTC = (id: string, cardQuestion?: string, cardAnswer?: string): ThunkType => async (
     dispatch) => {
     try {
         await CardsAPI.addCard(id, cardQuestion, cardAnswer);

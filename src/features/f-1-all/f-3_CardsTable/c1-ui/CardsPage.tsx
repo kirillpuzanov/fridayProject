@@ -33,19 +33,6 @@ export const CardsPage = React.memo(() => {
 
     const cardFilter = cards.filter(e => e._id === cardId);
 
-
-
-    // console.log(cards.filter(e => e._id === cardId)[0].answer);
-
-
-    // const  tryAnswer = (cards:Array<CardType>,cardId:string)=>{
-    //     if(cardId)  {
-    //      return cards.filter(e=>e._id===cardId)[0].answer
-    //     }
-    //
-    // }
-
-
     //these funcs open modals
     const openAddModal = () => {
         setFlagChangeModal(true);
@@ -77,10 +64,10 @@ export const CardsPage = React.memo(() => {
     const confirmDelete = () => {
         dispatch(deleteCardTC(cardId, id));
     };
-    const addModal = (cardQuestion: string, cardAnswer?: string) => {
+    const addModal = (cardQuestion?: string, cardAnswer?: string) => {
         dispatch(addCardTC(id, cardQuestion, cardAnswer));
     };
-    const updateModal = (cardQuestion: string, cardAnswer?: string) => {
+    const updateModal = (cardQuestion?: string, cardAnswer?: string) => {
         dispatch(updateCardTC(cardId, id, cardQuestion, cardAnswer));
     };
     const closeModal = () => {
@@ -97,16 +84,19 @@ export const CardsPage = React.memo(() => {
         <>
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                               changePack={updateDeck ? updateModal : addModal}
+                                changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
-                                updateAnswer={cardId ? cardFilter[0].answer : ''}
+                                updateAnswer={cardId ? cardFilter[0].answer : ''
+                                }
+                                updateItemName={cardId ? cardFilter[0].question : ''}
 
                 />
                 :
                 <ModalContainer title={title} closeModal={closeModal}
                                 changePack={confirmDelete} isOpen={isOpen}
                                 buttonName={'DELETE'}
-                                updateAnswer={cardId ? cardFilter[0].answer : ''}/>
+                                updateAnswer={cardId ? cardFilter[0].answer : ' '}
+                                updateItemName={cardId ? cardFilter[0].question : ''}/>
             }
 
             <section className={st.containerWrapper}>

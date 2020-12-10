@@ -19,7 +19,7 @@ export const CardsAPI = {
         );
         return response.data;
     },
-    addCard: async (cardsPack_id: string, cardQuestion: string, cardAnswer?: string) => {
+    addCard: async (cardsPack_id: string, cardQuestion?: string, cardAnswer?: string) => {
         const response = await instance.post<any>('/cards/card', {
             card: {
                 cardsPack_id,
@@ -31,7 +31,7 @@ export const CardsAPI = {
         });
         return response.data;
     },
-    updateCard: async (id: string, cardQuestion: string, cardAnswer?: string) => {
+    updateCard: async (id: string, cardQuestion?: string, cardAnswer?: string) => {
         const response = await instance.put<any>('/cards/card', {
             card: {
                 _id: id,

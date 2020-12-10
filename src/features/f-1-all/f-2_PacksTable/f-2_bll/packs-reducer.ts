@@ -94,7 +94,7 @@ export const PackTC = (): ThunkType =>
         dispatch(packActions.setTableLoadingAC(false));
     };
 
-export const addPack = (packName: string): ThunkType => async (dispatch
+export const addPack = (packName?: string): ThunkType => async (dispatch
 ) => {
     try {
         await packsAPI.addPack(packName);
@@ -114,7 +114,7 @@ export const deletePack = (packId: string): ThunkType => async (dispatch
         dispatch(appActions.setServerError(e.response.data.error));
     }
 };
-export const updatePack = (packId: string, packName: string): ThunkType => async (dispatch
+export const updatePack = (packId: string, packName?: string): ThunkType => async (dispatch
 ) => {
     try {
         await packsAPI.updatePack(packId, packName);

@@ -66,10 +66,10 @@ export const PacksPage = React.memo(() => {
     };
 
 
-    const addModalPack = (packName: string) => {
+    const addModalPack = (packName?: string) => {
         dispatch(addPack(packName));
     };
-    const updateModalPack = (packName: string) => {
+    const updateModalPack = (packName?: string) => {
         debugger
         dispatch(updatePack(packId, packName));
     };

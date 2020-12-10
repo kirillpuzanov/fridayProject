@@ -23,7 +23,7 @@ export const packsAPI = {
         );
         return res.data;
     },
-    addPack: async (name: string) => {
+    addPack: async (name?: string) => {
         const response = await instance.post<any>('/cards/pack', {
             cardsPack: {
                 name: name,
@@ -31,7 +31,7 @@ export const packsAPI = {
         });
         return response.data;
     },
-    updatePack: async (packId: string, packName: string) => {
+    updatePack: async (packId: string, packName?: string) => {
         const response = await instance.put<any>('/cards/pack', {
             cardsPack: {
                 _id: packId,

@@ -7,7 +7,7 @@ type ModalType = {
     title: string
     onCancel: () => void,
     onSubmit: () => void
-    itemName: string
+    itemName: string | undefined
     buttonName: string
 }
 
