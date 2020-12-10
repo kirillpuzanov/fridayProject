@@ -14,7 +14,7 @@ import ModalContainer from '../../../f-2-modal/ModalContainer';
 
 export const CardsPage = React.memo(() => {
     const {id} = useParams<{ id: string }>();
-    const {cards, currentPage, pageSize, sortCards} = useSelector((store: AppStateType) => store.cards);
+    const {cards, currentPage, pageSize, sortCards,} = useSelector((store: AppStateType) => store.cards);
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -22,14 +22,28 @@ export const CardsPage = React.memo(() => {
     }, [dispatch, id, currentPage, pageSize, sortCards]);
 //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
-
     const [title, setTitle] = useState('');
     // set right callback to modal (ternary expression)
     const [updateDeck, setUpdateDeck] = useState(true);
-    //provide pack id for modal component
+    //provide card id for modal component
     const [cardId, setCardId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
+
+
+    const cardFilter = cards.filter(e => e._id === cardId);
+
+
+
+    // console.log(cards.filter(e => e._id === cardId)[0].answer);
+
+
+    // const  tryAnswer = (cards:Array<CardType>,cardId:string)=>{
+    //     if(cardId)  {
+    //      return cards.filter(e=>e._id===cardId)[0].answer
+    //     }
+    //
+    // }
 
 
     //these funcs open modals
@@ -42,14 +56,17 @@ export const CardsPage = React.memo(() => {
     };
 
     const openDeleteModal = (currentId: string) => {
+
         setCardId(currentId);
         setFlagChangeModal(false);
         setTitle('Do you want to delete current card?');
         setIsOpen(true);
+        debugger
 
     };
 
     const openUpdateModal = (currentId: string) => {
+        debugger
         setCardId(currentId);
         setFlagChangeModal(true);
         setUpdateDeck(true);
@@ -60,10 +77,10 @@ export const CardsPage = React.memo(() => {
     const confirmDelete = () => {
         dispatch(deleteCardTC(cardId, id));
     };
-    const addModal = (cardQuestion: string, cardAnswer: string) => {
+    const addModal = (cardQuestion: string, cardAnswer?: string) => {
         dispatch(addCardTC(id, cardQuestion, cardAnswer));
     };
-    const updateModal = (cardQuestion: string, cardAnswer: string) => {
+    const updateModal = (cardQuestion: string, cardAnswer?: string) => {
         dispatch(updateCardTC(cardId, id, cardQuestion, cardAnswer));
     };
     const closeModal = () => {
@@ -80,12 +97,16 @@ export const CardsPage = React.memo(() => {
         <>
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                                itemId={cardId} changePack={updateDeck ? updateModal : addModal}
-                                buttonName={updateDeck ? 'UPDATE' : 'ADD'}/>
+                               changePack={updateDeck ? updateModal : addModal}
+                                buttonName={updateDeck ? 'UPDATE' : 'ADD'}
+                                updateAnswer={cardId ? cardFilter[0].answer : ''}
+
+                />
                 :
                 <ModalContainer title={title} closeModal={closeModal}
-                                changePack={confirmDelete} isOpen={isOpen} itemId={cardId}
-                                buttonName={'DELETE'}/>
+                                changePack={confirmDelete} isOpen={isOpen}
+                                buttonName={'DELETE'}
+                                updateAnswer={cardId ? cardFilter[0].answer : ''}/>
             }
 
             <section className={st.containerWrapper}>
