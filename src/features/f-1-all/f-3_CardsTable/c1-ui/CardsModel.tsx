@@ -6,8 +6,8 @@ import st from './Cards.module.css'
 
 export const cardsModel = (
     addModalPack: () => void,
-    openDeleteModal: (packId: string) => void,
-    openUpdateModalPack: (packId: string) => void
+    openDeleteModal: (cardId: string) => void,
+    openUpdateModalPack: (cardId: string) => void
 ): TableNyaModelType[] => [
     {
         title: (index) => (

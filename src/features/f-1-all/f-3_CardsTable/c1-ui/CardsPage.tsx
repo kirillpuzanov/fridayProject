@@ -9,7 +9,7 @@ import {CardsPagination} from './cardsPagination/CardsPagination';
 import {CardsSearch} from './cardsSearch/CardsSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 import st from '../../f-2_PacksTable/f-2_ui/Packs.module.css';
-import {deletePack, updatePack} from "../../f-2_PacksTable/f-2_bll/packs-reducer";
+import {updatePack} from "../../f-2_PacksTable/f-2_bll/packs-reducer";
 import ModalContainer from "../../../f-2-modal/ModalContainer";
 
 
@@ -30,7 +30,7 @@ export const CardsPage = React.memo(() => {
     // set right callback to modal (ternary expression)
     const [updateDeck, setUpdateDeck] = useState(true);
     //provide pack id for modal component
-    const [packId, setPackId] = useState('');
+    const [cardId, setCardId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
 
@@ -45,7 +45,7 @@ export const CardsPage = React.memo(() => {
     };
 
     const openDeleteModal = (currentId: string) => {
-        setPackId(currentId)
+        setCardId(currentId)
         setFlagChangeModal(false);
         setTitle('Do you want to delete current card?');
         setIsOpen(true);
@@ -53,7 +53,7 @@ export const CardsPage = React.memo(() => {
     };
 
     const openUpdateModal = (currentId: string) => {
-        setPackId(currentId)
+        setCardId(currentId)
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change this card');
@@ -61,13 +61,13 @@ export const CardsPage = React.memo(() => {
 
     };
     const confirmDelete = () => {
-        dispatch(deleteCardTC(id,packId));
+        dispatch(deleteCardTC(cardId, id));
     };
     const addModal = (packName: string) => {
-        dispatch(addCardTC(id,packName));
+        dispatch(addCardTC(id, packName));
     };
     const updateModal = (packName: string) => {
-        dispatch(updatePack(packId, packName));
+        dispatch(updatePack(cardId, packName));
     };
     const closeModal = () => {
         setIsOpen(false);
@@ -83,11 +83,11 @@ export const CardsPage = React.memo(() => {
         <>
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
-                                packId={packId} changePack={updateDeck ? updateModal : addModal}
+                                packId={cardId} changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}/>
                 :
                 <ModalContainer title={title} closeModal={closeModal}
-                                changePack={confirmDelete} isOpen={isOpen} packId={packId}
+                                changePack={confirmDelete} isOpen={isOpen} packId={cardId}
                                 buttonName={'DELETE'}/>
             }
 
