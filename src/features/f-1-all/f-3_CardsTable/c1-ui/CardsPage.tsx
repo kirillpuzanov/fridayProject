@@ -9,7 +9,7 @@ import {CardsPagination} from './cardsPagination/CardsPagination';
 import {CardsSearch} from './cardsSearch/CardsSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 import st from '../../f-2_PacksTable/f-2_ui/Packs.module.css';
-import ModalContainer from "../../../f-2-modal/ModalContainer";
+import ModalContainer from '../../../f-2-modal/ModalContainer';
 
 
 export const CardsPage = React.memo(() => {
@@ -22,9 +22,7 @@ export const CardsPage = React.memo(() => {
     }, [dispatch, id, currentPage, pageSize, sortCards]);
 //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
-    /*
-     Set modal title
-    */
+
     const [title, setTitle] = useState('');
     // set right callback to modal (ternary expression)
     const [updateDeck, setUpdateDeck] = useState(true);
@@ -37,14 +35,14 @@ export const CardsPage = React.memo(() => {
     //these funcs open modals
     const openAddModal = () => {
         setFlagChangeModal(true);
-        setTitle('It is time to create a new deck');
+        setTitle('It is time to create a new card');
         setUpdateDeck(false);
         setIsOpen(true);
 
     };
 
     const openDeleteModal = (currentId: string) => {
-        setCardId(currentId)
+        setCardId(currentId);
         setFlagChangeModal(false);
         setTitle('Do you want to delete current card?');
         setIsOpen(true);
@@ -52,7 +50,7 @@ export const CardsPage = React.memo(() => {
     };
 
     const openUpdateModal = (currentId: string) => {
-        setCardId(currentId)
+        setCardId(currentId);
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change this card');
@@ -62,11 +60,11 @@ export const CardsPage = React.memo(() => {
     const confirmDelete = () => {
         dispatch(deleteCardTC(cardId, id));
     };
-    const addModal = (cardQuestion: string) => {
-        dispatch(addCardTC(id, cardQuestion));
+    const addModal = (cardQuestion: string, cardAnswer: string) => {
+        dispatch(addCardTC(id, cardQuestion, cardAnswer));
     };
-    const updateModal = (cardQuestion: string) => {
-        dispatch(updateCardTC(cardId, id, cardQuestion));
+    const updateModal = (cardQuestion: string, cardAnswer: string) => {
+        dispatch(updateCardTC(cardId, id, cardQuestion, cardAnswer));
     };
     const closeModal = () => {
         setIsOpen(false);

@@ -9,11 +9,11 @@ import {MyTable} from '../../../../main/common/table/Table';
 import {PacksPagination} from './packsPagination/PacksPagination';
 import {PacksSearch} from './packsSearch/PacksSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
-import ModalContainer from "../../../f-2-modal/ModalContainer";
+import ModalContainer from '../../../f-2-modal/ModalContainer';
 
 
 export const PacksPage = React.memo(() => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
     const {
         currentPage,
@@ -46,7 +46,7 @@ export const PacksPage = React.memo(() => {
     };
 
     const openDeleteModal = (currentId: string, currentPackName: string) => {
-        setPackId(currentId)
+        setPackId(currentId);
         setFlagChangeModal(false);
         setTitle('Do you want to delete ' + currentPackName + ' deck?');
         setIsOpen(true);
@@ -54,7 +54,7 @@ export const PacksPage = React.memo(() => {
     };
 
     const openUpdateModalPack = (currentId: string, currentPackName: string) => {
-        setPackId(currentId)
+        setPackId(currentId);
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change name ' + currentPackName + ' on new one!');
@@ -64,10 +64,13 @@ export const PacksPage = React.memo(() => {
     const confirmDeletePack = () => {
         dispatch(deletePack(packId));
     };
+
+
     const addModalPack = (packName: string) => {
         dispatch(addPack(packName));
     };
     const updateModalPack = (packName: string) => {
+        debugger
         dispatch(updatePack(packId, packName));
     };
     const closeModal = () => {

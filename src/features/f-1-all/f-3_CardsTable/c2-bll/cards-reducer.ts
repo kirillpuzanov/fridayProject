@@ -10,31 +10,31 @@ export const cardsReducer = (state = CardsInitState, action: CardsActionsType): 
         case '/CARDS/SET_CARDS':
             return {...state, cards: action.cards};
         case '/CARDS/CARDS-TOTAL-COUNT':
-            return {...state, cardsTotalCount: action.totalCount}
+            return {...state, cardsTotalCount: action.totalCount};
         case  '/CARDS/SET_PACK_USER_ID':
             return {...state, packUserId: action.userPack_id,};
 
         case '/CARDS/SET-SORT-MAX':
-            return {...state, maxGrade: action.sortMax}
+            return {...state, maxGrade: action.sortMax};
         case '/CARDS/SET-SORT-MIN':
-            return {...state, minGrade: action.sortMin}
+            return {...state, minGrade: action.sortMin};
         case '/CARDS/SET-CARD-NAME':
-            return {...state, cardQuestion: action.searchName}
+            return {...state, cardQuestion: action.searchName};
         case '/CARDS/SET-CURRENT-PAGE':
-            return {...state, currentPage: action.currentPage}
+            return {...state, currentPage: action.currentPage};
         case '/CARDS/SET-PAGE-SIZE':
-            return {...state, currentPage: action.currentPage, pageSize: action.pageSize}
+            return {...state, currentPage: action.currentPage, pageSize: action.pageSize};
         case '/CARDS/SET-SORT-CARDS':
-            return {...state, sortCards: action.sortCards}
+            return {...state, sortCards: action.sortCards};
 
         case '/CARDS/SET_LOADING':
-            return {...state, tableLoading: action.loading}
+            return {...state, tableLoading: action.loading};
         case '/CARDS/SET_SUCCESS':
-            return {...state, tableSuccess: action.success}
+            return {...state, tableSuccess: action.success};
         default:
-            return state
+            return state;
     }
-}
+};
 
 export const CardsActions = {
     setCardsAC: (cards: Array<CardType>) => ({type: '/CARDS/SET_CARDS', cards} as const),
@@ -62,27 +62,27 @@ export const getCardsTC = (id: string): ThunkType => async (
 ) => {
     const {
         cardQuestion, maxGrade, minGrade, sortCards, currentPage, pageSize
-    } = getState().cards
-    dispatch(CardsActions.setCardsLoading(true))
+    } = getState().cards;
+    dispatch(CardsActions.setCardsLoading(true));
     try {
         const data = await CardsAPI.getCards(id, cardQuestion, maxGrade, minGrade,
             sortCards, currentPage, pageSize);
         dispatch(CardsActions.setCardsAC(data.cards));
-        dispatch(CardsActions.setCardsTotalCount(data.cardsTotalCount))
-        dispatch(CardsActions.setCardsSuccess(true))
-        console.log('Get cards Success!', data)
+        dispatch(CardsActions.setCardsTotalCount(data.cardsTotalCount));
+        dispatch(CardsActions.setCardsSuccess(true));
+        console.log('Get cards Success!', data);
     } catch (e) {
-        dispatch(appActions.setServerError(e.response.data.error))
+        dispatch(appActions.setServerError(e.response.data.error));
     }
 };
-export const updateCardTC = (id: string, pack_id: string, cardQuestion: string): ThunkType => async (
+export const updateCardTC = (id: string, pack_id: string, cardQuestion: string, cardAnswer: string): ThunkType => async (
     dispatch) => {
 
     try {
-        await CardsAPI.updateCard(id, cardQuestion);
+        await CardsAPI.updateCard(id, cardQuestion, cardAnswer);
         dispatch(getCardsTC(pack_id));
     } catch (e) {
-        dispatch(appActions.setServerError(e.error))
+        dispatch(appActions.setServerError(e.error));
     }
 };
 
@@ -91,28 +91,28 @@ export const deleteCardTC = (id: string, pack_id: string): ThunkType => async (d
         await CardsAPI.deleteCard(id);
         dispatch(getCardsTC(pack_id));
     } catch (e) {
-        dispatch(appActions.setServerError(e.error))
+        dispatch(appActions.setServerError(e.error));
     }
 };
-export const addCardTC = (id: string, cardQuestion: string): ThunkType => async (
+export const addCardTC = (id: string, cardQuestion: string, cardAnswer: string): ThunkType => async (
     dispatch) => {
     try {
-        await CardsAPI.addCard(id, cardQuestion);
+        await CardsAPI.addCard(id, cardQuestion, cardAnswer);
         dispatch(getCardsTC(id));
     } catch (e) {
-        dispatch(appActions.setServerError(e.error))
+        dispatch(appActions.setServerError(e.error));
     }
 };
 
 export const gradeCardsTC = (grade: number, card_id: string): ThunkType =>
     async (dispatch) => {
         try {
-            await CardsAPI.gradeCard(grade, card_id)
-            console.log('grade good')
+            await CardsAPI.gradeCard(grade, card_id);
+            console.log('grade good');
         } catch (e) {
-            dispatch(appActions.setServerError(e.error))
+            dispatch(appActions.setServerError(e.error));
         }
-    }
+    };
 export type CardsActionsType = InferActionsTypes<typeof CardsActions> | authActionsType;
 type ThunkType = BaseThunkType<CardsActionsType | AppActionsType>;
 

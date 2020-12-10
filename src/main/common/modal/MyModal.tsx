@@ -26,9 +26,10 @@ export const MyModal: React.FC<ModalType> = ({
                     {children}
                 </div>
                 <div className={st.modalFooter}>
-                    {buttonName !== 'DELETE' ?
-                        <TableBtn onClick={onSubmit} disabled={itemName.length < 2}>{buttonName}</TableBtn> :
-                        <TableBtn onClick={onSubmit}>{buttonName}</TableBtn>}
+                    {/*{buttonName !== 'DELETE' ?*/}
+                    {/*    <TableBtn onClick={onSubmit} >{buttonName}</TableBtn> :*/}
+                    {/*    <TableBtn onClick={onSubmit}>{buttonName}</TableBtn>}*/}
+                    <TableBtn onClick={onSubmit}>{buttonName}</TableBtn>
                     <TableBtn onClick={onCancel}>Cancel</TableBtn>
                 </div>
             </div>
