@@ -5,7 +5,7 @@ import TableBtn from '../../../../main/m1-ui/common/myComponent/BtnForTable/Tabl
 import st from './Cards.module.css'
 
 export const cardsModel = (
-    addModalPack: (packId: string) => void,
+    addModalPack: () => void,
     openDeleteModal: (packId: string) => void,
     openUpdateModalPack: (packId: string) => void
 ): TableNyaModelType[] => [
@@ -57,7 +57,7 @@ export const cardsModel = (
         title: (index) => (
             <div key={'buttons-title-' + index} className={st.item}>
                 <TableBtn onClick={() => {
-                    addModalPack('id')
+                    addModalPack()
                 }}>add</TableBtn>
             </div>
         ),

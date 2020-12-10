@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {AppStateType} from '../../../../main/m2-bll/store';
 import MyTable, {TableNyaModelType} from '../../../../main/m1-ui/common/myComponent/MyTable/TableNya';
 import {cardsModel} from './CardsModel';
-import {addCardTC, getCardsTC} from '../c2-bll/cards-reducer';
+import {addCardTC, deleteCardTC, getCardsTC} from '../c2-bll/cards-reducer';
 import {CardsPagination} from './cardsPagination/CardsPagination';
 import {CardsSearch} from './cardsSearch/CardsSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
@@ -23,7 +23,9 @@ export const CardsPage = React.memo(() => {
     }, [dispatch, id, currentPage, pageSize, sortCards]);
 //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
-    // Set modal title
+    /*
+     Set modal title
+    */
     const [title, setTitle] = useState('');
     // set right callback to modal (ternary expression)
     const [updateDeck, setUpdateDeck] = useState(true);
@@ -59,10 +61,10 @@ export const CardsPage = React.memo(() => {
 
     };
     const confirmDelete = () => {
-        dispatch(deletePack(packId));
+        dispatch(deleteCardTC(id,packId));
     };
-    const addModal = (currentId: string, packName?: string) => {
-        dispatch(addCardTC(currentId, packName));
+    const addModal = (packName: string) => {
+        dispatch(addCardTC(id,packName));
     };
     const updateModal = (packName: string) => {
         dispatch(updatePack(packId, packName));
