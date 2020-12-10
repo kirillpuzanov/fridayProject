@@ -94,10 +94,10 @@ export const deleteCardTC = (id: string, pack_id: string): ThunkType => async (d
         dispatch(appActions.setServerError(e.error))
     }
 };
-export const addCardTC = (id: string): ThunkType => async (
+export const addCardTC = (id: string,cardQuestion:string): ThunkType => async (
     dispatch) => {
     try {
-        await CardsAPI.addCard(id);
+        await CardsAPI.addCard(id,cardQuestion);
         dispatch(getCardsTC(id));
     } catch (e) {
         dispatch(appActions.setServerError(e.error))

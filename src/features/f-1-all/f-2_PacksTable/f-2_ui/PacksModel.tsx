@@ -10,8 +10,6 @@ import {CARDS_PATH, LEARN_PATH} from '../../../../main/m1-ui/routes/Routes';
 export const packsModel = (
     addModalPack: () => void,
     openDeleteModal: (packId: string, packName: string) => void,
-    // updatePack: (packId: string, packName: string) => void,
-    // openUpdateModalPack: () => void,
     openUpdateModalPack: (packId: string, packName: string) => void
 ): TableModelType[] =>
 

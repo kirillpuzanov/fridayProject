@@ -19,11 +19,11 @@ export const CardsAPI = {
         );
         return response.data;
     },
-    addCard: async (cardsPack_id: string) => {
+    addCard: async (cardsPack_id: string, cardQuestion: string) => {
         const response = await instance.post<any>('/cards/card', {
             card: {
                 cardsPack_id,
-                question: 'new 2.0!',
+                question: cardQuestion,
                 grade: Math.random() * 5,
                 questionImg: 'some img',
             },
