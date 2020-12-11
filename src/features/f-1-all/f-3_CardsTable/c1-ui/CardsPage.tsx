@@ -22,9 +22,10 @@ export const CardsPage = React.memo(() => {
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
 
     // const {cards,currentPage,pageSize,sortCards} = useSelector<AppStateType,any>(state => state.cards)
-    console.log('render cards');
+    console.log('render cards logik');
     const dispatch = useDispatch();
     useEffect(() => {
+        debugger
         dispatch(getCardsTC(id));
     }, [dispatch, id, currentPage, pageSize, sortCards]);
 
@@ -100,13 +101,13 @@ export const CardsPage = React.memo(() => {
 
     return (
         <>
+            {   console.log('render cards jsx')}
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
                                 updateAnswer={currentAnswer}
                                 updateItemName={currentQuestion}
-
 
                 />
                 :

@@ -13,6 +13,8 @@ type ContainerType = {
     updateAnswer?: string
     updateItemName?: string
     packUpdate?: boolean
+    clearSubmit?: () => void
+
 }
 
 
@@ -30,14 +32,14 @@ const ModalContainer: React.FC<ContainerType> = ({
         const [itemName, setItemName] = useState<string | undefined>('');
         const [updateItem, setUpdateItem] = useState<string | undefined>('');
 
+
         useEffect(() => {
             setUpdateItem(updateAnswer);
-        }, [updateAnswer]);
 
+        }, [updateAnswer]);
         useEffect(() => {
             setItemName(updateItemName);
         }, [updateItemName]);
-
 
         const handleSubmit = () => {
             changePack(itemName, updateItem);
@@ -45,10 +47,12 @@ const ModalContainer: React.FC<ContainerType> = ({
             setUpdateItem('');
             closeModal();
         };
-
         const handleCancel = () => {
             closeModal();
+
         };
+
+
         const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
             setItemName(e.currentTarget.value);
         };
