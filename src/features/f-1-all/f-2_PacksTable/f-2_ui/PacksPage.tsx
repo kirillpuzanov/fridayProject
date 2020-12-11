@@ -35,6 +35,9 @@ export const PacksPage = React.memo(() => {
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
 
+    const filteredPack = cardPacks.filter(e => e._id === packId)
+    debugger
+
 
     //these funcs open modals
     const openAddModalPack = () => {
@@ -95,6 +98,7 @@ export const PacksPage = React.memo(() => {
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModalPack : addModalPack}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
+                                updateItemName={packId ? filteredPack[0].name : ''}
                 />
                 :
                 <ModalContainer title={title} closeModal={closeModal}

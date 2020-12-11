@@ -85,5 +85,6 @@ const ModalContainer: React.FC<ContainerType> = ({
             }
         </>
     );
-};
+}
+;
 export default ModalContainer;
