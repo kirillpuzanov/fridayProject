@@ -17,7 +17,7 @@ export type myInputType = {
 export function MyInput(props: myInputType) {
 
     return (
-        <div>
+        <>
             <input
                 className={props.error ? `${styles.inputBase} ${styles.red}` : styles.inputBase}
                 onBlur={props.onBlur}
@@ -28,8 +28,8 @@ export function MyInput(props: myInputType) {
                 placeholder={props.placeholder}
                 name={props.name}
             />
-        </div>
-    )
+        </>
+    );
 }
 
 

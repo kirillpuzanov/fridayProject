@@ -15,7 +15,7 @@ export type myInputType = {
 export const MyTextArea: React.FC<myInputType> = ({error, onBlur, onChange, onKeyPress, placeholder, value}) => {
 
     return (
-        <div>
+        <>
             <textarea
                 className={error ? `${styles.inputBase} ${styles.red}` : styles.inputBase}
                 onBlur={onBlur}
@@ -27,7 +27,7 @@ export const MyTextArea: React.FC<myInputType> = ({error, onBlur, onChange, onKe
 
 
             </textarea>
-        </div>
+        </>
     );
 };
 

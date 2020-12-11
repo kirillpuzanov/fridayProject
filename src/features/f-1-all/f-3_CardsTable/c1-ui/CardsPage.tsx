@@ -10,19 +10,20 @@ import {CardsSearch} from './cardsSearch/CardsSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
 import st from '../../f-2_PacksTable/f-2_ui/Packs.module.css';
 import ModalContainer from '../../../f-2-modal/ModalContainer';
+import {CardType} from '../c2-bll/CardTypes';
 
 
 export const CardsPage = React.memo(() => {
     const {id} = useParams<{ id: string }>();
-    const {cards, currentPage, pageSize, sortCards,} = useSelector((store: AppStateType) => store.cards);
-
-
-
-
+    const cards = useSelector<AppStateType, CardType[]>(state => state.cards.cards);
+    const currentPage = useSelector<AppStateType, number>(state => state.cards.currentPage);
+    const pageSize = useSelector<AppStateType, number>(state => state.cards.pageSize);
+    const sortCards = useSelector<AppStateType, string>(state => state.cards.sortCards);
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
+
+    // const {cards,currentPage,pageSize,sortCards} = useSelector<AppStateType,any>(state => state.cards)
+    console.log('render cards');
     const dispatch = useDispatch();
-
-
     useEffect(() => {
         dispatch(getCardsTC(id));
     }, [dispatch, id, currentPage, pageSize, sortCards]);
@@ -49,7 +50,7 @@ export const CardsPage = React.memo(() => {
         setUpdateDeck(false);
         setIsOpen(true);
 
-    }, [setFlagChangeModal, setTitle, setUpdateDeck, setIsOpen]);
+    }, []);
 
     const openDeleteModal = useCallback((currentId: string, currentQuestion: string) => {
         setCardId(currentId);
@@ -57,10 +58,9 @@ export const CardsPage = React.memo(() => {
         setTitle('Do you want to delete  ' + currentQuestion + '  card?');
         setIsOpen(true);
 
-    }, [setCardId, setFlagChangeModal, setTitle, setIsOpen]);
+    }, []);
 
     const openUpdateModal = useCallback((currentId: string, currentQuestion: string, currentAnswer: string) => {
-
         setCardId(currentId);
         setCurrentQuestion(currentQuestion);
         setCurrentAnswer(currentAnswer);
@@ -69,7 +69,7 @@ export const CardsPage = React.memo(() => {
         setTitle('Update ' + currentQuestion + ' card');
         setIsOpen(true);
 
-    }, [setCardId, setCurrentQuestion, setCurrentAnswer, setFlagChangeModal, setUpdateDeck, setTitle, setIsOpen]);
+    }, []);
 
 
     const confirmDelete = useCallback(() => {

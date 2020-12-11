@@ -5,6 +5,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+
 }
 
 .modalWindow {
@@ -19,6 +20,7 @@
     flex-direction: column;
     justify-content: space-between;
     z-index: 10;
+
 }
 
 .modalHeader,
@@ -34,6 +36,7 @@
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
+
 }
 
 .modalTitle {
