@@ -90,9 +90,8 @@ export const CardsPage = React.memo(() => {
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
-                                updateAnswer={cardId ? cardFilter[0].answer : ''
-                                }
-                                updateItemName={cardId ? cardFilter[0].question : ''}
+                                updateAnswer={currentAnswer}
+                                updateItemName={currentQuestion}
 
                 />
                 :
