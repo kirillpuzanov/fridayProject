@@ -29,6 +29,8 @@ export const CardsPage = React.memo(() => {
     const [cardId, setCardId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
+    const [currentQuestion, setCurrentQuestion] = useState('')
+    const [currentAnswer, setCurrentAnswer] = useState('')
 
 
     const cardFilter = cards.filter(e => e._id === cardId);
@@ -48,13 +50,14 @@ export const CardsPage = React.memo(() => {
         setFlagChangeModal(false);
         setTitle('Do you want to delete current card?');
         setIsOpen(true);
-        debugger
 
     };
 
-    const openUpdateModal = (currentId: string) => {
-        debugger
+    const openUpdateModal = (currentId: string, currnetQuestion: string, currentAnswer: string) => {
+
         setCardId(currentId);
+        setCurrentQuestion(currnetQuestion)
+        setCurrentAnswer(currentAnswer)
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change this card');
@@ -76,7 +79,8 @@ export const CardsPage = React.memo(() => {
     const model: TableNyaModelType[] = cardsModel(
         () => openAddModal(),
         (currentId) => openDeleteModal(currentId),
-        (currentId) => openUpdateModal(currentId),
+        (currentId, currentQuestion, currentAnswer) =>
+            openUpdateModal(currentId, currentQuestion, currentAnswer),
     );
 
 
@@ -95,8 +99,8 @@ export const CardsPage = React.memo(() => {
                 <ModalContainer title={title} closeModal={closeModal}
                                 changePack={confirmDelete} isOpen={isOpen}
                                 buttonName={'DELETE'}
-                                updateAnswer={cardId ? cardFilter[0].answer : ' '}
-                                updateItemName={cardId ? cardFilter[0].question : ''}/>
+                                updateAnswer={currentAnswer}
+                                updateItemName={currentQuestion}/>
             }
 
             <section className={st.containerWrapper}>

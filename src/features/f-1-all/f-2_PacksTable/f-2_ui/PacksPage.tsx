@@ -34,9 +34,19 @@ export const PacksPage = React.memo(() => {
     const [packId, setPackId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
+    const [currentName, setCurrentName] = useState('')
 
-    const filteredPack = cardPacks.filter(e => e._id === packId)
-    debugger
+// const filteredPack = cardPacks.filter(e => e._id === packId)
+//
+//     const filteringPacks = (cardPacks: PackType[]) => {
+//
+//         if (packId) {
+//             let c = cardPacks.filter(e => e._id === packId)
+//             console.log(c)
+//         } else {
+//             return [{name: ''}]
+//         }
+//     }
 
 
     //these funcs open modals
@@ -58,6 +68,7 @@ export const PacksPage = React.memo(() => {
 
     const openUpdateModalPack = (currentId: string, currentPackName: string) => {
         setPackId(currentId);
+        setCurrentName(currentPackName)
         setFlagChangeModal(true);
         setUpdateDeck(true);
         setTitle('Change name ' + currentPackName + ' on new one!');
@@ -98,7 +109,8 @@ export const PacksPage = React.memo(() => {
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModalPack : addModalPack}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
-                                updateItemName={packId ? filteredPack[0].name : ''}
+                                updateItemName={currentName}
+
                 />
                 :
                 <ModalContainer title={title} closeModal={closeModal}
