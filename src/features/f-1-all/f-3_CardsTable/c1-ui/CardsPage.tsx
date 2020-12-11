@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {AppStateType} from '../../../../main/m2-bll/store';
@@ -15,11 +15,19 @@ import ModalContainer from '../../../f-2-modal/ModalContainer';
 export const CardsPage = React.memo(() => {
     const {id} = useParams<{ id: string }>();
     const {cards, currentPage, pageSize, sortCards,} = useSelector((store: AppStateType) => store.cards);
+
+
+
+
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
     const dispatch = useDispatch();
+
+
     useEffect(() => {
         dispatch(getCardsTC(id));
     }, [dispatch, id, currentPage, pageSize, sortCards]);
+
+
 //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
@@ -29,56 +37,62 @@ export const CardsPage = React.memo(() => {
     const [cardId, setCardId] = useState('');
     //delete or change modal
     const [flagChangeModal, setFlagChangeModal] = useState(true);
-    const [currentQuestion, setCurrentQuestion] = useState('')
-    const [currentAnswer, setCurrentAnswer] = useState('')
+    const [currentQuestion, setCurrentQuestion] = useState('');
+    const [currentAnswer, setCurrentAnswer] = useState('');
 
-
-    const cardFilter = cards.filter(e => e._id === cardId);
+    console.log('render cards');
 
     //these funcs open modals
-    const openAddModal = () => {
+    const openAddModal = useCallback(() => {
         setFlagChangeModal(true);
         setTitle('It is time to create a new card');
         setUpdateDeck(false);
         setIsOpen(true);
 
-    };
+    }, [setFlagChangeModal, setTitle, setUpdateDeck, setIsOpen]);
 
-    const openDeleteModal = (currentId: string) => {
-
+    const openDeleteModal = useCallback((currentId: string, currentQuestion: string) => {
         setCardId(currentId);
         setFlagChangeModal(false);
-        setTitle('Do you want to delete current card?');
+        setTitle('Do you want to delete  ' + currentQuestion + '  card?');
         setIsOpen(true);
 
-    };
+    }, [setCardId, setFlagChangeModal, setTitle, setIsOpen]);
 
-    const openUpdateModal = (currentId: string, currnetQuestion: string, currentAnswer: string) => {
+    const openUpdateModal = useCallback((currentId: string, currentQuestion: string, currentAnswer: string) => {
 
         setCardId(currentId);
-        setCurrentQuestion(currnetQuestion)
-        setCurrentAnswer(currentAnswer)
+        setCurrentQuestion(currentQuestion);
+        setCurrentAnswer(currentAnswer);
         setFlagChangeModal(true);
         setUpdateDeck(true);
-        setTitle('Change this card');
+        setTitle('Update ' + currentQuestion + ' card');
         setIsOpen(true);
 
-    };
-    const confirmDelete = () => {
+    }, [setCardId, setCurrentQuestion, setCurrentAnswer, setFlagChangeModal, setUpdateDeck, setTitle, setIsOpen]);
+
+
+    const confirmDelete = useCallback(() => {
         dispatch(deleteCardTC(cardId, id));
-    };
-    const addModal = (cardQuestion?: string, cardAnswer?: string) => {
+    }, [dispatch, cardId, id]);
+
+    const addModal = useCallback((cardQuestion?: string, cardAnswer?: string) => {
         dispatch(addCardTC(id, cardQuestion, cardAnswer));
-    };
-    const updateModal = (cardQuestion?: string, cardAnswer?: string) => {
+    }, [dispatch, id]);
+
+    const updateModal = useCallback((cardQuestion?: string, cardAnswer?: string) => {
         dispatch(updateCardTC(cardId, id, cardQuestion, cardAnswer));
-    };
-    const closeModal = () => {
+    }, [dispatch, cardId, id]);
+
+
+    const closeModal = useCallback(() => {
         setIsOpen(false);
-    };
+    }, [setIsOpen]);
+
+
     const model: TableNyaModelType[] = cardsModel(
         () => openAddModal(),
-        (currentId) => openDeleteModal(currentId),
+        (currentId, currentQuestion) => openDeleteModal(currentId, currentQuestion),
         (currentId, currentQuestion, currentAnswer) =>
             openUpdateModal(currentId, currentQuestion, currentAnswer),
     );
@@ -93,13 +107,15 @@ export const CardsPage = React.memo(() => {
                                 updateAnswer={currentAnswer}
                                 updateItemName={currentQuestion}
 
+
                 />
                 :
                 <ModalContainer title={title} closeModal={closeModal}
                                 changePack={confirmDelete} isOpen={isOpen}
                                 buttonName={'DELETE'}
                                 updateAnswer={currentAnswer}
-                                updateItemName={currentQuestion}/>
+                                updateItemName={currentQuestion}
+                />
             }
 
             <section className={st.containerWrapper}>

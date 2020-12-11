@@ -6,7 +6,7 @@ import st from './Cards.module.css';
 
 export const cardsModel = (
     addModalPack: () => void,
-    openDeleteModal: (cardId: string) => void,
+    openDeleteModal: (cardId: string,question:string) => void,
     openUpdateModalPack: (cardId: string,question:string,answer:string) => void
 ): TableNyaModelType[] => [
     {
@@ -73,7 +73,7 @@ export const cardsModel = (
         ),
         render: (dataItem: CardType) => (
             <div key={'buttons-cell-' + dataItem._id} className={st.item}>
-                <TableBtn onClick={() => openDeleteModal(dataItem._id)}>delete</TableBtn>
+                <TableBtn onClick={() => openDeleteModal(dataItem._id,dataItem.question)}>delete</TableBtn>
                 <TableBtn onClick={() => {
                     openUpdateModalPack(dataItem._id,dataItem.question,dataItem.answer);
                 }}>update</TableBtn>

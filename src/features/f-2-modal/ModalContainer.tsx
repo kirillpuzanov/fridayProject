@@ -11,7 +11,10 @@ type ContainerType = {
     buttonName: string
     updateAnswer?: string
     updateItemName?: string
+    packUpdate?: boolean
 }
+
+
 const ModalContainer: React.FC<ContainerType> = ({
                                                      isOpen,
                                                      closeModal,
@@ -19,7 +22,7 @@ const ModalContainer: React.FC<ContainerType> = ({
                                                      changePack,
                                                      buttonName,
                                                      updateAnswer,
-                                                     updateItemName
+                                                     updateItemName, packUpdate
 
                                                  }) => {
 
@@ -74,8 +77,10 @@ const ModalContainer: React.FC<ContainerType> = ({
                         <MyInput onChange={inputChange} type={'text'} value={itemName} placeholder='Enter Title..'/>
                         {itemName && itemName.length < 2 ? 'The length of the deck name must be at least 2 characters' : null}
                         <div>
-                            <MyTextArea onChange={updateInputChange} value={updateItem}/>
-                            {updateItem && updateItem.length < 3 ? 'The length of the deck name must be at least 2 characters' : null}
+                            {!packUpdate ?
+                                <div><MyTextArea onChange={updateInputChange} value={updateItem}/>
+                                    {updateItem && updateItem.length < 3 ? 'The length of the deck name must be at least 2 characters' : null}
+                                </div> : null}
                         </div>
                     </div> : null}
 
@@ -84,5 +89,6 @@ const ModalContainer: React.FC<ContainerType> = ({
         </>
     );
 };
-;
+
+
 export default ModalContainer;
