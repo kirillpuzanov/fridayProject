@@ -101,13 +101,14 @@ export const CardsPage = React.memo(() => {
 
     return (
         <>
-            {   console.log('render cards jsx')}
+            {console.log('render cards jsx')}
             {flagChangeModal ?
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
-                                updateAnswer={currentAnswer}
-                                updateItemName={currentQuestion}
+                                updateAnswer={updateDeck ? currentAnswer : ''}
+                                updateItemName={updateDeck ? currentQuestion: ''}
+
 
                 />
                 :
