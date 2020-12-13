@@ -56,7 +56,7 @@ export const CardsPage = React.memo(() => {
     const openDeleteModal = useCallback((currentId: string, currentQuestion: string) => {
         setCardId(currentId);
         setFlagChangeModal(false);
-        setTitle('Do you want to delete  ' + currentQuestion + '  card?');
+        setTitle(`Do you want to delete   ${currentQuestion}   card?`);
         setIsOpen(true);
 
     }, []);
@@ -67,7 +67,7 @@ export const CardsPage = React.memo(() => {
         setCurrentAnswer(currentAnswer);
         setFlagChangeModal(true);
         setUpdateDeck(true);
-        setTitle('Update ' + currentQuestion + ' card');
+        setTitle(`Update   ${currentQuestion}   card`);
         setIsOpen(true);
 
     }, []);
@@ -107,7 +107,7 @@ export const CardsPage = React.memo(() => {
                                 changePack={updateDeck ? updateModal : addModal}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
                                 updateAnswer={updateDeck ? currentAnswer : ''}
-                                updateItemName={updateDeck ? currentQuestion: ''}
+                                updateItemName={updateDeck ? currentQuestion : ''}
 
 
                 />

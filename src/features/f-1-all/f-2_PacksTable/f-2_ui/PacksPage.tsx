@@ -23,6 +23,8 @@ export const PacksPage = React.memo(() => {
 
 
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
+
+
     const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
     //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +38,8 @@ export const PacksPage = React.memo(() => {
     const [flagChangeModal, setFlagChangeModal] = useState(true);
     const [currentName, setCurrentName] = useState('');
     const [packUpdate, setPackUpdate] = useState(true);
+
+
     console.log('render');
 
     useEffect(() => {
@@ -60,9 +64,10 @@ export const PacksPage = React.memo(() => {
     }, []);
 
     const openDeleteModal = useCallback((currentId: string, currentPackName: string) => {
+        debugger
         setPackId(currentId);
         setFlagChangeModal(false);
-        setTitle('Do you want to delete ' + currentPackName + ' deck?');
+        setTitle(`Do you want to delete  ${currentPackName}  deck?`);
         setIsOpen(true);
 
     }, []);
@@ -73,13 +78,14 @@ export const PacksPage = React.memo(() => {
         setCurrentName(currentPackName);
         setFlagChangeModal(true);
         setUpdateDeck(true);
-        setTitle('Change name ' + currentPackName + ' on new one!');
+        setTitle(`Change name  ${currentPackName} on new one!`);
         setIsOpen(true);
 
     }, []);
     const confirmDeletePack = useCallback(() => {
+
         dispatch(deletePack(packId));
-    }, [dispatch]);
+    }, [dispatch, packId]);
     const addModalPack = useCallback((packName?: string) => {
         dispatch(addPack(packName));
     }, [dispatch]);
@@ -111,15 +117,13 @@ export const PacksPage = React.memo(() => {
                 <ModalContainer title={title} closeModal={closeModal} isOpen={isOpen}
                                 changePack={updateDeck ? updateModalPack : addModalPack}
                                 buttonName={updateDeck ? 'UPDATE' : 'ADD'}
-                                updateItemName={currentName}
+                                updateItemName={updateDeck ? currentName : ''}
                                 packUpdate={packUpdate}
-
                 />
                 :
                 <ModalContainer title={title} closeModal={closeModal}
                                 changePack={confirmDeletePack} isOpen={isOpen}
                                 buttonName={'DELETE'}
-
                 />
             }
             <section className={st.containerWrapper}>
