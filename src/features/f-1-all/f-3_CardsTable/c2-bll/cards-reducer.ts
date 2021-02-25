@@ -72,7 +72,6 @@ export const getCardsTC = (id: string): ThunkType => async (
         dispatch(CardsActions.setCardsSuccess(true));
         console.log('Get cards Success!', data);
     } catch (e) {
-        debugger
         dispatch(appActions.setServerError(e.response.data.error));
     }
 };
