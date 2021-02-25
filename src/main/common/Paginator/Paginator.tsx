@@ -13,7 +13,7 @@ type PaginatorType = {
 // pageSize - ItemCount - размер выводимых объектов на странице, задаем сами
 // pagesCount -сколько у нас будет страниц, вычисляем исходя из (totalItemsCount / pageSize )
 // portionSize - размер количетсва страниц ( кнопок - страниц ) навигации , задаем сами
-export const Paginator = (props: PaginatorType) => {
+export const Paginator = React.memo((props: PaginatorType) => {
     const {pageSize, totalItemsCount, currentPage, onPageChanged, portionSize = 5, togglePageSize} = props
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
@@ -54,7 +54,7 @@ export const Paginator = (props: PaginatorType) => {
                 .map((p) => {
                     return <span className={nameClass(p)}
                                  key={p}
-                                 onClick={(e) => {
+                                 onClick={() => {
                                      onPageChanged(p);
                                  }}>{p}</span>
                 })}
@@ -68,4 +68,4 @@ export const Paginator = (props: PaginatorType) => {
             }
         </div>
     )
-}
+})

@@ -2,29 +2,27 @@ import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../../main/m2-bll/store';
 import {ProfileType} from '../../f-1_autorization/f-1_dal/authAPI';
-import {addPack, deletePack, packActions, PackTC, PackType, updatePack} from '../f-2_bll/packs-reducer';
+import {addPack, deletePack, packActions, PacksStateType, PackTC, updatePack} from '../f-2_bll/packs-reducer';
 import {packsModel} from './PacksModel';
 import st from './Packs.module.css';
 import {MyTable} from '../../../../main/common/table/Table';
 import {PacksPagination} from './packsPagination/PacksPagination';
 import {PacksSearch} from './packsSearch/PacksSearch';
 import {MySnackBar} from '../../../../main/common/myComponent/MySnackBar/MySnackBar';
-import ModalContainer from '../../../f-2-modal/ModalContainer';
+import ModalContainer from "../../../f-2-modal/ModalContainer";
 
 
 export const PacksPage = React.memo(() => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const {_id} = useSelector<AppStateType, ProfileType>(state => state.profile.profile);
-    const currentPage = useSelector<AppStateType, number>(state => state.packs.currentPage);
-    const pageSize = useSelector<AppStateType, number>(state => state.packs.pageSize);
-    const user_id = useSelector<AppStateType, string>(state => state.packs.user_id);
-    const sortPacks = useSelector<AppStateType, string>(state => state.packs.sortPacks);
-    const cardPacks = useSelector<AppStateType, PackType[]>(state => state.packs.cardPacks);
-
-
+    const {
+        currentPage,
+        pageSize,
+        sortPacks,
+        cardPacks,
+        user_id
+    } = useSelector<AppStateType, PacksStateType>(state => state.packs);
     const serverError = useSelector<AppStateType, string>(state => state.app.serverError);
-
-
     const [myPacks, setMyPacks] = useState<boolean>(!!user_id);
     //Opens modal windows
     const [isOpen, setIsOpen] = useState(false);
@@ -38,10 +36,6 @@ export const PacksPage = React.memo(() => {
     const [flagChangeModal, setFlagChangeModal] = useState(true);
     const [currentName, setCurrentName] = useState('');
     const [packUpdate, setPackUpdate] = useState(true);
-
-
-    console.log('render');
-
     useEffect(() => {
         return () => {
             setPackUpdate(true);
@@ -49,7 +43,6 @@ export const PacksPage = React.memo(() => {
     }, [packUpdate]);
 
     useEffect(() => {
-
         dispatch(PackTC());
     }, [dispatch, currentPage, pageSize, sortPacks]);
 
@@ -80,26 +73,19 @@ export const PacksPage = React.memo(() => {
         setUpdateDeck(true);
         setTitle(`Change name  ${currentPackName} on new one!`);
         setIsOpen(true);
-
     }, []);
     const confirmDeletePack = useCallback(() => {
-
         dispatch(deletePack(packId));
     }, [dispatch, packId]);
     const addModalPack = useCallback((packName?: string) => {
         dispatch(addPack(packName));
     }, [dispatch]);
-
-
     const updateModalPack = useCallback((packName?: string) => {
         dispatch(updatePack(packId, packName));
     }, [dispatch, packId]);
-
     const closeModal = useCallback(() => {
         setIsOpen(false);
     }, []);
-
-
     const setMyPacksCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setMyPacks(e.currentTarget.checked);
         dispatch(packActions.setUserPack_id(myPacks ? '' : _id));
@@ -126,6 +112,8 @@ export const PacksPage = React.memo(() => {
                                 buttonName={'DELETE'}
                 />
             }
+
+
             <section className={st.containerWrapper}>
                 <PacksSearch/>
                 <label>
@@ -141,7 +129,6 @@ export const PacksPage = React.memo(() => {
                 {serverError && <MySnackBar errorServer={serverError}/>}
             </section>
         </>
-
     );
 });
 

@@ -6,7 +6,6 @@ import {FormikErrorType} from '../registration/RegistrationContainer';
 import {MyInput} from '../../../../../main/common/myComponent/myInput/MyInput';
 import {MyBtn} from '../../../../../main/common/myComponent/myBtn/MyBtn';
 import {RECOVERY_PASSWORD_PATH, REGISTRATION_PATH} from '../../../../../main/m1-ui/routes/Routes';
-import {MySnackBar} from '../../../../../main/common/myComponent/MySnackBar/MySnackBar';
 
 type PropsType = {
     email: string
