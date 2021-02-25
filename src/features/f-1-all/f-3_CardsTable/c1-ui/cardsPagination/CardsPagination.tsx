@@ -13,10 +13,10 @@ export const CardsPagination = ()=> {
 
     const onPageChanged = useCallback((pageNumber: number) => {
         dispatch(CardsActions.setCurrentPageCardsAC(pageNumber))
-    }, [dispatch,currentPage]);
+    }, [dispatch]);
     const togglePageSize = useCallback((pageNumber: number, pageSize: number) => {
         dispatch(CardsActions.setPageSizeCardsAC(pageNumber, pageSize))
-    }, [pageSize])
+    }, [dispatch])
 
     
 

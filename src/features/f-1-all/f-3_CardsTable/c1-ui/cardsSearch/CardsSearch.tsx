@@ -25,13 +25,13 @@ export const CardsSearch:React.FC<{id:string}> = ({id}) => {
 
     const onSearchBtn = useCallback(() => {
         dispatch(getCardsTC(id))
-    },[dispatch])
+    },[dispatch,id])
     const onShowAll = useCallback( ()=> {
         dispatch(CardsActions.setMaxGradeAC(5))
         dispatch(CardsActions.setMinGradeAC(0))
         dispatch(CardsActions.setCardQuestionNameAC(''))
         dispatch(getCardsTC(id))
-    },[dispatch])
+    },[dispatch,id])
 
     return (
         <Search onChange={onInputChange} inputValue={cardQuestion} step={1} domain={[0, 5]}

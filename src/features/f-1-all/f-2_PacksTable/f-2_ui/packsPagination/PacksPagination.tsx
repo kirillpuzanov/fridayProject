@@ -12,10 +12,10 @@ export const PacksPagination = ()=> {
 
     const onPageChanged = useCallback((pageNumber: number) => {
         dispatch(packActions.setCurrentPageAC(pageNumber))
-    }, [currentPage]);
+    }, [dispatch]);
     const togglePageSize = useCallback((pageNumber: number, pageSize: number) => {
         dispatch(packActions.setPageSizeAC(pageNumber, pageSize))
-    }, [])
+    }, [dispatch])
 
     
 
